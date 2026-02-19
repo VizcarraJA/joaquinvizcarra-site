@@ -66,7 +66,7 @@ body {
   font-weight: 700;
 }
 
-.nav {
+.desktop-nav {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -91,6 +91,42 @@ body {
   color: var(--text);
   border-color: var(--line);
   background: var(--paper);
+}
+
+.mobile-menu-button {
+  display: none;
+  min-height: 44px;
+  min-width: 72px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1;
+}
+
+.mobile-menu-panel {
+  display: none;
+}
+
+.mobile-navlink {
+  text-decoration: none;
+  color: var(--muted);
+  min-height: 44px;
+  padding: 10px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.mobile-navlink:hover {
+  color: var(--text);
 }
 
 .h1,
@@ -347,30 +383,37 @@ button:focus-visible,
   }
 
   .header-inner {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
   }
 
   .brand {
-    font-size: 1.92rem;
+    font-size: 1.42rem;
+    line-height: 1.1;
+    max-width: 78%;
   }
 
-  .nav {
-    width: 100%;
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-menu-panel {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
+    padding-bottom: 12px;
   }
 
   .navlink {
-    min-height: 44px;
-    font-size: 0.92rem;
-    padding: 10px 8px;
-    border-color: var(--line);
-    background: var(--paper);
-    line-height: 1.2;
-    text-align: center;
+    min-height: 36px;
   }
 
   .grid-hero {
@@ -405,7 +448,7 @@ button:focus-visible,
   }
 
   .brand {
-    font-size: 1.74rem;
+    font-size: 1.28rem;
   }
 
   .h1,
@@ -414,9 +457,12 @@ button:focus-visible,
     line-height: 1.16;
   }
 
-  .navlink {
-    font-size: 0.86rem;
-    padding: 9px 8px;
+  .mobile-menu-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-navlink {
+    font-size: 0.88rem;
   }
 }
 

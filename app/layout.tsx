@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Link from "next/link";
+import SiteHeader from "./site-header";
 
 export const metadata: Metadata = {
   title: "Joaquin Vizcarra, M.D.",
@@ -17,35 +18,13 @@ export const metadata: Metadata = {
   }
 };
 
-function NavLink({ href, label }: { href: string; label: string }) {
-  return (
-    <Link className="navlink" href={href}>
-      {label}
-    </Link>
-  );
-}
-
 export default function RootLayout({
   children
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body>
-        <header className="header">
-          <div className="container header-inner">
-            <Link className="brand" href="/">
-              Joaquin Vizcarra, M.D.
-            </Link>
-            <nav className="nav">
-              <NavLink href="/about" label="About" />
-              <NavLink href="/writing" label="Writing" />
-              <NavLink href="/research" label="Research" />
-              <NavLink href="/speaking" label="Speaking" />
-              <NavLink href="/publications" label="Publications" />
-              <NavLink href="/contact" label="Contact" />
-            </nav>
-          </div>
-        </header>
+        <SiteHeader />
 
         <main className="container main">{children}</main>
 
