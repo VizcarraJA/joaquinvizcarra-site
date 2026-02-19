@@ -13,12 +13,12 @@ export default function HomePage() {
       <section className="grid-hero">
         <div>
           <h1 className="h1">
-            Advancing clinically useful AI for Parkinson's disease.
+            Advancing access to expert Parkinson's care through clinically useful AI.
           </h1>
           <p className="p">
-            I am a movement disorders neurologist focused on translating
-            bioinformatics and machine learning into practical tools for diagnosis,
-            fall risk prediction, and real-world neurological decision-making.
+            I am a movement disorders neurologist developing clinically deployable,
+            data-informed tools that improve diagnosis, risk stratification, and
+            neurological decision-making beyond specialty centers.
           </p>
 
           <div className="buttonrow">
