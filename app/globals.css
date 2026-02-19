@@ -31,9 +31,9 @@ body {
 }
 
 .container {
-  max-width: 980px;
+  width: min(980px, calc(100% - 56px));
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0;
 }
 
 .main {
@@ -375,7 +375,7 @@ button:focus-visible,
   }
 
   .container {
-    padding: 0 24px;
+    width: min(980px, calc(100% - 52px));
   }
 
   .main {
@@ -440,7 +440,7 @@ button:focus-visible,
 
 @media (max-width: 390px) {
   .container {
-    padding: 0 22px;
+    width: min(980px, calc(100% - 48px));
   }
 
   .main {
