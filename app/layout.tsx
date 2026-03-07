@@ -5,17 +5,43 @@ import SiteHeader from "./site-header";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
-  title: "Joaquin Vizcarra, M.D.",
+  title: {
+    default: "Joaquin Vizcarra, M.D.",
+    template: "%s | Joaquin Vizcarra, M.D."
+  },
   description:
-    "Movement disorders neurologist focused on Parkinson's disease, artificial intelligence, and translational clinical research.",
+    "Movement disorders neurologist at Penn focused on Parkinson's disease, clinically deployable AI, and translational clinical research.",
   metadataBase: new URL("https://joaquinvizcarra.com"),
+  authors: [{ name: "Joaquin Vizcarra" }],
   openGraph: {
     title: "Joaquin Vizcarra, M.D.",
     description:
-      "Parkinson's disease | artificial intelligence | clinical research",
+      "Movement disorders neurologist at Penn focused on Parkinson's disease, clinically deployable AI, and translational clinical research.",
     url: "https://joaquinvizcarra.com",
     siteName: "Joaquin Vizcarra, M.D.",
-    type: "website"
+    type: "website",
+    images: [
+      {
+        url: "/headshot.jpg",
+        width: 520,
+        height: 650,
+        alt: "Joaquin Vizcarra, M.D."
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@VizcarraJA",
+    creator: "@VizcarraJA",
+    title: "Joaquin Vizcarra, M.D.",
+    description:
+      "Movement disorders neurologist at Penn focused on Parkinson's disease, clinically deployable AI, and translational clinical research.",
+    images: ["/headshot.jpg"]
+  },
+  alternates: {
+    types: {
+      "application/rss+xml": "https://joaquinvizcarra.com/feed.xml"
+    }
   }
 };
 

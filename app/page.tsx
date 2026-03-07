@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getAllPostsMeta } from "@/lib/posts";
 import { researchThemes, selectedPublications, selectedTalks } from "@/lib/site-data";
+import { PersonJsonLd } from "@/app/components/JsonLd";
 
 export default function HomePage() {
   const posts = getAllPostsMeta();
@@ -10,6 +11,7 @@ export default function HomePage() {
 
   return (
     <div>
+      <PersonJsonLd />
       <section className="grid-hero">
         <div>
           <h1 className="h1">
