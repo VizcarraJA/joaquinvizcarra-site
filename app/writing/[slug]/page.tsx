@@ -22,7 +22,7 @@ export async function generateMetadata({
       : [{ url: "/headshot.jpg", alt: "Joaquin Vizcarra, M.D." }];
 
     return {
-      title: `${meta.title} | Joaquin Vizcarra, M.D.`,
+      title: meta.title,
       description: meta.description,
       authors: [{ name: "Joaquin Vizcarra" }],
       openGraph: {
