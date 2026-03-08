@@ -16,20 +16,19 @@ export function GET() {
       <guid isPermaLink="true">${postUrl}</guid>
       <description><![CDATA[${post.description}]]></description>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-      <author>jvizcarratrade@gmail.com (Joaquin Vizcarra)</author>
+      <dc:creator>Joaquin Vizcarra, M.D.</dc:creator>
     </item>`.trim();
     })
     .join("\n    ");
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>Joaquin Vizcarra, M.D. — Writing</title>
     <link>${siteUrl}/writing</link>
     <description>Essays on Parkinson's disease, clinical uncertainty, translational research, and practical uses of artificial intelligence in neurology.</description>
     <language>en-us</language>
-    <managingEditor>jvizcarratrade@gmail.com (Joaquin Vizcarra)</managingEditor>
-    <webMaster>jvizcarratrade@gmail.com (Joaquin Vizcarra)</webMaster>
+    <copyright>Joaquin Vizcarra, M.D.</copyright>
     <atom:link href="${siteUrl}/feed.xml" rel="self" type="application/rss+xml"/>
     ${items}
   </channel>
