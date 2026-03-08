@@ -115,7 +115,7 @@ export default function HomePage() {
           <article className="highlight">
             <Link href={`/writing/${latest.slug}`}>{latest.title}</Link>
             <div className="postmeta">
-              {latest.date} | {latest.description}
+              {latest.date} · {latest.readingTime} min read | {latest.description}
             </div>
           </article>
         ) : null}
@@ -126,7 +126,7 @@ export default function HomePage() {
               <article key={post.slug} className="postitem">
                 <Link href={`/writing/${post.slug}`}>{post.title}</Link>
                 <div className="postmeta">
-                  {post.date} | {post.description}
+                  {post.date} · {post.readingTime} min read | {post.description}
                 </div>
               </article>
             ))}

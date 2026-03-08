@@ -11,9 +11,15 @@ export type PostMeta = {
   description: string;
   image?: string;
   imageAlt?: string;
+  readingTime: number;
 };
 
 const postsDirectory = path.join(process.cwd(), "content", "writing");
+
+function computeReadingTime(text: string): number {
+  const wordCount = text.trim().split(/\s+/).length;
+  return Math.max(1, Math.ceil(wordCount / 230));
+}
 
 export function getAllPostsMeta(): PostMeta[] {
   const files = fs.readdirSync(postsDirectory);
@@ -24,7 +30,7 @@ export function getAllPostsMeta(): PostMeta[] {
       const slug = filename.replace(/\.md$/, "");
       const fullPath = path.join(postsDirectory, filename);
       const fileContents = fs.readFileSync(fullPath, "utf8");
-      const { data } = matter(fileContents);
+      const { data, content } = matter(fileContents);
 
       return {
         slug,
@@ -32,7 +38,8 @@ export function getAllPostsMeta(): PostMeta[] {
         date: String(data.date ?? ""),
         description: String(data.description ?? ""),
         image: data.image ? String(data.image) : undefined,
-        imageAlt: data.imageAlt ? String(data.imageAlt) : undefined
+        imageAlt: data.imageAlt ? String(data.imageAlt) : undefined,
+        readingTime: computeReadingTime(content)
       } satisfies PostMeta;
     })
     .sort((a, b) => (a.date < b.date ? 1 : -1));
@@ -64,7 +71,8 @@ export async function getPostHtmlBySlug(slug: string): Promise<{
     date: String(data.date ?? ""),
     description: String(data.description ?? ""),
     image: data.image ? String(data.image) : undefined,
-    imageAlt: data.imageAlt ? String(data.imageAlt) : undefined
+    imageAlt: data.imageAlt ? String(data.imageAlt) : undefined,
+    readingTime: computeReadingTime(content)
   };
 
   return { meta, contentHtml };
