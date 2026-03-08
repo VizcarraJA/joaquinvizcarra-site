@@ -21,7 +21,7 @@ export default function WritingIndexPage() {
           </div>
           <Link href={`/writing/${latest.slug}`}>{latest.title}</Link>
           <div className="postmeta">
-            {latest.date} | {latest.description}
+            {latest.date} · {latest.readingTime} min read | {latest.description}
           </div>
         </section>
       ) : null}
@@ -32,7 +32,7 @@ export default function WritingIndexPage() {
             <article key={p.slug} className="postitem">
               <Link href={`/writing/${p.slug}`}>{p.title}</Link>
               <div className="postmeta">
-                {p.date} | {p.description}
+                {p.date} · {p.readingTime} min read | {p.description}
               </div>
             </article>
           ))}

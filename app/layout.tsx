@@ -51,9 +51,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <a href="#main" className="skip-link">
+          Skip to main content
+        </a>
         <SiteHeader />
 
-        <main className="container main">{children}</main>
+        <main id="main" className="container main">{children}</main>
 
         <footer className="footer">
           <div className="container footer-inner">
@@ -94,6 +97,10 @@ export default function RootLayout({
               <Link className="footer-link" href="/contact">
                 Contact
               </Link>
+              <span className="footer-dot">•</span>
+              <a className="footer-link" href="/feed.xml">
+                RSS
+              </a>
             </div>
           </div>
         </footer>
