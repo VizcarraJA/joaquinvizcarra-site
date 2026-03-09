@@ -228,10 +228,16 @@ body {
 
 .h2,
 .article h2 {
-  margin: 28px 0 12px;
+  margin: 36px 0 12px;
   font-size: clamp(1.3rem, 2vw, 1.65rem);
   line-height: 1.2;
   font-weight: 700;
+  color: var(--text);
+}
+
+.article h2 {
+  padding-top: 4px;
+  border-top: 2px solid var(--accent);
 }
 
 .h3 {
@@ -240,6 +246,16 @@ body {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--faint);
+}
+
+.article h3 {
+  margin: 28px 0 10px;
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: normal;
+  text-transform: none;
 }
 
 .p,
