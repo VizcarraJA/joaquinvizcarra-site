@@ -1,44 +1,40 @@
 ---
 title: "The Wearable Worked. The Outcomes Didn't Move."
 date: "2026-03-09"
-description: "A 35-center randomized trial found that wearable-guided medication adjustment in Parkinson's disease did not outperform a Hauser diary or a standard clinical visit. The result is worth reading carefully."
+description: "A 35-center randomized trial tested whether wearable-guided medication adjustment improved outcomes in Parkinson's disease. The result opens questions about where these tools work best."
 ---
 
-A well-validated wearable device. A cluster-randomized trial across 35 centers. A direct comparison against the clinical standard of care. The question could not have been more focused: does giving neurologists objective, continuous data about a patient's motor fluctuations lead to better medication decisions and better outcomes?
+Rodríguez-Molinero, Pérez-López, Caballol and colleagues enrolled 156 patients with Parkinson's disease and motor fluctuations across 35 Spanish neurology centers. Neurologists were cluster-randomized into three approaches for guiding medication adjustments over 26 weeks: clinical visit data alone, the Hauser diary, or the STAT-ON Parkinson's Holter. The primary outcome was change in daily OFF time at 26 weeks. Secondary outcomes included ON time, dyskinesia duration, and quality-of-life scores on the PDQ-8. Published in *npj Parkinson's Disease* in August 2025, this is one of the largest randomized evaluations of a wearable device for medication guidance in Parkinson's disease.
 
-The answer, published in *npj Parkinson's Disease* in August 2025, was no.
-
-Rodríguez-Molinero, Pérez-López, Caballol and colleagues enrolled 156 patients with Parkinson's disease and motor fluctuations across 35 Spanish neurology centers. Neurologists were cluster-randomized into three approaches for guiding medication adjustments over 26 weeks: clinical visit data alone, the Hauser diary, or the STAT-ON Parkinson's Holter — a validated inertial measurement unit worn on the waist that records motor state continuously and generates automated reports classifying ON time, OFF time, and dyskinesia. At 26 weeks, change in daily OFF time did not differ significantly across groups. Neither did ON time, dyskinesia duration, nor quality-of-life scores on the PDQ-8.
-
-The STAT-ON device has a solid evidence base. It measures what it claims to measure. The issue was not the accuracy of the technology. The issue was what happened between the data and the decision.
+Change in daily OFF time was similar across all three groups at 26 weeks. ON time, dyskinesia duration, and PDQ-8 scores followed the same pattern.
 
 ---
 
-The motor fluctuation problem in Parkinson's disease is not primarily a measurement problem.
+The STAT-ON is a waist-worn inertial measurement unit that records motor state continuously throughout the day. After a monitoring period, it generates a PDF report with graphical summaries showing the percentage of time spent in ON, OFF, and intermediate motor states, along with counts of freezing of gait episodes and dyskinesia periods. The report gives neurologists a structured, quantified picture of motor state distribution over time. Clinicians use it to inform medication decisions at the follow-up visit. The device produces data visualization; it generates no treatment recommendations.
 
-A patient in the OFF state is recognizable to any experienced clinician within minutes of the encounter. The clinical challenge is not detecting that fluctuations exist — it is understanding why they are structured the way they are for a given patient, and knowing which adjustment would improve them. OFF time in the morning reflects different dynamics than OFF time in the afternoon. Wearing-off before the next dose is a different phenomenon than delayed ON after a meal. Peak-dose dyskinesia requires a different intervention than wearing-off dyskinesia. The STAT-ON tells you how much time the patient spent in each motor state. It does not tell you which mechanism is driving the pattern.
-
-This distinction matters because medication adjustment in Parkinson's disease is not a simple optimization problem. It requires integrating the timing and dose of levodopa equivalents, the role of dietary protein competition, the contribution of gastric emptying, the patient's sleep pattern, and their cognitive and autonomic comorbidities. A continuous motor state record provides one layer of that picture — an important layer — but not the layer that resolves clinical uncertainty about which intervention to make.
-
-What the wearable generated was more data. What was missing was a decision support layer that translates that data into actionable clinical recommendations. The two are not the same thing.
+The ON/OFF classification algorithm has been validated against the Hauser diary with good accuracy. The technology was a reasonable choice for the question this trial posed. Three arms that moved equivalently was the result.
 
 ---
 
-This trial follows a pattern that the broader digital health field is beginning to confront directly.
+Understanding that equivalence requires attention to where this trial was conducted.
 
-A device is developed. Its accuracy is validated in controlled cohorts. It is certified for clinical use. It is deployed in a real-world trial. And then the expected improvement in outcomes does not materialize — not because the measurement was wrong, but because the measurement alone is not sufficient to change the decision. The gap between a sensor that works and a clinical system that uses it well is wider than it appears during the validation phase.
+The 35 participating centers were academic and specialist neurology clinics across Spain. Clinicians at these centers manage substantial Parkinson's patient volumes and have long experience with the phenomenology of wearing-off, delayed ON, and peak-dose dyskinesia. Their baseline level of clinical reasoning about motor fluctuations was already high. A tool that adds objective structure to something clinicians are already doing with precision has limited room to shift population-level outcomes in that context. A ceiling effect is a plausible frame for this result: the intervention adds precision to a workflow that was already functioning at a high level.
 
-The parallel to AI-based risk prediction is instructive. A fall risk model that accurately identifies high-risk patients in Parkinson's disease may not reduce falls if the clinical response to a high-risk flag is the same regardless of which pathway is driving the risk. Better prediction identifies the patient. It does not identify the problem.
-
-The wearable trial makes the same point from a different angle. Better measurement characterizes the outcome. It does not, by itself, specify the mechanism or the intervention.
+The equivalence of the Hauser diary arm adds another dimension. All three groups showed similar improvement trajectories over 26 weeks, including the clinical visit arm. One dynamic likely operating across all three arms simultaneously was the Hawthorne effect. Patients in every group were being formally observed: completing structured monitoring with more diligence than they might apply outside a trial, attending visits with more structured assessment than typical, having their motor state reviewed with close attention. Formal observation, applied consistently across all three arms, likely elevated engagement and self-monitoring throughout. When all three arms benefit from the same attentional effect, the differences between them narrow.
 
 ---
 
-None of this means continuous motor monitoring has no place in Parkinson's disease management. The authors of this trial suggest, plausibly, that the value of these tools may emerge over longer time horizons, or through care models built around remote and asynchronous review rather than the quarterly in-person visit. Those are reasonable hypotheses. They require evaluation.
+The specialist academic clinic is one end of a wide spectrum of Parkinson's care. A general neurology practice where a clinician manages a small number of Parkinson's patients within a large and varied caseload operates very differently. So does a rural setting where specialist access is limited to one or two visits per year, or a telehealth model where clinical assessment is bounded by what a video encounter allows.
 
-What the trial does suggest is that deploying a measurement tool into an unchanged clinical workflow is unlikely to generate clinical benefit on its own. The tool has to be embedded in a pathway that specifies what a neurologist should do differently when the data looks a particular way. That requires decision support — not just data visualization. It requires that the clinical question the device is answering be the same clinical question the physician needs answered. In this trial, those two things were not yet aligned.
+In these settings, a structured PDF report showing four weeks of motor state distribution, freezing episodes, and dyskinesia periods provides information beyond what the clinical encounter alone can generate. The clinician has fewer accumulated data points, less familiarity with a given patient's specific fluctuation pattern, and greater reliance on self-report that may be incomplete. The information gap is wider. A tool that closes that gap has more room to shift clinical decisions and, downstream, outcomes.
 
-Building that alignment is the harder problem. It is also the problem that will determine whether the next decade of digital biomarker development in Parkinson's disease produces clinical impact or a series of technically impressive validation studies that do not change how patients are managed.
+Testing that hypothesis requires trials designed for the settings where the gap exists. The 35-center design here was, by construction, a test in contexts well-positioned to show a ceiling effect. The meaningful next question is what happens when the same tools are studied where the baseline is lower and the floor for improvement is higher.
+
+---
+
+The authors suggest that value from continuous motor monitoring may emerge over longer time horizons, or through care models structured around remote and asynchronous review. That framing is consistent with the ceiling effect interpretation. Specialists doing quarterly structured visits in high-volume academic practices may see modest incremental benefit from better data. Clinicians doing fewer visits with less accumulated context may see substantially more.
+
+Building the evidence base in that direction means designing trials in general neurology practices, community hospitals, and telehealth-first settings. It also means structuring the care models surrounding these tools before randomization, so the workflow for responding to the data is defined in advance rather than left to each center's discretion. That is a different research question than the one this trial answered. It is a more consequential one for the field to pursue.
 
 ---
 
