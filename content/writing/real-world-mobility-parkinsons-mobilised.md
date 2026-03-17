@@ -6,7 +6,7 @@ description: "The Mobilise-D consortium validated 24 digital mobility outcomes i
 
 Clinical trials in Parkinson's disease have a measurement problem that practitioners feel every day. The MDS-Unified Parkinson's Disease Rating Scale captures how a patient moves during a structured clinic visit. It is carefully standardized, widely understood, and limited to a single 30-minute window. For a disease that produces fluctuating motor states, wearing-off cycles, and variable daily function across thousands of waking hours, a snapshot taken in optimal conditions tells an incomplete story.
 
-The Mobilise-D consortium was established to address this directly. Their recently published validation study, led by Alison Yarnall and Lynn Rochester at Newcastle, brings together a remarkable group: Walter Maetzler, Alice Nieuwboer, Jeffrey Hausdorff, Anat Mirelman, and many others whose work in gait and mobility has shaped the field. It is one of the most careful and detailed real-world mobility characterizations in Parkinson's disease to date. The work reflects years of rigorous methodological development, and the dataset they have assembled will support the field for some time.
+The Mobilise-D consortium was established to address this directly. Their recently published validation study brings together a remarkable group: Alison Yarnall and Lynn Rochester at Newcastle, Walter Maetzler, Alice Nieuwboer, Jeffrey Hausdorff, Anat Mirelman, and many others whose work in gait and mobility has shaped the field. It is one of the most careful and detailed real-world mobility characterizations in Parkinson's disease to date. The work reflects years of rigorous methodological development, and the dataset they have assembled will support the field for some time.
 
 ---
 
