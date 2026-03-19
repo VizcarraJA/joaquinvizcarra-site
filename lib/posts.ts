@@ -11,6 +11,7 @@ export type PostMeta = {
   description: string;
   image?: string;
   imageAlt?: string;
+  ogImage?: string;
 };
 
 const postsDirectory = path.join(process.cwd(), "content", "writing");
@@ -32,7 +33,8 @@ export function getAllPostsMeta(): PostMeta[] {
         date: String(data.date ?? ""),
         description: String(data.description ?? ""),
         image: data.image ? String(data.image) : undefined,
-        imageAlt: data.imageAlt ? String(data.imageAlt) : undefined
+        imageAlt: data.imageAlt ? String(data.imageAlt) : undefined,
+        ogImage: data.ogImage ? String(data.ogImage) : undefined
       } satisfies PostMeta;
     })
     .sort((a, b) => (a.date < b.date ? 1 : -1));
@@ -64,7 +66,8 @@ export async function getPostHtmlBySlug(slug: string): Promise<{
     date: String(data.date ?? ""),
     description: String(data.description ?? ""),
     image: data.image ? String(data.image) : undefined,
-    imageAlt: data.imageAlt ? String(data.imageAlt) : undefined
+    imageAlt: data.imageAlt ? String(data.imageAlt) : undefined,
+    ogImage: data.ogImage ? String(data.ogImage) : undefined
   };
 
   return { meta, contentHtml };

@@ -1,9 +1,44 @@
 import { notFound } from "next/navigation";
 import { getPostHtmlBySlug, getPostSlugs } from "@/lib/posts";
 import Image from "next/image";
+import type { Metadata } from "next";
 
 export function generateStaticParams() {
   return getPostSlugs().map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  try {
+    const { slug } = await params;
+    const { meta } = await getPostHtmlBySlug(slug);
+    const ogImage = meta.ogImage ?? meta.image;
+
+    return {
+      title: `${meta.title} | Joaquin Vizcarra, M.D.`,
+      description: meta.description,
+      openGraph: {
+        title: meta.title,
+        description: meta.description,
+        url: `https://joaquinvizcarra.com/writing/${slug}`,
+        type: "article",
+        ...(ogImage && {
+          images: [{ url: ogImage, width: 1200, height: 627, alt: meta.title }]
+        })
+      },
+      twitter: {
+        card: ogImage ? "summary_large_image" : "summary",
+        title: meta.title,
+        description: meta.description,
+        ...(ogImage && { images: [ogImage] })
+      }
+    };
+  } catch {
+    return {};
+  }
 }
 
 export default async function WritingPostPage({

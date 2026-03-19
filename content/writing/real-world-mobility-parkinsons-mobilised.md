@@ -2,6 +2,7 @@
 title: "What a Week of Real-World Walking Data Reveals About Parkinson's Disease"
 date: "2026-03-17"
 description: "The Mobilise-D consortium validated 24 digital mobility outcomes in 601 people with Parkinson's disease across five European sites. The data make a careful case for rethinking how trials measure what matters."
+ogImage: "/images/mobilised-og.png"
 ---
 
 Clinical trials in Parkinson's disease have a measurement problem that practitioners feel every day. The MDS-Unified Parkinson's Disease Rating Scale captures how a patient moves during a structured clinic visit. It is carefully standardized, widely understood, and limited to a single 30-minute window. For a disease that produces fluctuating motor states, wearing-off cycles, and variable daily function across thousands of waking hours, a snapshot taken in optimal conditions tells an incomplete story.
