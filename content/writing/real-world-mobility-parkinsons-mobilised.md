@@ -38,6 +38,10 @@ Second, bout-to-bout variability was lower in PD than in controls across walking
 
 The disease severity analysis is where the clinical trial relevance becomes direct.
 
+![Radar plot of digital mobility outcomes in Parkinson's disease stratified by Hoehn and Yahr stage vs. healthy controls, from Yarnall et al., Journal of Parkinson's Disease (2026). CC BY-NC 4.0.](/images/mobilised-radar-stages.png)
+
+*Figure 3 from Yarnall et al. Radar plot of digital mobility outcomes stratified by Hoehn and Yahr stage: controls (n=221), PD H&Y I (n=91), PD H&Y II (n=356), PD H&Y III (n=81). Graded separation is visible across walking activity, rhythm, and variability domains. Reproduced under CC BY-NC 4.0.*
+
 Stratifying by Hoehn and Yahr stage, the authors found significant differences in walking activity, rhythm, and bout-to-bout variability between healthy controls and mild disease (H&Y stage I–II), and between mild and moderate disease (H&Y stage III). Within the pace domain specifically, most differences emerged at the stage comparisons rather than in the overall PD-versus-control analysis. Patients at H&Y stage III walked less, at slower maximum speeds, with shorter stride lengths and lower bout-to-bout variability than those at H&Y stage I–II.
 
 This graded separation across disease stages is precisely what a clinical trial endpoint needs to demonstrate. A disease-modifying therapy slows progression along that gradient. An outcome measure that tracks that gradient sensitively, capturing data continuously at home without requiring a clinic visit, offers something the MDS-UPDRS alone cannot.
