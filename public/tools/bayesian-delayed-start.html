@@ -233,7 +233,7 @@
         <span class="slider-name">Prior mean (UPDRS points)</span>
         <span class="slider-val" id="val-mu0">1.5</span>
       </div>
-      <div class="slider-hint">Phase 1 observed effect or prior belief</div>
+      <div class="slider-hint">Period 1 observed effect or prior belief</div>
       <input type="range" id="sl-mu0" min="-2" max="5" step="0.1" value="1.5" oninput="update()">
     </div>
 
@@ -250,16 +250,16 @@
 
     <div class="slider-group">
       <div class="slider-label">
-        <span class="slider-name">Phase 2 sample size (per arm)</span>
+        <span class="slider-name">Period 2 sample size (per arm)</span>
         <span class="slider-val" id="val-n">150</span>
       </div>
-      <div class="slider-hint">Patients per arm in Phase 2</div>
+      <div class="slider-hint">Patients per arm in Period 2 (both arms on drug)</div>
       <input type="range" id="sl-n" min="20" max="500" step="10" value="150" oninput="update()">
     </div>
 
     <div class="slider-group">
       <div class="slider-label">
-        <span class="slider-name">Observed Phase 2 effect</span>
+        <span class="slider-name">Observed Period 2 effect</span>
         <span class="slider-val" id="val-theta">1.8</span>
       </div>
       <div class="slider-hint">Early-start advantage in UPDRS-III</div>
@@ -298,7 +298,7 @@
     <div class="footnote">
       Effect = sustained UPDRS-III advantage of early-start over delayed-start at trial end.
       Pooled within-group SD assumed 8 points. Disease modification threshold: 1.5 UPDRS-III points (clinically meaningful difference).
-      Prior represents beliefs entering Phase 2, informed by Phase 1 data or external evidence.
+      Prior represents beliefs entering Period 2, informed by Period 1 data or external evidence.
       Normal-Normal conjugate model; posterior probabilities computed from posterior CDF.
     </div>
   </div>
