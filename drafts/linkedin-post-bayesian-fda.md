@@ -8,7 +8,7 @@ I built an interactive Bayesian clinical trial simulator for Parkinson's disease
 
 It's embedded in the article linked below.
 
-I built it because the FDA just issued draft guidance formally endorsing Bayesian methods for clinical trials, and I think the implications for PD are more specific than the general statistics framing suggests. The simulator makes the mechanics tangible rather than abstract.
+I built it because yesterday a JAMA perspective from Lee, Harrell, LaVange, and Spiegelhalter responded to the FDA's January draft guidance on Bayesian methods, and I think the implications for PD are more specific than either piece makes explicit. The simulator makes the mechanics tangible rather than abstract.
 
 Three things in the actual guidance that caught my attention:
 
