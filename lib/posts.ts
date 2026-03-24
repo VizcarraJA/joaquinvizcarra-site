@@ -57,7 +57,7 @@ export async function getPostHtmlBySlug(slug: string): Promise<{
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
-  const processed = await remark().use(html).process(content);
+  const processed = await remark().use(html, { allowDangerousHtml: true }).process(content);
   const contentHtml = processed.toString();
 
   const meta: PostMeta = {
