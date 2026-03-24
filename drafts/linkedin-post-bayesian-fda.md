@@ -4,9 +4,11 @@
 
 ---
 
-The FDA just issued draft guidance endorsing Bayesian methods for clinical trials. Most coverage treats it as a general statistics story.
+I built an interactive Bayesian clinical trial simulator for Parkinson's disease. Two modes: a standard symptomatic efficacy trial and a delayed-start disease modification trial. Change the prior, adjust the sample size, watch the posterior shift in real time.
 
-For Parkinson's disease, it's more specific than that. I think it matters for how we design the next generation of neuroprotection trials.
+It's embedded in the article linked below.
+
+I built it because the FDA just issued draft guidance formally endorsing Bayesian methods for clinical trials, and I think the implications for PD are more specific than the general statistics framing suggests. The simulator makes the mechanics tangible rather than abstract.
 
 Three things in the actual guidance that caught my attention:
 
@@ -19,9 +21,7 @@ Section III.B of the guidance covers using external data to supplement randomize
 **3. Borrowing across GBA-PD, LRRK2-PD, and idiopathic disease is explicitly in scope.**
 Section III.D covers Bayesian hierarchical models across disease subtypes. Each subgroup doesn't need to be independently powered. The model borrows adaptively.
 
-I wrote a commentary on this with a PD framing, plus an interactive simulation of both a symptomatic efficacy trial and a delayed-start disease modification trial, so you can see how the prior shifts the posterior under different assumptions.
-
-Link in first comment.
+Full commentary + simulator in first comment.
 
 ---
 
