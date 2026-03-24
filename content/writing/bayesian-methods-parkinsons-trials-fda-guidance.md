@@ -55,9 +55,11 @@ That last observation is the core intuition. In small trials — which describe 
 
 PD trials face a specific set of structural challenges that Bayesian methods are well-suited to address.
 
-Sample sizes in PD trials are large and enrollment is slow. Any approach that allows principled use of existing data — from natural history cohorts like PPMI, from prior Phase 2 trials, from international registries — has the potential to reduce the sample size needed in Phase 3 without compromising rigor. The FDA guidance explicitly acknowledges this use case.
+The FDA guidance explicitly endorses using natural history data to augment concurrent control arms — Section III.B of the document covers exactly this scenario. PPMI, which has tracked thousands of patients with longitudinal MDS-UPDRS assessments, biomarker profiles, and genetic stratification for over a decade, is the natural candidate. Formally incorporating PPMI trajectories into the prior for a Phase 3 control arm could meaningfully reduce the randomized sample size without relaxing the evidentiary standard. The Agency has already approved drugs using this framework: REBYOTA received approval in 2022 after a Phase 3 analysis that used Phase 2 data as a formal Bayesian prior.
 
-PD is also heterogeneous. Patients with GBA mutations have different trajectories than patients with LRRK2 mutations or idiopathic disease. Bayesian hierarchical models can borrow information across subgroups adaptively, sharpening estimates in smaller strata without requiring each to be independently powered. That is directly applicable to the biomarker-stratified trials that the field is beginning to run.
+The guidance also formally endorses skeptical priors in exactly the circumstances PD presents. The document states that skeptical priors are appropriate when "there have been a number of failed trials or drug development programs for closely related drugs in a therapeutic area." That is a precise description of the history of PD neuroprotection — CoQ10, creatine, GDNF, pioglitazone. A skeptical prior is not a barrier to approval; it is an honest starting position that requires the data to overcome a track record of failure rather than the mere absence of prior evidence.
+
+PD is also genetically heterogeneous. Bayesian hierarchical models can borrow information across GBA-PD, LRRK2-PD, and idiopathic disease adaptively, sharpening estimates in smaller strata without requiring each subgroup to be independently powered. Section III.D of the guidance explicitly covers borrowing across disease subtypes — basket-style designs that pool a common statistical model across molecular subgroups are within scope.
 
 The disease modification question, which the delayed-start design is built to answer, is inherently a question about probability and direction of effect, not about rejecting a null hypothesis. "What is the probability that this drug slowed progression?" is a question the posterior can answer directly. "Is p less than 0.05?" is not the same question, and answering it does not answer the one that matters.
 
@@ -72,6 +74,8 @@ Bayesian methods do not make priors irrelevant — they make them explicit. A po
 The guidance also does not lower the evidentiary bar for approval. A high posterior probability of efficacy still requires a well-designed trial, pre-specified endpoints, and transparent assumptions. The framework is more flexible. It is not more permissive.
 
 For the delayed-start design specifically, the interpretive challenges remain. Sustained separation between groups at trial end is consistent with disease modification, but it can also reflect other mechanisms. The Bayesian framework quantifies uncertainty about the effect; it does not resolve mechanistic ambiguity.
+
+One gap the guidance does not close: endpoints. It says nothing about whether MDS-UPDRS, clinical global impression, biomarker-based measures such as neurofilament light chain or alpha-synuclein, or dopamine transporter imaging are appropriate for disease modification claims in PD. That question is governed by separate disease-specific guidances and will require the same pre-IND scientific work it always has. The Bayesian framework changes how evidence is analyzed. It does not determine what must be demonstrated.
 
 ---
 
