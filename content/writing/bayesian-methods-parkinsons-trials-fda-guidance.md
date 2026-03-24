@@ -5,81 +5,67 @@ description: "The FDA's new Bayesian guidance changes what clinical trials can a
 ogImage: "/images/bayesian-pd-trials-og.png"
 ---
 
-Proving that a drug slows Parkinson's disease is one of the hardest problems in clinical medicine. Not because we lack candidates. Not because trials are impossible to run. But because the question itself is structurally difficult: how do you distinguish a drug that genuinely changes the underlying disease from one that simply makes patients feel better while they take it?
+Proving that a drug slows Parkinson's disease is structurally hard in a way most clinical problems aren't. Symptomatic improvement and disease modification look nearly identical in a short trial. A drug that makes patients feel better for 18 months may or may not be doing anything to the underlying neurodegeneration, and conventional trial designs struggle to tell the difference.
 
-In January 2026, the FDA issued a long-awaited draft guidance endorsing Bayesian statistical methods for use in clinical trials of drugs and biologics. A perspective in JAMA by Lee, Harrell, LaVange, and Spiegelhalter offers a lucid explanation of what this guidance means and why it matters. For movement disorders specialists, I think the implications deserve a closer look than the general clinical trial audience might give them.
+In January 2026, the FDA issued a draft guidance endorsing Bayesian statistical methods for clinical trials. The JAMA perspective from Lee, Harrell, LaVange, and Spiegelhalter is worth reading on its own terms. For PD specifically, I think the guidance has more targeted implications than the general framing suggests.
 
 ---
 
 **The disease modification problem**
 
-When a patient takes levodopa, their symptoms improve. When they stop, the improvement fades. That is a symptomatic effect. A disease-modifying therapy would do something different: it would slow, halt, or reverse the underlying neurodegeneration. Symptoms might still improve, but the trajectory of the disease itself would change.
+When a patient starts levodopa, symptoms improve. When they stop, the improvement fades. That is symptomatic. Disease modification would look different: the underlying trajectory changes, not just the current symptom level. The problem is that you measure both through the same signals, MDS-UPDRS scores, gait, cognition, biomarkers, and those signals respond to symptomatic treatment too.
 
-The difficulty is that you cannot directly observe neurodegeneration in real time. You observe its downstream effects: motor scores, cognitive tests, quality of life, biomarkers. And all of those can be influenced by symptomatic treatments as well.
+The delayed-start design was developed to separate these two things. In Period 1, one group starts active drug while the other takes placebo. In Period 2, both groups are on drug. If the effect is purely symptomatic, the groups converge: the late starters catch up once they begin treatment. If the drug modifies disease, the early starters hold an advantage that persists beyond what current treatment explains. Appealing on paper. In practice it is hard to execute and even harder to interpret cleanly.
 
-The delayed-start design was developed specifically to navigate this problem. The logic is elegant. In Period 1, one group of patients receives active drug while the other receives placebo. In Period 2, everyone switches to active drug. If the drug is purely symptomatic, the two groups should converge once both are on treatment: the placebo group catches up. If the drug genuinely modifies disease, the group that started earlier maintains an advantage that cannot be explained by current treatment status alone. That persistent separation is evidence of disease modification.
-
-The ADAGIO trial of rasagiline used this design, as did the LEAP trial, which asked the same question of levodopa, the most effective symptomatic drug in PD. LEAP's result was definitive: delayed-start patients caught up completely, and the two groups converged by trial end. The design worked as intended; levodopa treats symptoms and leaves disease trajectory unchanged. That negative finding is, in its own way, informative: the framework is capable of returning a null result, and a Bayesian analysis of LEAP would have produced a posterior centered near zero with high confidence. The design has become the standard framework for disease modification claims in PD. Its logic is sound. Its execution is demanding.
+ADAGIO applied this to rasagiline. LEAP applied it to levodopa, 445 patients, 80 weeks. Both groups converged by the end. Levodopa treats symptoms and leaves disease trajectory unchanged. That result is worth sitting with: if the most effective drug in PD fails the disease modification test, the bar for the next candidate is real. A Bayesian analysis of LEAP would have produced a posterior centered near zero, and that is exactly what a skeptical prior for the next trial should reflect.
 
 ---
 
 **What Bayesian methods add**
 
-The FDA guidance, and the JAMA perspective interpreting it, make a case that Bayesian inference solves several problems that frequentist methods handle awkwardly.
+A frequentist p-value tells you whether observed data would be unlikely if the treatment had no effect. A Bayesian posterior tells you what you should now believe about the treatment effect, given what you knew before the trial and what the trial showed. These are related but genuinely different questions. The second is the one that matters when deciding whether to approve a drug or enroll patients in a Phase 3.
 
-The central difference is what each framework actually answers. A frequentist p-value answers: "How unlikely is this data if the treatment does nothing?" A Bayesian posterior probability answers: "Given what we knew before and what this trial showed, what is the probability the treatment works?" For a clinician deciding whether to enroll patients in the next trial, or a regulator deciding whether to approve a drug, the Bayesian question is the one that matters.
+In a delayed-start trial, Bayesian analysis can do something the frequentist approach handles poorly: it lets Period 1 results function as a prior for Period 2. The data you already collected informs the analysis of the data you are collecting, rather than being set aside. The FDA guidance formalizes this under specific requirements: the prior must be prespecified in the protocol, justified with supporting evidence, and subjected to sensitivity analysis. It is more methodological work, not less.
 
-In a delayed-start trial, the Bayesian framework does something particularly useful: it makes Period 1 data formally available as evidence for Period 2 analysis. The Period 1 results, showing whether early-treated patients diverged from placebo, become a prior distribution for the Period 2 analysis. This is a principled way of using information you already have rather than discarding it and starting fresh.
-
-The FDA guidance is explicit on this: the prior must be pre-specified in the protocol, justified with supporting evidence, and subjected to sensitivity analysis. A skeptical prior centered at zero demands that the data prove efficacy from a position of genuine uncertainty. An informative prior centered on the Period 1 effect size reflects what you actually observed. The posterior shows you how much the data shifts your belief in each case.
-
-The figure from the JAMA perspective illustrates this beautifully. Three distributions: the prior (what you believed going in), the data likelihood (what the trial observed), and the posterior (the synthesis). With a weak prior, the posterior tracks the data almost exactly. With a moderate prior aligned with the data, the posterior is tighter and more confident. The prior is a dial that tunes the analysis toward what is already known.
+The figure in the JAMA paper makes the mechanics visible. Three distributions: prior, likelihood, posterior. With a weak prior, the posterior follows the data. With a stronger prior, it pulls. The prior is a dial. Where you set it depends on what you actually know before the trial starts, and the guidance is explicit that "I'll figure it out later" is not acceptable.
 
 ---
 
 **Try it yourself**
 
-The simulation below has two modes. The first covers a symptomatic efficacy trial: the kind designed to show that a drug improves motor function relative to placebo. The second covers a delayed-start disease modification trial, where the question is whether the early-start group maintains a persistent advantage after both groups are on treatment.
-
-In both modes, the same Bayesian machinery runs: a prior belief, updated by trial data, produces a posterior. What changes is what the effect represents, what the decision thresholds mean, and where a reasonable prior comes from.
+The simulation has two modes. The first is a symptomatic efficacy trial measuring MDS-UPDRS improvement over placebo. The second is a delayed-start disease modification trial asking whether the early-start group holds a persistent advantage at the end of Period 2.
 
 <iframe src="/tools/bayesian-delayed-start.html" width="100%" height="700" frameborder="0" style="border-radius:12px;border:1px solid #e3e5ea;margin:8px 0 24px;"></iframe>
 
-A few things worth exploring. In the symptomatic mode, try a class-informed prior and watch how much it narrows the posterior relative to the skeptical preset. The prior matters when you genuinely know something about the drug class. In the disease modification mode, try the skeptical preset: even with no prior belief in modification, a sufficiently large observed effect still produces a substantial posterior probability. Then drag the sample size to 400 per arm in either mode and watch the likelihood sharpen until the prior is almost irrelevant.
-
-That last observation is the core intuition. In small trials (which describe most early PD studies), the prior carries real weight and must be pre-specified and justified. In large trials, the data overwhelm it. The FDA guidance formalizes both scenarios under the same framework.
+Try the skeptical preset in the disease modification mode. Even with a prior centered at zero, a large enough observed effect shifts the posterior substantially. Then push sample size to 400 per arm and watch the prior become nearly irrelevant. That tension, how much the prior matters at different sample sizes, is the central practical question for any sponsor considering this design. Most early PD trials are small. The prior carries real weight there.
 
 ---
 
 **Why this is especially relevant for Parkinson's disease**
 
-PD trials face a specific set of structural challenges that Bayesian methods are well-suited to address.
+The FDA guidance explicitly covers using natural history data to augment concurrent control arms (Section III.B). PPMI has tracked thousands of patients with longitudinal MDS-UPDRS, biomarkers, and genetic stratification for over a decade. Formally incorporating those trajectories into the prior for a Phase 3 control arm could reduce the randomized sample size without changing the evidentiary standard. The REBYOTA approval in 2022 established the precedent: the Phase 3 analysis formally borrowed from Phase 2, and it held up at review.
 
-The FDA guidance explicitly endorses using natural history data to augment concurrent control arms. Section III.B of the document covers exactly this scenario. PPMI, which has tracked thousands of patients with longitudinal MDS-UPDRS assessments, biomarker profiles, and genetic stratification for over a decade, is the natural candidate. Formally incorporating PPMI trajectories into the prior for a Phase 3 control arm could meaningfully reduce the randomized sample size without relaxing the evidentiary standard. The Agency has already approved drugs using this framework: REBYOTA received approval in 2022 after a Phase 3 analysis that used Phase 2 data as a formal Bayesian prior.
+The guidance also endorses skeptical priors when there have been "a number of failed trials or drug development programs for closely related drugs in a therapeutic area." CoQ10. Creatine. GDNF. LEAP. The field has not run out of candidates, but it has accumulated a meaningful prior. A skeptical prior formalizes that history rather than pretending it does not exist.
 
-The guidance also formally endorses skeptical priors in exactly the circumstances PD presents. The document states that skeptical priors are appropriate when "there have been a number of failed trials or drug development programs for closely related drugs in a therapeutic area." That is a precise description of the history of PD neuroprotection: CoQ10, creatine, GDNF, levodopa itself (LEAP, 2019). A skeptical prior is an honest starting position, one that requires the data to overcome a track record of failure rather than the mere absence of prior evidence.
+PD is also genetically heterogeneous in ways that compound the sample size problem. A trial powered for idiopathic disease may be dramatically underpowered in GBA-PD or LRRK2-PD. Bayesian hierarchical models can borrow information across subtypes adaptively. Section III.D of the guidance covers this directly, and I think this is probably the most underappreciated application in the field right now. Most current genetic subtype trials are too small to be definitive on their own. A hierarchical framework that borrows intelligently across related populations might change that.
 
-PD is also genetically heterogeneous. Bayesian hierarchical models can borrow information across GBA-PD, LRRK2-PD, and idiopathic disease adaptively, sharpening estimates in smaller strata without requiring each subgroup to be independently powered. Section III.D of the guidance explicitly covers borrowing across disease subtypes, and basket-style designs that pool a common statistical model across molecular subgroups are within scope.
-
-The disease modification question, which the delayed-start design is built to answer, is inherently a question about probability and direction of effect. "What is the probability that this drug slowed progression?" is a question the posterior answers directly. "Is p less than 0.05?" is a different question, and answering it leaves the one that matters unaddressed.
+The disease modification question is also fundamentally probabilistic. "What is the probability this drug slowed progression?" is what we want to know. A posterior answers it. A p-value answers something related but different, and the translation is rarely as clean as it looks in a paper.
 
 ---
 
 **What the guidance leaves open**
 
-Lee and colleagues are careful about this, and it deserves emphasis.
+Bayesian methods make priors explicit and consequential. A poorly specified prior can bias a trial as readily as bad randomization. The FDA guidance requires prespecification, justification, and sensitivity analysis. That is the right standard. It means a sponsor thinking about Bayesian design has to do the hard prior elicitation work during design, not after unblinding.
 
-Bayesian methods make priors explicit and consequential. A poorly chosen prior can bias a trial just as surely as a flawed randomization scheme. The FDA guidance requires that priors be prespecified, justified, and subjected to sensitivity analysis. That is the correct standard, and it means more methodological work upfront.
+The evidentiary bar for approval stays the same. A high posterior probability still requires a well-designed trial, prespecified endpoints, and transparent assumptions. More flexible statistical machinery is not the same as a lower regulatory threshold.
 
-The evidentiary bar for approval remains the same. A high posterior probability of efficacy still requires a well-designed trial, pre-specified endpoints, and transparent assumptions. The framework is more flexible and equally rigorous.
+The interpretive challenge for delayed-start persists regardless of the statistical framework. Sustained group separation at trial end is consistent with disease modification. It is also consistent with carry-over effects, practice effects, and differential dropout. Bayesian analysis quantifies uncertainty about the effect size. The mechanistic question requires other evidence.
 
-For the delayed-start design specifically, the interpretive challenges remain. Sustained separation between groups at trial end is consistent with disease modification, but it can also reflect other mechanisms. The Bayesian framework quantifies uncertainty about the effect; the question of mechanism requires separate investigation.
-
-One gap the guidance leaves open: endpoints. It is silent on whether MDS-UPDRS, clinical global impression, biomarker-based measures such as neurofilament light chain or alpha-synuclein, or dopamine transporter imaging are appropriate for disease modification claims in PD. That question is governed by separate disease-specific guidances and will require the same pre-IND scientific work it always has. The Bayesian framework changes how evidence is analyzed. What must be demonstrated remains a separate question.
+One substantial gap: endpoints. The guidance says nothing about whether MDS-UPDRS, clinical global impression, neurofilament light chain, alpha-synuclein, or DaT imaging are appropriate for disease modification claims in PD. That stays in the domain of disease-specific guidances and pre-IND discussions. The statistical framework and the outcome measure question are separate problems, and the guidance only addresses one of them.
 
 ---
 
-For movement disorders specialists, this guidance is worth understanding now rather than waiting for the first Bayesian-designed PD trial to reach Phase 3. The methodological framework will shape how trials are designed, how interim analyses are conducted, and how evidence accumulates across a development program. The simulation above is meant to make the core logic tangible rather than abstract. The prior is organized knowledge from Period 1, from natural history, from prior trials, brought formally into the analysis where it belongs.
+Movement disorders specialists will encounter Bayesian-designed PD trials before long. The framework will affect how interim analyses run, how evidence accumulates across a development program, and how data from PPMI and genetic substudies gets used formally rather than informally. The simulation above is meant to make the mechanics visible. The prior is organized knowledge from Period 1, from natural history, from prior trials, brought into the analysis where it belongs.
 
 ---
 
