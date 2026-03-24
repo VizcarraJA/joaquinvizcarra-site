@@ -39,15 +39,15 @@ The figure from the JAMA perspective illustrates this beautifully. Three distrib
 
 **Try it yourself**
 
-The simulation below lets you explore this directly in the context of a delayed-start Parkinson's disease trial. The outcome is the sustained UPDRS-III advantage of the early-start group over the delayed-start group at trial end — the signal the design is built to detect.
+The simulation below has two modes. The first covers a symptomatic efficacy trial — the kind designed to show that a drug improves motor function relative to placebo. The second covers a delayed-start disease modification trial, where the question is whether the early-start group maintains a persistent advantage after both groups are on treatment.
 
-Adjust the sliders to set your prior belief (informed by Period 1 data or prior trials), the Period 2 sample size, and the observed Period 2 effect. Watch how the three distributions respond and how the posterior probabilities update across the decision regions.
+In both modes, the same Bayesian machinery runs: a prior belief, updated by trial data, produces a posterior. What changes is what the effect represents, what the decision thresholds mean, and where a reasonable prior comes from.
 
-<iframe src="/tools/bayesian-delayed-start.html" width="100%" height="680" frameborder="0" style="border-radius:12px;border:1px solid #e3e5ea;margin:8px 0 24px;"></iframe>
+<iframe src="/tools/bayesian-delayed-start.html" width="100%" height="700" frameborder="0" style="border-radius:12px;border:1px solid #e3e5ea;margin:8px 0 24px;"></iframe>
 
-A few things worth noticing. First, drag the sample size to 400 per arm and watch the likelihood narrow dramatically — at that scale, the prior barely matters. Second, set a skeptical prior and a modest observed effect: you still get a meaningful posterior probability of disease modification because the trial data carries real weight. Third, set a moderate prior informed by Period 1 data and a similar effect in Period 2: the posterior is considerably more confident than either source of information alone.
+A few things worth exploring. In the symptomatic mode, try a class-informed prior and watch how much it narrows the posterior relative to the skeptical preset — the prior matters when you genuinely know something about the drug class. In the disease modification mode, try the skeptical preset: even with no prior belief in modification, a sufficiently large observed effect still produces a substantial posterior probability. Then drag the sample size to 400 per arm in either mode and watch the likelihood sharpen until the prior is almost irrelevant.
 
-That last scenario is what the FDA guidance now formally enables: using Period 1 data as a prior rather than treating Period 2 as if Period 1 never happened.
+That last observation is the core intuition. In small trials — which describe most early PD studies — the prior carries real weight and must be pre-specified and justified. In large trials, the data overwhelm it. The FDA guidance formalizes both scenarios under the same framework.
 
 ---
 

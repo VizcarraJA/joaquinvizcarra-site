@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bayesian Delayed-Start Trial Explorer</title>
+<title>Bayesian PD Trial Explorer</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,34 +21,57 @@
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: -0.01em;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
 
   .subtitle {
     font-size: 0.8rem;
     color: #666d78;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
+  /* ── Mode tabs ── */
+  .mode-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    margin-bottom: 14px;
+  }
+
+  .mode-tab {
+    padding: 7px 10px;
+    border-radius: 7px;
+    border: 1px solid #e3e5ea;
+    background: #f4f4f2;
+    color: #3f4652;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    line-height: 1.3;
+  }
+
+  .mode-tab.active {
+    background: #1e2a44;
+    color: #fff;
+    border-color: #1e2a44;
+  }
+
+  /* ── Layout ── */
   .layout {
     display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: 16px;
+    grid-template-columns: 250px 1fr;
+    gap: 14px;
     align-items: start;
   }
 
+  /* ── Controls ── */
   .controls {
     background: #fff;
     border: 1px solid #e3e5ea;
     border-radius: 10px;
-    padding: 14px;
-  }
-
-  .preset-row {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-bottom: 14px;
+    padding: 13px;
   }
 
   .preset-label {
@@ -56,7 +79,14 @@
     text-transform: uppercase;
     letter-spacing: 0.07em;
     color: #666d78;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
+  }
+
+  .preset-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 12px;
   }
 
   .preset-btn {
@@ -64,40 +94,37 @@
     border: 1px solid #e3e5ea;
     border-radius: 6px;
     padding: 5px 8px;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     cursor: pointer;
     text-align: left;
     color: #3f4652;
-    transition: background 0.1s;
+    transition: background 0.1s, color 0.1s;
+    line-height: 1.3;
   }
 
-  .preset-btn:hover, .preset-btn.active {
-    background: #1e2a44;
-    color: #fff;
-    border-color: #1e2a44;
-  }
+  .preset-btn:hover { background: #e8e8e5; }
+  .preset-btn.active { background: #1e2a44; color: #fff; border-color: #1e2a44; }
 
   .divider {
     height: 1px;
     background: #e3e5ea;
-    margin: 12px 0;
+    margin: 11px 0;
   }
 
-  .slider-group {
-    margin-bottom: 12px;
-  }
+  .slider-group { margin-bottom: 11px; }
 
   .slider-label {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
 
   .slider-name {
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     color: #3f4652;
     font-weight: 600;
+    line-height: 1.3;
   }
 
   .slider-val {
@@ -105,77 +132,41 @@
     color: #1e2a44;
     font-weight: 700;
     font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    margin-left: 6px;
+    flex-shrink: 0;
   }
 
   .slider-hint {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     color: #999;
     margin-bottom: 3px;
+    line-height: 1.3;
   }
 
   input[type=range] {
     width: 100%;
     accent-color: #1e2a44;
-    height: 4px;
     cursor: pointer;
+    height: 4px;
   }
 
+  /* ── Chart area ── */
   .chart-area {
     background: #fff;
     border: 1px solid #e3e5ea;
     border-radius: 10px;
-    padding: 14px 14px 8px;
+    padding: 14px 14px 10px;
   }
 
   .chart-title {
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     font-weight: 700;
     color: #3f4652;
     margin-bottom: 8px;
   }
 
   canvas { display: block; }
-
-  .probabilities {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-top: 12px;
-  }
-
-  .prob-card {
-    border-radius: 8px;
-    padding: 8px 10px;
-    text-align: center;
-  }
-
-  .prob-card.harm     { background: #fef2f2; border: 1px solid #fca5a5; }
-  .prob-card.similar  { background: #f8faff; border: 1px solid #bfdbfe; }
-  .prob-card.modify   { background: #f0fdf4; border: 1px solid #86efac; }
-
-  .prob-label {
-    font-size: 0.68rem;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 2px;
-  }
-
-  .prob-value {
-    font-size: 1.25rem;
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .prob-card.harm    .prob-value { color: #dc2626; }
-  .prob-card.similar .prob-value { color: #3b82f6; }
-  .prob-card.modify  .prob-value { color: #16a34a; }
-
-  .prob-sub {
-    font-size: 0.65rem;
-    color: #888;
-    margin-top: 1px;
-  }
 
   .legend {
     display: flex;
@@ -199,14 +190,59 @@
     flex-shrink: 0;
   }
 
-  .footnote {
-    font-size: 0.68rem;
-    color: #999;
-    margin-top: 10px;
-    line-height: 1.4;
+  /* ── Probability cards ── */
+  .probabilities {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+    margin-top: 11px;
   }
 
-  @media (max-width: 600px) {
+  .prob-card {
+    border-radius: 8px;
+    padding: 8px 9px;
+    text-align: center;
+  }
+
+  .prob-card.harm    { background: #fef2f2; border: 1px solid #fca5a5; }
+  .prob-card.similar { background: #f8faff; border: 1px solid #bfdbfe; }
+  .prob-card.modify  { background: #f0fdf4; border: 1px solid #86efac; }
+
+  .prob-label {
+    font-size: 0.65rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 2px;
+    line-height: 1.3;
+  }
+
+  .prob-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+  }
+
+  .prob-card.harm    .prob-value { color: #dc2626; }
+  .prob-card.similar .prob-value { color: #3b82f6; }
+  .prob-card.modify  .prob-value { color: #16a34a; }
+
+  .prob-sub {
+    font-size: 0.62rem;
+    color: #888;
+    margin-top: 2px;
+    line-height: 1.3;
+  }
+
+  .footnote {
+    font-size: 0.67rem;
+    color: #999;
+    margin-top: 10px;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 640px) {
     .layout { grid-template-columns: 1fr; }
     body { padding: 12px; }
   }
@@ -214,197 +250,200 @@
 </head>
 <body>
 
-<h2>Bayesian Delayed-Start Trial Explorer</h2>
-<p class="subtitle">Parkinson's disease disease-modification trial &mdash; Normal-Normal conjugate model</p>
+<h2>Bayesian PD Trial Explorer</h2>
+<p class="subtitle">Interactive Bayesian inference for Parkinson's disease clinical trials — Normal-Normal conjugate model</p>
+
+<div class="mode-tabs">
+  <button class="mode-tab active" id="tab-symptomatic" onclick="setMode('symptomatic', this)">
+    Symptomatic Efficacy Trial
+  </button>
+  <button class="mode-tab" id="tab-diseasemod" onclick="setMode('diseasemod', this)">
+    Disease Modification (Delayed-Start)
+  </button>
+</div>
 
 <div class="layout">
   <div class="controls">
     <div class="preset-label">Presets</div>
-    <div class="preset-row">
-      <button class="preset-btn" onclick="applyPreset('skeptical')">Skeptical FDA reviewer</button>
-      <button class="preset-btn active" onclick="applyPreset('adagio')">ADAGIO-like prior</button>
-      <button class="preset-btn" onclick="applyPreset('ppmi')">PPMI-informed prior</button>
-    </div>
+    <div class="preset-row" id="preset-row"><!-- populated by JS --></div>
 
     <div class="divider"></div>
 
     <div class="slider-group">
       <div class="slider-label">
-        <span class="slider-name">Prior mean (UPDRS points)</span>
-        <span class="slider-val" id="val-mu0">1.5</span>
+        <span class="slider-name" id="lbl-mu0">—</span>
+        <span class="slider-val" id="val-mu0">—</span>
       </div>
-      <div class="slider-hint">Period 1 observed effect or prior belief</div>
-      <input type="range" id="sl-mu0" min="-2" max="5" step="0.1" value="1.5" oninput="update()">
+      <div class="slider-hint" id="hint-mu0"></div>
+      <input type="range" id="sl-mu0" oninput="onSlider()">
     </div>
 
     <div class="slider-group">
       <div class="slider-label">
         <span class="slider-name">Prior uncertainty (SD)</span>
-        <span class="slider-val" id="val-sigma0">2.5</span>
+        <span class="slider-val" id="val-sigma0">—</span>
       </div>
-      <div class="slider-hint">Wide = skeptical; narrow = confident</div>
-      <input type="range" id="sl-sigma0" min="0.5" max="6" step="0.1" value="2.5" oninput="update()">
+      <div class="slider-hint">Wide = little confidence; narrow = strong expectation</div>
+      <input type="range" id="sl-sigma0" oninput="onSlider()">
     </div>
 
     <div class="divider"></div>
 
     <div class="slider-group">
       <div class="slider-label">
-        <span class="slider-name">Period 2 sample size (per arm)</span>
-        <span class="slider-val" id="val-n">150</span>
+        <span class="slider-name" id="lbl-n">—</span>
+        <span class="slider-val" id="val-n">—</span>
       </div>
-      <div class="slider-hint">Patients per arm in Period 2 (both arms on drug)</div>
-      <input type="range" id="sl-n" min="20" max="500" step="10" value="150" oninput="update()">
+      <div class="slider-hint" id="hint-n"></div>
+      <input type="range" id="sl-n" oninput="onSlider()">
     </div>
 
     <div class="slider-group">
       <div class="slider-label">
-        <span class="slider-name">Observed Period 2 effect</span>
-        <span class="slider-val" id="val-theta">1.8</span>
+        <span class="slider-name" id="lbl-theta">—</span>
+        <span class="slider-val" id="val-theta">—</span>
       </div>
-      <div class="slider-hint">Early-start advantage in UPDRS-III</div>
-      <input type="range" id="sl-theta" min="-3" max="6" step="0.1" value="1.8" oninput="update()">
+      <div class="slider-hint" id="hint-theta"></div>
+      <input type="range" id="sl-theta" oninput="onSlider()">
     </div>
   </div>
 
   <div class="chart-area">
-    <div class="chart-title">Distribution of sustained treatment effect (UPDRS-III points, early-start vs. delayed-start)</div>
-    <canvas id="chart" height="220"></canvas>
+    <div class="chart-title" id="chart-title">—</div>
+    <canvas id="chart" height="215"></canvas>
 
     <div class="legend">
       <div class="legend-item"><div class="legend-dot" style="background:#9ca3af"></div>Prior</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#60a5fa"></div>Data likelihood (Phase 2)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#60a5fa"></div>Data likelihood</div>
       <div class="legend-item"><div class="legend-dot" style="background:#f97316"></div>Posterior</div>
     </div>
 
     <div class="probabilities">
       <div class="prob-card harm">
-        <div class="prob-label">No modification</div>
-        <div class="prob-value" id="p-harm">-</div>
-        <div class="prob-sub">effect &le; 0</div>
+        <div class="prob-label" id="lbl-p-left">—</div>
+        <div class="prob-value" id="p-left">—</div>
+        <div class="prob-sub" id="sub-p-left">—</div>
       </div>
       <div class="prob-card similar">
-        <div class="prob-label">Uncertain</div>
-        <div class="prob-value" id="p-similar">-</div>
-        <div class="prob-sub">0 &lt; effect &le; 1.5</div>
+        <div class="prob-label" id="lbl-p-center">—</div>
+        <div class="prob-value" id="p-center">—</div>
+        <div class="prob-sub" id="sub-p-center">—</div>
       </div>
       <div class="prob-card modify">
-        <div class="prob-label">Disease modification</div>
-        <div class="prob-value" id="p-modify">-</div>
-        <div class="prob-sub">effect &gt; 1.5 UPDRS</div>
+        <div class="prob-label" id="lbl-p-right">—</div>
+        <div class="prob-value" id="p-right">—</div>
+        <div class="prob-sub" id="sub-p-right">—</div>
       </div>
     </div>
 
-    <div class="footnote">
-      Effect = sustained UPDRS-III advantage of early-start over delayed-start at trial end.
-      Pooled within-group SD assumed 8 points. Disease modification threshold: 1.5 UPDRS-III points (clinically meaningful difference).
-      Prior represents beliefs entering Period 2, informed by Period 1 data or external evidence.
-      Normal-Normal conjugate model; posterior probabilities computed from posterior CDF.
-    </div>
+    <div class="footnote" id="footnote">—</div>
   </div>
 </div>
 
 <script>
-// ─── Math helpers ────────────────────────────────────────────────────────────
+// ─── Mode configuration ───────────────────────────────────────────────────────
+const MODES = {
+  symptomatic: {
+    sigma: 10,
+    threshold: 3.25,
+    xMin: -8, xMax: 14,
+    chartTitle: 'Distribution of treatment effect (UPDRS II+III, drug − placebo)',
+    axisLabel: 'Treatment effect (UPDRS II+III improvement, drug − placebo)',
+    sliders: {
+      mu0:    { label: 'Prior mean (UPDRS II+III points)', hint: 'Expected improvement based on drug class or Phase 2 data',   min: -2,  max: 8,   step: 0.1, def: 4.0 },
+      sigma0: {                                             hint: '',                                                           min: 0.5, max: 8,   step: 0.1, def: 2.0 },
+      n:      { label: 'Sample size (per arm)',            hint: 'Patients per arm in the trial',                              min: 20,  max: 500, step: 10,  def: 150 },
+      theta:  { label: 'Observed treatment effect',        hint: 'Drug − placebo UPDRS II+III improvement',                   min: -4,  max: 10,  step: 0.1, def: 4.5 }
+    },
+    presets: [
+      { label: 'Class-informed (dopamine agonist)', mu0: 4.0, sigma0: 2.0, n: 150, theta: 4.5 },
+      { label: 'Novel mechanism',                   mu0: 2.0, sigma0: 4.0, n: 200, theta: 3.0 },
+      { label: 'Skeptical',                         mu0: 0.0, sigma0: 5.0, n: 150, theta: 4.5 }
+    ],
+    cards: {
+      left:   { label: 'Worsening',            sub: 'effect &lt; 0' },
+      center: { label: 'Below MCID',           sub: '0 &le; effect &lt; 3.25' },
+      right:  { label: 'Clinically meaningful',sub: 'effect &ge; 3.25 UPDRS' }
+    },
+    footnote: 'Effect = mean improvement in UPDRS Parts II+III (drug minus placebo). Pooled within-group SD assumed 10 points. MCID = 3.25 UPDRS II+III points (Shulman et al., 2010). Normal-Normal conjugate model; posterior probabilities computed from posterior CDF.'
+  },
+
+  diseasemod: {
+    sigma: 8,
+    threshold: 1.5,
+    xMin: -5, xMax: 9,
+    chartTitle: 'Distribution of persistent treatment effect (UPDRS-III, early-start − delayed-start)',
+    axisLabel: 'Persistent effect (early-start − delayed-start at trial end, UPDRS-III)',
+    sliders: {
+      mu0:    { label: 'Prior mean (UPDRS-III points)',      hint: 'Expected persistent advantage from Period 1 or external data', min: -2,  max: 5,   step: 0.1, def: 1.5 },
+      sigma0: {                                              hint: '',                                                              min: 0.5, max: 6,   step: 0.1, def: 2.5 },
+      n:      { label: 'Period 2 sample size (per arm)',     hint: 'Patients per arm in Period 2 (both groups on drug)',           min: 20,  max: 500, step: 10,  def: 150 },
+      theta:  { label: 'Observed persistent effect',         hint: 'Early-start advantage in UPDRS-III at trial end',             min: -3,  max: 6,   step: 0.1, def: 1.8 }
+    },
+    presets: [
+      { label: 'Skeptical (no PD drug proven)',   mu0: 0.0, sigma0: 4.0, n: 150, theta: 1.8 },
+      { label: 'ADAGIO-informed',                 mu0: 1.5, sigma0: 2.5, n: 150, theta: 1.8 },
+      { label: 'PPMI-informed prior',             mu0: 2.0, sigma0: 1.5, n: 150, theta: 1.8 }
+    ],
+    cards: {
+      left:   { label: 'No modification', sub: 'effect &le; 0' },
+      center: { label: 'Uncertain',        sub: '0 &lt; effect &le; 1.5' },
+      right:  { label: 'Disease modification', sub: 'effect &gt; 1.5 UPDRS' }
+    },
+    footnote: 'Effect = sustained UPDRS-III advantage of early-start over delayed-start at trial end (Period 2, both groups on drug). Pooled within-group SD assumed 8 points. Disease modification threshold: 1.5 UPDRS-III points. Prior represents beliefs entering Period 2, informed by Period 1 data or external evidence. Normal-Normal conjugate model; posterior probabilities computed from posterior CDF.'
+  }
+};
+
+// ─── Math helpers ─────────────────────────────────────────────────────────────
 function erf(x) {
   const t = 1 / (1 + 0.3275911 * Math.abs(x));
   const p = t * (0.254829592 + t * (-0.284496736 + t * (1.421413741 + t * (-1.453152027 + t * 1.061405429))));
   const r = 1 - p * Math.exp(-x * x);
   return x >= 0 ? r : -r;
 }
-
 function normalCDF(x, mu, sigma) {
   return 0.5 * (1 + erf((x - mu) / (sigma * Math.SQRT2)));
 }
-
 function normalPDF(x, mu, sigma) {
   return Math.exp(-0.5 * ((x - mu) / sigma) ** 2) / (sigma * Math.sqrt(2 * Math.PI));
 }
+function pct(p) { return (p * 100).toFixed(0) + '%'; }
 
-function pct(p) {
-  return (p * 100).toFixed(0) + '%';
-}
+// ─── Chart setup ──────────────────────────────────────────────────────────────
+const N_PTS = 350;
+let currentXs = [];
 
-// ─── Chart setup ─────────────────────────────────────────────────────────────
 const ctx = document.getElementById('chart').getContext('2d');
-const xMin = -5, xMax = 9, nPts = 300;
-const xs = Array.from({length: nPts}, (_, i) => xMin + (xMax - xMin) * i / (nPts - 1));
-
 const chart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: xs.map(x => x.toFixed(2)),
+    labels: [],
     datasets: [
-      {
-        label: 'Prior',
-        data: [],
-        borderColor: '#9ca3af',
-        backgroundColor: 'rgba(156,163,175,0.15)',
-        borderWidth: 1.5,
-        fill: true,
-        pointRadius: 0,
-        tension: 0.3,
-      },
-      {
-        label: 'Data likelihood',
-        data: [],
-        borderColor: '#60a5fa',
-        backgroundColor: 'rgba(96,165,250,0.15)',
-        borderWidth: 1.5,
-        fill: true,
-        pointRadius: 0,
-        tension: 0.3,
-      },
-      {
-        label: 'Posterior',
-        data: [],
-        borderColor: '#f97316',
-        backgroundColor: 'rgba(249,115,22,0.2)',
-        borderWidth: 2.5,
-        fill: true,
-        pointRadius: 0,
-        tension: 0.3,
-      },
-      // vertical line at threshold 1.5
-      {
-        label: 'Modification threshold',
-        data: [],
-        borderColor: '#16a34a',
-        borderWidth: 1,
-        borderDash: [4, 3],
-        pointRadius: 0,
-        fill: false,
-      }
+      { label: 'Prior',            data: [], borderColor: '#9ca3af', backgroundColor: 'rgba(156,163,175,0.15)', borderWidth: 1.5, fill: true, pointRadius: 0, tension: 0.3 },
+      { label: 'Data likelihood',  data: [], borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.15)',  borderWidth: 1.5, fill: true, pointRadius: 0, tension: 0.3 },
+      { label: 'Posterior',        data: [], borderColor: '#f97316', backgroundColor: 'rgba(249,115,22,0.2)',   borderWidth: 2.5, fill: true, pointRadius: 0, tension: 0.3 },
+      { label: 'Threshold',        data: [], borderColor: '#16a34a', borderWidth: 1.5, borderDash: [5, 4],      fill: false, pointRadius: 0, spanGaps: false }
     ]
   },
   options: {
     responsive: true,
     animation: { duration: 180 },
-    interaction: { intersect: false },
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        callbacks: {
-          label: ctx => `Density: ${ctx.parsed.y.toFixed(3)}`,
-          title: ctx => `Effect: ${parseFloat(ctx[0].label).toFixed(1)} UPDRS pts`
-        }
+    plugins: { legend: { display: false }, tooltip: {
+      callbacks: {
+        label: c => `Density: ${c.parsed.y.toFixed(3)}`,
+        title: c => `Effect: ${parseFloat(c[0].label).toFixed(2)}`
       }
-    },
+    }},
     scales: {
       x: {
         type: 'linear',
-        min: xMin,
-        max: xMax,
-        title: { display: true, text: 'Sustained UPDRS-III advantage (early-start − delayed-start)', font: { size: 11 }, color: '#666' },
-        ticks: {
-          maxTicksLimit: 10,
-          callback: v => v.toFixed(1),
-          font: { size: 10 }
-        },
+        title: { display: true, text: '', font: { size: 10.5 }, color: '#666' },
+        ticks: { maxTicksLimit: 10, callback: v => v.toFixed(1), font: { size: 10 } },
         grid: { color: '#f0f0ee' }
       },
       y: {
-        title: { display: true, text: 'Probability density', font: { size: 11 }, color: '#666' },
+        title: { display: true, text: 'Probability density', font: { size: 10.5 }, color: '#666' },
+        min: 0,
         ticks: { font: { size: 10 } },
         grid: { color: '#f0f0ee' }
       }
@@ -412,80 +451,153 @@ const chart = new Chart(ctx, {
   }
 });
 
-// ─── Threshold line helper ────────────────────────────────────────────────────
-function thresholdLine(yMax) {
-  return xs.map(x => Math.abs(x - 1.5) < (xMax - xMin) / nPts * 1.5 ? yMax : null);
+// ─── State ────────────────────────────────────────────────────────────────────
+let currentMode = 'symptomatic';
+
+// ─── Mode switching ───────────────────────────────────────────────────────────
+function setMode(modeKey, tabEl) {
+  currentMode = modeKey;
+  const m = MODES[modeKey];
+
+  // Tab styling
+  document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+  tabEl.classList.add('active');
+
+  // Slider config
+  const s = m.sliders;
+  configSlider('mu0',    s.mu0.min,    s.mu0.max,    s.mu0.step,    s.mu0.def);
+  configSlider('sigma0', s.sigma0.min, s.sigma0.max, s.sigma0.step, s.sigma0.def);
+  configSlider('n',      s.n.min,      s.n.max,      s.n.step,      s.n.def);
+  configSlider('theta',  s.theta.min,  s.theta.max,  s.theta.step,  s.theta.def);
+
+  // Slider labels
+  document.getElementById('lbl-mu0').textContent   = s.mu0.label;
+  document.getElementById('hint-mu0').textContent  = s.mu0.hint;
+  document.getElementById('lbl-n').textContent     = s.n.label;
+  document.getElementById('hint-n').textContent    = s.n.hint;
+  document.getElementById('lbl-theta').textContent = s.theta.label;
+  document.getElementById('hint-theta').textContent= s.theta.hint;
+
+  // Presets
+  const row = document.getElementById('preset-row');
+  row.innerHTML = '';
+  m.presets.forEach((p, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'preset-btn' + (i === 0 ? '' : '');
+    btn.textContent = p.label;
+    btn.onclick = () => applyPreset(p, btn);
+    row.appendChild(btn);
+  });
+
+  // Card labels
+  document.getElementById('lbl-p-left').innerHTML   = m.cards.left.label;
+  document.getElementById('sub-p-left').innerHTML   = m.cards.left.sub;
+  document.getElementById('lbl-p-center').innerHTML = m.cards.center.label;
+  document.getElementById('sub-p-center').innerHTML = m.cards.center.sub;
+  document.getElementById('lbl-p-right').innerHTML  = m.cards.right.label;
+  document.getElementById('sub-p-right').innerHTML  = m.cards.right.sub;
+
+  // Chart title and axis
+  document.getElementById('chart-title').textContent = m.chartTitle;
+  chart.options.scales.x.title.text = m.axisLabel;
+  chart.options.scales.x.min = m.xMin;
+  chart.options.scales.x.max = m.xMax;
+
+  // Footnote
+  document.getElementById('footnote').textContent = m.footnote;
+
+  // Recompute xs for new range
+  currentXs = Array.from({ length: N_PTS }, (_, i) => m.xMin + (m.xMax - m.xMin) * i / (N_PTS - 1));
+  chart.data.labels = currentXs.map(x => x.toFixed(3));
+
+  update();
 }
 
-// ─── Main update ─────────────────────────────────────────────────────────────
-const SIGMA_DATA = 8; // pooled within-arm UPDRS SD (fixed)
-
-function update() {
-  const mu0    = parseFloat(document.getElementById('sl-mu0').value);
-  const sigma0 = parseFloat(document.getElementById('sl-sigma0').value);
-  const n      = parseFloat(document.getElementById('sl-n').value);
-  const theta  = parseFloat(document.getElementById('sl-theta').value);
-
-  document.getElementById('val-mu0').textContent    = mu0.toFixed(1);
-  document.getElementById('val-sigma0').textContent = sigma0.toFixed(1);
-  document.getElementById('val-n').textContent      = n.toFixed(0);
-  document.getElementById('val-theta').textContent  = theta.toFixed(1);
-
-  // Likelihood: Normal(theta, sigma_data^2 / n)  [SE of difference of means]
-  const likeSE = SIGMA_DATA * Math.sqrt(2 / n);  // SE of mean difference
-
-  // Posterior (Normal-Normal conjugate)
-  const priorPrec = 1 / (sigma0 * sigma0);
-  const likePrec  = 1 / (likeSE * likeSE);
-  const postPrec  = priorPrec + likePrec;
-  const postVar   = 1 / postPrec;
-  const postSD    = Math.sqrt(postVar);
-  const postMu    = postVar * (priorPrec * mu0 + likePrec * theta);
-
-  // Compute densities
-  const priorY = xs.map(x => normalPDF(x, mu0, sigma0));
-  const likeY  = xs.map(x => normalPDF(x, theta, likeSE));
-  const postY  = xs.map(x => normalPDF(x, postMu, postSD));
-
-  const yMax = Math.max(...priorY, ...likeY, ...postY) * 1.15;
-
-  chart.data.datasets[0].data = priorY;
-  chart.data.datasets[1].data = likeY;
-  chart.data.datasets[2].data = postY;
-  chart.data.datasets[3].data = xs.map(x => (x >= 1.499 && x <= 1.501) ? yMax * 0.9 : null);
-  chart.options.scales.y.max = yMax;
-  chart.update();
-
-  // Posterior probabilities
-  const pHarm    = normalCDF(0,   postMu, postSD);            // P(effect <= 0)
-  const pSimilar = normalCDF(1.5, postMu, postSD) - pHarm;    // P(0 < effect <= 1.5)
-  const pModify  = 1 - normalCDF(1.5, postMu, postSD);        // P(effect > 1.5)
-
-  document.getElementById('p-harm').textContent    = pct(pHarm);
-  document.getElementById('p-similar').textContent = pct(pSimilar);
-  document.getElementById('p-modify').textContent  = pct(pModify);
+function configSlider(id, min, max, step, def) {
+  const el = document.getElementById('sl-' + id);
+  el.min   = min;
+  el.max   = max;
+  el.step  = step;
+  el.value = def;
 }
 
-// ─── Presets ─────────────────────────────────────────────────────────────────
-const presets = {
-  skeptical: { mu0: 0.0, sigma0: 5.0, n: 150, theta: 1.8 },
-  adagio:    { mu0: 1.5, sigma0: 2.5, n: 150, theta: 1.8 },
-  ppmi:      { mu0: 2.0, sigma0: 1.5, n: 150, theta: 1.8 },
-};
-
-function applyPreset(name) {
-  const p = presets[name];
+// ─── Preset application ───────────────────────────────────────────────────────
+function applyPreset(p, btn) {
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
   document.getElementById('sl-mu0').value    = p.mu0;
   document.getElementById('sl-sigma0').value = p.sigma0;
   document.getElementById('sl-n').value      = p.n;
   document.getElementById('sl-theta').value  = p.theta;
-  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
   update();
 }
 
-// ─── Init ────────────────────────────────────────────────────────────────────
-update();
+// ─── Slider input handler ─────────────────────────────────────────────────────
+function onSlider() {
+  // Deactivate preset buttons when user manually adjusts
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  update();
+}
+
+// ─── Main update ──────────────────────────────────────────────────────────────
+function update() {
+  const m       = MODES[currentMode];
+  const mu0     = parseFloat(document.getElementById('sl-mu0').value);
+  const sigma0  = parseFloat(document.getElementById('sl-sigma0').value);
+  const n       = parseFloat(document.getElementById('sl-n').value);
+  const theta   = parseFloat(document.getElementById('sl-theta').value);
+
+  // Display values
+  document.getElementById('val-mu0').textContent    = mu0.toFixed(1);
+  document.getElementById('val-sigma0').textContent = sigma0.toFixed(1);
+  document.getElementById('val-n').textContent      = Math.round(n).toString();
+  document.getElementById('val-theta').textContent  = theta.toFixed(1);
+
+  // Likelihood SE: SE of difference of two means with n per arm
+  const likeSE = m.sigma * Math.sqrt(2 / n);
+
+  // Posterior (Normal-Normal conjugate)
+  const priorPrec = 1 / (sigma0 * sigma0);
+  const likePrec  = 1 / (likeSE * likeSE);
+  const postVar   = 1 / (priorPrec + likePrec);
+  const postSD    = Math.sqrt(postVar);
+  const postMu    = postVar * (priorPrec * mu0 + likePrec * theta);
+
+  // Densities
+  const priorY = currentXs.map(x => normalPDF(x, mu0, sigma0));
+  const likeY  = currentXs.map(x => normalPDF(x, theta, likeSE));
+  const postY  = currentXs.map(x => normalPDF(x, postMu, postSD));
+
+  const yMax = Math.max(...priorY, ...likeY, ...postY) * 1.18;
+
+  // Threshold vertical line (closest point in xs)
+  const dx = (m.xMax - m.xMin) / N_PTS;
+  const threshY = currentXs.map(x => (Math.abs(x - m.threshold) < dx * 1.5) ? yMax * 0.92 : null);
+
+  chart.data.datasets[0].data = priorY;
+  chart.data.datasets[1].data = likeY;
+  chart.data.datasets[2].data = postY;
+  chart.data.datasets[3].data = threshY;
+  chart.options.scales.y.max  = yMax;
+  chart.update();
+
+  // Posterior probabilities
+  const pLeft   = normalCDF(0,            postMu, postSD);
+  const pCenter = normalCDF(m.threshold,  postMu, postSD) - pLeft;
+  const pRight  = 1 - normalCDF(m.threshold, postMu, postSD);
+
+  document.getElementById('p-left').textContent   = pct(pLeft);
+  document.getElementById('p-center').textContent = pct(pCenter);
+  document.getElementById('p-right').textContent  = pct(pRight);
+}
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+setMode('symptomatic', document.getElementById('tab-symptomatic'));
+// Apply first preset as default active
+(function() {
+  const firstBtn = document.querySelector('.preset-btn');
+  if (firstBtn) firstBtn.classList.add('active');
+})();
 </script>
 </body>
 </html>
