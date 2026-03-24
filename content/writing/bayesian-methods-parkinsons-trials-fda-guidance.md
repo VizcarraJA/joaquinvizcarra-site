@@ -19,7 +19,7 @@ The difficulty is that you cannot directly observe neurodegeneration in real tim
 
 The delayed-start design was developed specifically to navigate this problem. The logic is elegant. In Period 1, one group of patients receives active drug while the other receives placebo. In Period 2, everyone switches to active drug. If the drug is purely symptomatic, the two groups should converge once both are on treatment: the placebo group catches up. If the drug genuinely modifies disease, the group that started earlier maintains an advantage that cannot be explained by current treatment status alone. That persistent separation is evidence of disease modification.
 
-The ADAGIO trial of rasagiline used this design, as did the PROUD trial of pioglitazone. The design has become the standard framework for disease modification claims in PD. Its logic is sound. Its execution is demanding.
+The ADAGIO trial of rasagiline used this design, as did the LEAP trial, which asked the same question of levodopa — the most effective symptomatic drug in PD. LEAP's result was negative: delayed-start patients caught up completely, and no persistent advantage was detectable. The design worked as intended; levodopa simply does not modify disease. That negative finding is, in its own way, informative: the framework is capable of returning a null result, and a Bayesian analysis of LEAP would have produced a posterior centered near zero with high confidence. The design has become the standard framework for disease modification claims in PD. Its logic is sound. Its execution is demanding.
 
 ---
 
@@ -57,7 +57,7 @@ PD trials face a specific set of structural challenges that Bayesian methods are
 
 The FDA guidance explicitly endorses using natural history data to augment concurrent control arms — Section III.B of the document covers exactly this scenario. PPMI, which has tracked thousands of patients with longitudinal MDS-UPDRS assessments, biomarker profiles, and genetic stratification for over a decade, is the natural candidate. Formally incorporating PPMI trajectories into the prior for a Phase 3 control arm could meaningfully reduce the randomized sample size without relaxing the evidentiary standard. The Agency has already approved drugs using this framework: REBYOTA received approval in 2022 after a Phase 3 analysis that used Phase 2 data as a formal Bayesian prior.
 
-The guidance also formally endorses skeptical priors in exactly the circumstances PD presents. The document states that skeptical priors are appropriate when "there have been a number of failed trials or drug development programs for closely related drugs in a therapeutic area." That is a precise description of the history of PD neuroprotection — CoQ10, creatine, GDNF, pioglitazone. A skeptical prior is not a barrier to approval; it is an honest starting position that requires the data to overcome a track record of failure rather than the mere absence of prior evidence.
+The guidance also formally endorses skeptical priors in exactly the circumstances PD presents. The document states that skeptical priors are appropriate when "there have been a number of failed trials or drug development programs for closely related drugs in a therapeutic area." That is a precise description of the history of PD neuroprotection — CoQ10, creatine, GDNF, levodopa itself (LEAP, 2019). A skeptical prior is not a barrier to approval; it is an honest starting position that requires the data to overcome a track record of failure rather than the mere absence of prior evidence.
 
 PD is also genetically heterogeneous. Bayesian hierarchical models can borrow information across GBA-PD, LRRK2-PD, and idiopathic disease adaptively, sharpening estimates in smaller strata without requiring each subgroup to be independently powered. Section III.D of the guidance explicitly covers borrowing across disease subtypes — basket-style designs that pool a common statistical model across molecular subgroups are within scope.
 
@@ -84,3 +84,5 @@ For movement disorders specialists, this guidance is worth understanding now rat
 ---
 
 *Lee JJ, Harrell FE Jr, LaVange LM, Spiegelhalter DJ. Embracing Bayesian Methods in Clinical Trials: FDA's Long-Awaited Draft Guidance. JAMA. Published online March 23, 2026. [https://doi.org/10.1001/jama.2026.4179](https://doi.org/10.1001/jama.2026.4179)*
+
+*Verschuur CVM, Suwijn SR, Boel JA, et al. Randomized Delayed-Start Trial of Levodopa in Parkinson's Disease. N Engl J Med. 2019;380:315–324. [https://doi.org/10.1056/NEJMoa1809983](https://doi.org/10.1056/NEJMoa1809983)*
