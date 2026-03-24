@@ -7,7 +7,7 @@ ogImage: "/images/bayesian-pd-trials-og.png"
 
 Proving that a drug slows Parkinson's disease is structurally hard in a way most clinical problems aren't. Symptomatic improvement and disease modification look nearly identical in a short trial. A drug that makes patients feel better for 18 months may or may not be doing anything to the underlying neurodegeneration, and conventional trial designs struggle to tell the difference.
 
-In January 2026, the FDA issued a draft guidance endorsing Bayesian statistical methods for clinical trials. The JAMA perspective from Lee, Harrell, LaVange, and Spiegelhalter is worth reading on its own terms. For PD specifically, I think the guidance has more targeted implications than the general framing suggests.
+The FDA issued a draft guidance on Bayesian methods for clinical trials back in January. Yesterday, a perspective in JAMA from Lee, Harrell, LaVange, and Spiegelhalter offered a lucid response to it. For PD specifically, I think the guidance has more targeted implications than either piece makes explicit.
 
 ---
 
