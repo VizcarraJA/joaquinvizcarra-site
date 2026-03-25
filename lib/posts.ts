@@ -12,6 +12,7 @@ export type PostMeta = {
   image?: string;
   imageAlt?: string;
   ogImage?: string;
+  readingTime: number;
 };
 
 const postsDirectory = path.join(process.cwd(), "content", "writing");
@@ -39,7 +40,7 @@ export function getAllPostsMeta(): PostMeta[] {
         description: String(data.description ?? ""),
         image: data.image ? String(data.image) : undefined,
         imageAlt: data.imageAlt ? String(data.imageAlt) : undefined,
-        ogImage: data.ogImage ? String(data.ogImage) : undefined
+        ogImage: data.ogImage ? String(data.ogImage) : undefined,
         readingTime: computeReadingTime(content)
       } satisfies PostMeta;
     })
@@ -87,7 +88,8 @@ export async function getPostHtmlBySlug(slug: string): Promise<{
     description: String(data.description ?? ""),
     image: data.image ? String(data.image) : undefined,
     imageAlt: data.imageAlt ? String(data.imageAlt) : undefined,
-    ogImage: data.ogImage ? String(data.ogImage) : undefined
+    ogImage: data.ogImage ? String(data.ogImage) : undefined,
+    readingTime: computeReadingTime(content)
   };
 
   return { meta, contentHtml };

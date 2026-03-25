@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import { getPostHtmlBySlug, getPostSlugs } from "@/lib/posts";
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
+import { ArticleJsonLd } from "@/app/components/JsonLd";
 
 export function generateStaticParams() {
   return getPostSlugs().map((slug) => ({ slug }));
