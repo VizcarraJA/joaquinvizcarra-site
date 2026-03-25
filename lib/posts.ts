@@ -57,8 +57,22 @@ export async function getPostHtmlBySlug(slug: string): Promise<{
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
-  const processed = await remark().use(html, { allowDangerousHtml: true }).process(content);
-  const contentHtml = processed.toString();
+  // Extract raw HTML blocks (iframes, etc.) before remark processes the markdown,
+  // replace with placeholders, then restore after — remark-html strips raw HTML
+  // even with allowDangerousHtml on some versions.
+  const htmlBlocks: string[] = [];
+  const contentWithPlaceholders = content.replace(
+    /<(iframe|video|audio|object|embed)[^>]*>[\s\S]*?<\/\1>|<(iframe|video|audio|object|embed)[^>]*\/>/gi,
+    (match) => {
+      htmlBlocks.push(match);
+      return `%%HTML_BLOCK_${htmlBlocks.length - 1}%%`;
+    }
+  );
+
+  const processed = await remark().use(html, { allowDangerousHtml: true }).process(contentWithPlaceholders);
+  const contentHtml = processed
+    .toString()
+    .replace(/%%HTML_BLOCK_(\d+)%%/g, (_, i) => htmlBlocks[parseInt(i)]);
 
   const meta: PostMeta = {
     slug,
