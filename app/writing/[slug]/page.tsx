@@ -52,10 +52,28 @@ export default async function WritingPostPage({
 
     return (
       <article className="article">
+        <ArticleJsonLd
+          title={meta.title}
+          description={meta.description}
+          date={meta.date}
+          url={`https://joaquinvizcarra.com/writing/${slug}`}
+          image={meta.image}
+        />
+
+        <nav className="breadcrumb" aria-label="Breadcrumb">
+          <Link href="/">Home</Link>
+          <span className="breadcrumb-sep" aria-hidden="true">/</span>
+          <Link href="/writing">Writing</Link>
+          <span className="breadcrumb-sep" aria-hidden="true">/</span>
+          <span>{meta.title}</span>
+        </nav>
+
         <h1>{meta.title}</h1>
-        <div className="small" style={{ marginBottom: 18 }}>
-          {meta.date}
+
+        <div className="small">
+          {meta.date} · {meta.readingTime} min read
         </div>
+
         {meta.image ? (
           <figure className="article-figure">
             <Image
@@ -69,7 +87,15 @@ export default async function WritingPostPage({
             />
           </figure>
         ) : null}
+
         <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+
+        <footer className="author-bio">
+          <strong>Joaquin Vizcarra, M.D.</strong> is a movement disorders neurologist at
+          the University of Pennsylvania. His research focuses on clinically deployable AI,
+          risk stratification, and digital health tools for Parkinson&apos;s disease.
+          He serves on the MDS Technology Task Force.
+        </footer>
       </article>
     );
   } catch {

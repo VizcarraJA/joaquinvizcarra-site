@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getAllPostsMeta } from "@/lib/posts";
 import { researchThemes, selectedPublications, selectedTalks } from "@/lib/site-data";
+import { PersonJsonLd } from "@/app/components/JsonLd";
 
 export default function HomePage() {
   const posts = getAllPostsMeta();
@@ -10,6 +11,7 @@ export default function HomePage() {
 
   return (
     <div>
+      <PersonJsonLd />
       <section className="grid-hero">
         <div>
           <h1 className="h1">
@@ -113,7 +115,7 @@ export default function HomePage() {
           <article className="highlight">
             <Link href={`/writing/${latest.slug}`}>{latest.title}</Link>
             <div className="postmeta">
-              {latest.date} | {latest.description}
+              {latest.date} · {latest.readingTime} min read | {latest.description}
             </div>
           </article>
         ) : null}
@@ -124,7 +126,7 @@ export default function HomePage() {
               <article key={post.slug} className="postitem">
                 <Link href={`/writing/${post.slug}`}>{post.title}</Link>
                 <div className="postmeta">
-                  {post.date} | {post.description}
+                  {post.date} · {post.readingTime} min read | {post.description}
                 </div>
               </article>
             ))}
