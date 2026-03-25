@@ -486,6 +486,11 @@ body {
   margin: 24px auto;
 }
 
+.article iframe {
+  max-width: 100%;
+  display: block;
+}
+
 .article-figure {
   margin: 0 0 20px;
 }

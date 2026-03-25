@@ -17,35 +17,29 @@ export async function generateMetadata({
   try {
     const { slug } = await params;
     const { meta } = await getPostHtmlBySlug(slug);
-    const ogImages = meta.image
-      ? [{ url: meta.image, alt: meta.imageAlt ?? meta.title, width: 1600, height: 900 }]
-      : [{ url: "/headshot.jpg", alt: "Joaquin Vizcarra, M.D." }];
+    const ogImage = meta.ogImage ?? meta.image;
 
     return {
-      title: meta.title,
+      title: `${meta.title} | Joaquin Vizcarra, M.D.`,
       description: meta.description,
-      authors: [{ name: "Joaquin Vizcarra" }],
       openGraph: {
         title: meta.title,
         description: meta.description,
         url: `https://joaquinvizcarra.com/writing/${slug}`,
-        siteName: "Joaquin Vizcarra, M.D.",
         type: "article",
-        publishedTime: meta.date,
-        authors: ["Joaquin Vizcarra"],
-        images: ogImages
+        ...(ogImage && {
+          images: [{ url: ogImage, width: 1200, height: 627, alt: meta.title }]
+        })
       },
       twitter: {
-        card: "summary_large_image",
+        card: ogImage ? "summary_large_image" : "summary",
         title: meta.title,
         description: meta.description,
-        site: "@VizcarraJA",
-        creator: "@VizcarraJA",
-        images: meta.image ? [meta.image] : ["/headshot.jpg"]
+        ...(ogImage && { images: [ogImage] })
       }
     };
   } catch {
-    return { title: "Joaquin Vizcarra, M.D." };
+    return {};
   }
 }
 

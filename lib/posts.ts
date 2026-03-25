@@ -11,6 +11,7 @@ export type PostMeta = {
   description: string;
   image?: string;
   imageAlt?: string;
+  ogImage?: string;
   readingTime: number;
 };
 
@@ -39,6 +40,7 @@ export function getAllPostsMeta(): PostMeta[] {
         description: String(data.description ?? ""),
         image: data.image ? String(data.image) : undefined,
         imageAlt: data.imageAlt ? String(data.imageAlt) : undefined,
+        ogImage: data.ogImage ? String(data.ogImage) : undefined,
         readingTime: computeReadingTime(content)
       } satisfies PostMeta;
     })
@@ -62,8 +64,22 @@ export async function getPostHtmlBySlug(slug: string): Promise<{
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
-  const processed = await remark().use(html).process(content);
-  const contentHtml = processed.toString();
+  // Extract raw HTML blocks (iframes, etc.) before remark processes the markdown,
+  // replace with placeholders, then restore after — remark-html strips raw HTML
+  // even with allowDangerousHtml on some versions.
+  const htmlBlocks: string[] = [];
+  const contentWithPlaceholders = content.replace(
+    /<(iframe|video|audio|object|embed)[^>]*>[\s\S]*?<\/\1>|<(iframe|video|audio|object|embed)[^>]*\/>/gi,
+    (match) => {
+      htmlBlocks.push(match);
+      return `%%HTML_BLOCK_${htmlBlocks.length - 1}%%`;
+    }
+  );
+
+  const processed = await remark().use(html, { allowDangerousHtml: true }).process(contentWithPlaceholders);
+  const contentHtml = processed
+    .toString()
+    .replace(/%%HTML_BLOCK_(\d+)%%/g, (_, i) => htmlBlocks[parseInt(i)]);
 
   const meta: PostMeta = {
     slug,
@@ -72,6 +88,7 @@ export async function getPostHtmlBySlug(slug: string): Promise<{
     description: String(data.description ?? ""),
     image: data.image ? String(data.image) : undefined,
     imageAlt: data.imageAlt ? String(data.imageAlt) : undefined,
+    ogImage: data.ogImage ? String(data.ogImage) : undefined,
     readingTime: computeReadingTime(content)
   };
 
