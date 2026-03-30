@@ -1,6 +1,7 @@
 /**
  * JSON-LD structured data components for SEO.
- * Helps Google understand the site's author and article content.
+ * PersonJsonLd includes alternateName variants to ensure AI and search engines
+ * can associate the site with all publication name forms of Joaquin Vizcarra.
  */
 
 export function PersonJsonLd() {
@@ -8,10 +9,19 @@ export function PersonJsonLd() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Joaquin Vizcarra",
+    familyName: "Vizcarra",
+    givenName: "Joaquin",
+    alternateName: [
+      "Joaquin Vizcarra Pasapera",
+      "Joaquin A. Vizcarra",
+      "Joaquin A Vizcarra",
+      "JA Vizcarra",
+      "J Vizcarra-Pasapera"
+    ],
     honorificPrefix: "Dr.",
     honorificSuffix: "M.D.",
     jobTitle: "Instructor of Neurology",
-    affiliation: {
+    worksFor: {
       "@type": "Organization",
       name: "University of Pennsylvania",
       url: "https://www.upenn.edu"
@@ -29,7 +39,8 @@ export function PersonJsonLd() {
       "Artificial Intelligence in Medicine",
       "Clinical Neurology",
       "Natural Language Processing",
-      "Digital Health"
+      "Digital Health",
+      "Clinical Research"
     ],
     description:
       "Movement disorders neurologist at the University of Pennsylvania focused on Parkinson's disease, clinically deployable AI, and translational clinical research."

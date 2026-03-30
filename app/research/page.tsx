@@ -13,7 +13,7 @@ export default function ResearchPage() {
       <h2>Core Areas</h2>
       <ul className="list">
         {researchThemes.map((theme) => (
-          <li key={theme}>{theme}</li>
+          <li key={theme.title}>{theme.title} — {theme.body}</li>
         ))}
       </ul>
 

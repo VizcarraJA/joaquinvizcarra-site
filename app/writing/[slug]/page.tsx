@@ -22,6 +22,9 @@ export async function generateMetadata({
     return {
       title: `${meta.title} | Joaquin Vizcarra, M.D.`,
       description: meta.description,
+      alternates: {
+        canonical: `https://joaquinvizcarra.com/writing/${slug}`
+      },
       openGraph: {
         title: meta.title,
         description: meta.description,
@@ -53,7 +56,7 @@ export default async function WritingPostPage({
     const { meta, contentHtml } = await getPostHtmlBySlug(slug);
 
     return (
-      <article className="article">
+      <div className="main-content">
         <ArticleJsonLd
           title={meta.title}
           description={meta.description}
@@ -62,43 +65,45 @@ export default async function WritingPostPage({
           image={meta.image}
         />
 
-        <nav className="breadcrumb" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
-          <span className="breadcrumb-sep" aria-hidden="true">/</span>
-          <Link href="/writing">Writing</Link>
-          <span className="breadcrumb-sep" aria-hidden="true">/</span>
-          <span>{meta.title}</span>
-        </nav>
+        <article className="article">
+          <nav className="breadcrumb" aria-label="Breadcrumb">
+            <Link href="/">Home</Link>
+            <span className="breadcrumb-sep" aria-hidden="true">/</span>
+            <Link href="/writing">Writing</Link>
+            <span className="breadcrumb-sep" aria-hidden="true">/</span>
+            <span>{meta.title}</span>
+          </nav>
 
-        <h1>{meta.title}</h1>
+          <h1>{meta.title}</h1>
 
-        <div className="small">
-          {meta.date} · {meta.readingTime} min read
-        </div>
+          <div className="small">
+            {meta.date} · {meta.readingTime} min read
+          </div>
 
-        {meta.image ? (
-          <figure className="article-figure">
-            <Image
-              src={meta.image}
-              alt={meta.imageAlt ?? meta.title}
-              width={1600}
-              height={900}
-              className="article-image"
-              sizes="(max-width: 768px) 100vw, 760px"
-              priority
-            />
-          </figure>
-        ) : null}
+          {meta.image ? (
+            <figure className="article-figure">
+              <Image
+                src={meta.image}
+                alt={meta.imageAlt ?? meta.title}
+                width={1600}
+                height={900}
+                className="article-image"
+                sizes="(max-width: 768px) 100vw, 760px"
+                priority
+              />
+            </figure>
+          ) : null}
 
-        <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+          <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
 
-        <footer className="author-bio">
-          <strong>Joaquin Vizcarra, M.D.</strong> is a movement disorders neurologist at
-          the University of Pennsylvania. His research focuses on clinically deployable AI,
-          risk stratification, and digital health tools for Parkinson&apos;s disease.
-          He serves on the MDS Technology Task Force.
-        </footer>
-      </article>
+          <footer className="author-bio">
+            <strong>Joaquin Vizcarra, M.D.</strong> is a movement disorders
+            neurologist at the University of Pennsylvania. His research focuses on
+            clinically deployable AI, risk stratification, and digital health tools
+            for Parkinson&apos;s disease. He serves on the MDS Technology Task Force.
+          </footer>
+        </article>
+      </div>
     );
   } catch {
     notFound();
