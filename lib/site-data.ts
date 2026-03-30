@@ -1,23 +1,21 @@
 export const selectedTalks = [
   {
     title: "From Big Data to Personalized Care",
-    venue:
-      "Artificial Intelligence, Big Data, and Digital Devices in Parkinson's Care, 7th World Parkinson Congress",
-    location: "Phoenix, Arizona",
+    venue: "7th World Parkinson Congress",
+    location: "Phoenix, AZ",
     date: "May 2026"
   },
   {
     title: "Is Artificial Intelligence Relevant for the Diagnosis of Parkinson's Disease?",
-    venue:
-      "Plenary Session: Controversies in Movement Disorders, 6th Pan American Parkinson's Disease and Movement Disorders Congress",
-    location: "Houston, Texas",
+    venue: "6th Pan American PD & Movement Disorders Congress",
+    location: "Houston, TX",
     date: "February 2026"
   },
   {
     title:
       "Rethinking Falls in Parkinson's Disease: A Bioinformatics Approach Rooted in Clinical Insight",
-    venue: "Department of Neurology Grand Rounds",
-    location: "University of Nebraska, Omaha",
+    venue: "Neurology Grand Rounds, University of Nebraska",
+    location: "Omaha, NE",
     date: "September 2025"
   },
   {
@@ -40,9 +38,9 @@ export const selectedTalks = [
 export const selectedPublications = [
   {
     citation:
-      "Virameteekul S, Shin C, Hirczy SS, et al; MDS Technology Study Group. Assessing Digital Health Technologies for Outcome Measurement in Parkinson's Disease Drug Trials: A Systematic Review.",
-    journal: "Movement Disorders",
-    year: "2025"
+      "Vizcarra JA, Yarlagadda S, Xie K, Ellis CA, Spindler M, Hammer LH. AI in the Diagnosis and Quantitative Phenotyping of Hyperkinetic Movement Disorders: A Systematic Review.",
+    journal: "Journal of Clinical Medicine",
+    year: "2024"
   },
   {
     citation:
@@ -52,27 +50,35 @@ export const selectedPublications = [
   },
   {
     citation:
-      "Vizcarra JA, Yarlagadda S, Xie K, Ellis CA, Spindler M, Hammer LH. Artificial Intelligence in the Diagnosis and Quantitative Phenotyping of Hyperkinetic Movement Disorders: A Systematic Review.",
-    journal: "Journal of Clinical Medicine",
-    year: "2024"
+      "Vizcarra JA, Sánchez-Ferro Á, Maetzler W, et al. The Parkinson's Disease e-Diary: Developing a Clinical and Research Tool for the Digital Age.",
+    journal: "Movement Disorders",
+    year: "2019"
   },
   {
     citation:
-      "Sturchio A, Rocha EM, Kauffman MA, et al. Recalibrating the Why and Whom of Animal Models in Parkinson Disease: A Clinician's Perspective.",
-    journal: "Brain Sciences",
-    year: "2024"
+      "Vizcarra JA, Situ-Kcomt M, Artusi CA, et al. Subthalamic Deep Brain Stimulation and Levodopa in Parkinson's Disease: A Meta-Analysis of Combined Effects.",
+    journal: "Journal of Neurology",
+    year: "2019"
   },
   {
     citation:
-      "Vizcarra JA, Paul RA, Hamedani AG, Lynch D, Aamodt WW. Clinical Reasoning: A 48-Year-Old Man with Spasticity and Progressive Ataxia.",
-    journal: "Neurology",
-    year: "2023"
+      "Vizcarra JA, Lang AE, Sethi KD, Espay AJ. Vascular Parkinsonism: Deconstructing a Syndrome.",
+    journal: "Movement Disorders",
+    year: "2015"
   }
 ];
 
 export const researchThemes = [
-  "Fall risk prediction in Parkinson's disease using longitudinal cohorts and clinically grounded modeling.",
-  "Clinical bioinformatics and natural language processing to extract meaningful outcomes from electronic health records.",
-  "Technology-enabled and patient-centered outcome measurement in movement disorders.",
-  "Clinical evaluation of AI tools under real-world neurological decision constraints."
+  {
+    title: "Disease Trajectories & Progression",
+    body: "Modeling disease progression and clinical outcomes in Parkinson's disease using longitudinal cohorts, survival analysis, and clinically grounded prediction frameworks."
+  },
+  {
+    title: "Clinical Bioinformatics & NLP",
+    body: "Clinical bioinformatics and natural language processing to extract meaningful outcomes from electronic health records."
+  },
+  {
+    title: "Technology-Enabled Outcomes",
+    body: "Technology-enabled and patient-centered outcome measurement in movement disorders."
+  }
 ];

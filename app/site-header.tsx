@@ -5,28 +5,34 @@ import { useState, useEffect } from "react";
 
 const links = [
   { href: "/about", label: "About" },
-  { href: "/writing", label: "Writing" },
   { href: "/research", label: "Research" },
   { href: "/speaking", label: "Speaking" },
   { href: "/publications", label: "Publications" },
-  { href: "/contact", label: "Contact" }
+  { href: "/writing", label: "Writing" },
+  { href: "/contact", label: "Contact", accent: true }
 ];
 
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 16);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && menuOpen) {
-        setMenuOpen(false);
-      }
+      if (e.key === "Escape" && menuOpen) setMenuOpen(false);
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [menuOpen]);
 
   return (
-    <header className="header">
+    <header className={`header${scrolled || menuOpen ? " header--scrolled" : ""}`}>
       <div className="container header-inner">
         <Link className="brand" href="/">
           Joaquin Vizcarra, M.D.
@@ -34,7 +40,11 @@ export default function SiteHeader() {
 
         <nav className="desktop-nav" aria-label="Primary">
           {links.map((link) => (
-            <Link key={link.href} className="navlink" href={link.href}>
+            <Link
+              key={link.href}
+              className={`navlink${link.accent ? " navlink--contact" : ""}`}
+              href={link.href}
+            >
               {link.label}
             </Link>
           ))}
@@ -75,18 +85,24 @@ export default function SiteHeader() {
       </div>
 
       {menuOpen ? (
-        <nav id="mobile-nav" className="container mobile-menu-panel" aria-label="Mobile Primary">
-          {links.map((link) => (
-            <Link
-              key={`mobile-${link.href}`}
-              className="mobile-navlink"
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        <div className="mobile-menu-panel">
+          <nav
+            id="mobile-nav"
+            className="container"
+            aria-label="Mobile Primary"
+          >
+            {links.map((link) => (
+              <Link
+                key={`mobile-${link.href}`}
+                className="mobile-navlink"
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
       ) : null}
     </header>
   );
