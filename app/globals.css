@@ -368,7 +368,7 @@ body::after {
 }
 
 .hero-photo-wrap {
-  display: none;
+  display: block;
   position: relative;
 }
 
@@ -1107,8 +1107,8 @@ button:focus-visible {
     gap: 64px;
   }
 
-  .hero-photo-wrap {
-    display: block;
+  .role-bar {
+    display: none;
   }
 
   .desktop-nav {
