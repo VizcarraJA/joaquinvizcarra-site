@@ -893,6 +893,11 @@ body::after {
   display: block;
 }
 
+.article iframe {
+  max-width: 100%;
+  display: block;
+}
+
 .article-figure {
   margin: 0 0 24px;
 }
