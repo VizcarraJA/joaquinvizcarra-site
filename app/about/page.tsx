@@ -5,7 +5,9 @@ export default function AboutPage() {
 
       <p>
         I am a board-certified neurologist and movement disorders specialist at the
-        University of Pennsylvania, where I serve as an Instructor of Neurology.
+        University of Pennsylvania, where I serve as an Instructor of Neurology. I
+        hold a Master of Science in Translational Research (M.S.T.R.) with a
+        concentration in bioinformatics from the University of Pennsylvania.
       </p>
 
       <p>

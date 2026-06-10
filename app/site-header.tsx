@@ -35,7 +35,7 @@ export default function SiteHeader() {
     <header className={`header${scrolled || menuOpen ? " header--scrolled" : ""}`}>
       <div className="container header-inner">
         <Link className="brand" href="/">
-          Joaquin Vizcarra, M.D.
+          Joaquin Vizcarra, M.D., M.S.T.R.
         </Link>
 
         <nav className="desktop-nav" aria-label="Primary">

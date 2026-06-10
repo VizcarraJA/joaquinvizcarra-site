@@ -1,29 +1,31 @@
-# LinkedIn Post — Bayesian FDA Guidance & PD Trials
-**Scheduled: Monday, March 31, 2026**
-**Format: Image attached + link in first comment**
+# LinkedIn Post — FDA Bayesian guidance + PD trials
+# Post date: 2026-03-31 (Monday)
+# Link goes in first comment
+# No image needed — the simulation is the asset, link to article
 
 ---
 
-I built an interactive Bayesian clinical trial simulator for Parkinson's disease. Two modes: a standard symptomatic efficacy trial and a delayed-start disease modification trial. Change the prior, adjust the sample size, watch the posterior shift in real time.
+In January 2026, the FDA issued draft guidance endorsing Bayesian statistical methods for clinical trials of drugs and biologics.
 
-It's embedded in the article linked below.
+This matters for Parkinson's disease more than most fields. Here is why.
 
-I built it because yesterday a JAMA perspective from Lee, Harrell, LaVange, and Spiegelhalter responded to the FDA's January draft guidance on Bayesian methods, and I think the implications for PD are more specific than either piece makes explicit. The simulator makes the mechanics tangible rather than abstract.
+The hardest problem in PD drug development is not finding treatments that help patients feel better. It is proving that a treatment actually slows the underlying disease — not just the symptoms.
 
-Three things in the actual guidance that caught my attention:
+The delayed-start design was built for this. In Period 1, half the patients receive drug, half receive placebo. In Period 2, everyone switches to drug. If the early-start group maintains an advantage at the end — even after the delayed-start group has been on treatment for the same amount of time — that is evidence of disease modification, not just symptomatic relief.
 
-**1. Skeptical priors are formally endorsed. PD fits the stated rationale exactly.**
-The document says skeptical priors are appropriate when "there have been a number of failed trials for closely related drugs in a therapeutic area." That is the history of PD neuroprotection. CoQ10, creatine, GDNF. LEAP showed in 2019 that even levodopa treats symptoms without modifying disease. A formal skeptical prior means the data has to overcome that track record, not just beat a null.
+The Bayesian framework changes how that evidence gets interpreted.
 
-**2. Natural history data can augment control arms.**
-Section III.B of the guidance covers using external data to supplement randomized controls. PPMI, with its decade of longitudinal MDS-UPDRS, biomarkers, and genetic stratification, is the obvious candidate for exactly this. Smaller randomized control arms, same evidentiary standard.
+Instead of asking "is p less than 0.05?", the analysis can directly answer: "What is the probability that this drug modified disease, given everything we know?"
 
-**3. Borrowing across GBA-PD, LRRK2-PD, and idiopathic disease is explicitly in scope.**
-Section III.D covers Bayesian hierarchical models across disease subtypes. Each subgroup doesn't need to be independently powered. The model borrows adaptively.
+And "everything we know" is where it gets interesting. Phase 1 results — the initial separation between treated and placebo groups — become a formal prior for Phase 2 analysis. Natural history data from cohorts like PPMI can inform that prior. The FDA guidance now provides a pathway for using that information rather than discarding it.
 
-Full commentary + simulator in first comment.
+A perspective in JAMA this week by Lee, Harrell, LaVange, and Spiegelhalter walks through the core concepts with a figure that is worth 10 minutes of anyone's time.
+
+I wrote a short commentary on what this means for PD trials specifically — and built an interactive simulation of a Bayesian delayed-start analysis. You can move the sliders: change the prior, change the sample size, change the observed effect, and watch the posterior probability of disease modification update in real time.
+
+Full article and simulation linked in the first comment.
 
 ---
 
-**[FIRST COMMENT]**
-Full article + simulation: https://joaquinvizcarra.com/writing/bayesian-methods-parkinsons-trials-fda-guidance
+## First comment:
+https://joaquinvizcarra.com/writing/bayesian-methods-parkinsons-trials-fda-guidance

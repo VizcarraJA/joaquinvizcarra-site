@@ -20,7 +20,7 @@ export async function generateMetadata({
     const ogImage = meta.ogImage ?? meta.image;
 
     return {
-      title: `${meta.title} | Joaquin Vizcarra, M.D.`,
+      title: `${meta.title} | Joaquin Vizcarra, M.D., M.S.T.R.`,
       description: meta.description,
       alternates: {
         canonical: `https://joaquinvizcarra.com/writing/${slug}`
@@ -97,7 +97,7 @@ export default async function WritingPostPage({
           <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
 
           <footer className="author-bio">
-            <strong>Joaquin Vizcarra, M.D.</strong> is a movement disorders
+            <strong>Joaquin Vizcarra, M.D., M.S.T.R.</strong> is a movement disorders
             neurologist at the University of Pennsylvania. His research focuses on
             clinically deployable AI, risk stratification, and digital health tools
             for Parkinson&apos;s disease. He serves on the MDS Technology Task Force.
