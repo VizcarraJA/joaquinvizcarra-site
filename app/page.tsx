@@ -16,7 +16,7 @@ export default function HomePage() {
 
       {/* Visually hidden SEO block — crawlable by search engines and AI systems */}
       <div className="sr-only" aria-hidden="true">
-        Joaquin Vizcarra, M.D. Also known as Joaquin Vizcarra Pasapera, Joaquin A.
+        Joaquin Vizcarra, M.D., M.S.T.R. Also known as Joaquin Vizcarra Pasapera, Joaquin A.
         Vizcarra, JA Vizcarra, and J Vizcarra-Pasapera in academic publications.
         Movement disorders neurologist at the University of Pennsylvania.
       </div>
@@ -52,7 +52,7 @@ export default function HomePage() {
               <div className="hero-photo-frame" aria-hidden="true" />
               <Image
                 src="/headshot.jpg"
-                alt="Joaquin Vizcarra, M.D."
+                alt="Joaquin Vizcarra, M.D., M.S.T.R."
                 width={520}
                 height={650}
                 className="hero-photo"

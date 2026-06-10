@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOL Content Dashboard — Joaquin Vizcarra</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f5f5f3;
+    color: #111;
+    min-height: 100vh;
+    padding: 32px 24px;
+  }
+
+  .container { max-width: 960px; margin: 0 auto; }
+
+  header {
+    margin-bottom: 32px;
+  }
+  header h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #111;
+  }
+  header p {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  /* Stats row */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .stat-card {
+    background: #fff;
+    border: 1px solid #e8e8e4;
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .stat-card .num {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #111;
+  }
+  .stat-card .label {
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* Section */
+  .section { margin-bottom: 28px; }
+  .section-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #999;
+    margin-bottom: 10px;
+  }
+
+  /* Content cards */
+  .cards { display: flex; flex-direction: column; gap: 8px; }
+  .card {
+    background: #fff;
+    border: 1px solid #e8e8e4;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .card:hover {
+    border-color: #bbb;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .card.expanded { border-color: #bbb; }
+
+  .card-type {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .type-a { background: #e8f0fe; color: #1a56db; }
+  .type-b { background: #fef3c7; color: #b45309; }
+  .type-c { background: #d1fae5; color: #065f46; }
+
+  .card-main { min-width: 0; }
+  .card-title {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #111;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+  }
+  .card-sub {
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; flex-shrink: 0; }
+
+  .badge {
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .badge-posted    { background: #d1fae5; color: #065f46; }
+  .badge-ready     { background: #e8f0fe; color: #1a56db; }
+  .badge-draft     { background: #f3f4f6; color: #6b7280; }
+  .badge-next      { background: #fef3c7; color: #b45309; }
+
+  .card-date { font-size: 0.72rem; color: #aaa; }
+
+  /* Expanded detail */
+  .card-detail {
+    display: none;
+    grid-column: 1 / -1;
+    border-top: 1px solid #f0f0ec;
+    margin-top: 10px;
+    padding-top: 12px;
+    font-size: 0.82rem;
+    color: #444;
+    line-height: 1.6;
+  }
+  .card.expanded .card-detail { display: block; }
+  .card-detail .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 24px;
+  }
+  .card-detail .detail-item label {
+    display: block;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #aaa;
+    margin-bottom: 2px;
+  }
+  .card-detail .detail-item span {
+    font-size: 0.8rem;
+    color: #333;
+  }
+  .card-detail .detail-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: 1px solid;
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.12s;
+  }
+  .btn-primary { border-color: #111; color: #111; }
+  .btn-primary:hover { background: #111; color: #fff; }
+  .btn-secondary { border-color: #ddd; color: #666; }
+  .btn-secondary:hover { background: #f5f5f3; }
+
+  /* Timeline */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 80px 20px 1fr;
+    gap: 0 12px;
+    align-items: start;
+  }
+  .timeline-date {
+    font-size: 0.75rem;
+    color: #888;
+    text-align: right;
+    padding-top: 2px;
+    line-height: 1.4;
+  }
+  .timeline-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .timeline-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .dot-done    { background: #10b981; }
+  .dot-next    { background: #f59e0b; border: 2px solid #f59e0b; box-shadow: 0 0 0 3px #fef3c7; }
+  .dot-future  { background: #e5e7eb; }
+  .dot-buffer  { background: #e5e7eb; border: 2px dashed #ccc; background: transparent; }
+  .timeline-connector {
+    width: 2px;
+    flex: 1;
+    background: #e8e8e4;
+    min-height: 28px;
+  }
+  .timeline-content {
+    padding-bottom: 20px;
+    padding-top: 0;
+  }
+  .timeline-content .tc-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #111;
+    line-height: 1.3;
+  }
+  .timeline-content .tc-sub {
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 2px;
+  }
+  .timeline-content.is-today .tc-title { color: #d97706; }
+
+  /* Channels row */
+  .channels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .channel-card {
+    background: #fff;
+    border: 1px solid #e8e8e4;
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .channel-card .ch-name {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #888;
+    margin-bottom: 6px;
+  }
+  .channel-card .ch-status {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #111;
+  }
+  .channel-card .ch-detail {
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 3px;
+  }
+
+  @media (max-width: 600px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .channels { grid-template-columns: 1fr; }
+    .card-detail .detail-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>KOL Content Dashboard</h1>
+    <p>Parkinson's Disease &amp; AI — March–May 2026 &nbsp;·&nbsp; Updated March 15, 2026 &nbsp;·&nbsp; Last post: Mar 9</p>
+  </header>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="num">2</div>
+      <div class="label">Posts live</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">4</div>
+      <div class="label">Ready to publish</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">1</div>
+      <div class="label">In draft</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">10w</div>
+      <div class="label">Until WPC</div>
+    </div>
+  </div>
+
+  <!-- Content Inventory -->
+  <div class="section">
+    <div class="section-title">Content Inventory</div>
+    <div class="cards">
+
+      <!-- POSTED -->
+      <div class="card" onclick="toggle(this)">
+        <div class="card-type type-b">B</div>
+        <div class="card-main">
+          <div class="card-title">AI in Parkinson's Diagnosis: Context Determines the Standard</div>
+          <div class="card-sub">Website essay · smile screening commentary</div>
+        </div>
+        <div class="card-right">
+          <span class="badge badge-posted">Posted</span>
+          <span class="card-date">Mar 10</span>
+        </div>
+        <div class="card-detail">
+          <div class="detail-grid">
+            <div class="detail-item"><label>Type</label><span>Type B — short commentary</span></div>
+            <div class="detail-item"><label>Channels</label><span>Website + LinkedIn</span></div>
+            <div class="detail-item"><label>File</label><span>content/writing/ai-in-parkinsons-disease-diagnosis...</span></div>
+            <div class="detail-item"><label>LinkedIn</label><span>Posted (link in first comment)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="toggle(this)">
+        <div class="card-type type-c">C</div>
+        <div class="card-main">
+          <div class="card-title">The Wearable Worked. The Outcomes Didn't Move.</div>
+          <div class="card-sub">npj PD 2025 · Rodríguez-Molinero et al. · wearable RCT</div>
+        </div>
+        <div class="card-right">
+          <span class="badge badge-posted">Posted</span>
+          <span class="card-date">Mar 9</span>
+        </div>
+        <div class="card-detail">
+          <div class="detail-grid">
+            <div class="detail-item"><label>Type</label><span>Type C — literature commentary</span></div>
+            <div class="detail-item"><label>Channels</label><span>Website + LinkedIn</span></div>
+            <div class="detail-item"><label>File</label><span>content/writing/the-wearable-worked...</span></div>
+            <div class="detail-item"><label>PR</label><span>#8 — feat/wearable-rct-commentary</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEXT UP -->
+      <div class="card" onclick="toggle(this)">
+        <div class="card-type type-c">C</div>
+        <div class="card-main">
+          <div class="card-title">When Imaging Does What Clinical Exam Cannot</div>
+          <div class="card-sub">JAMA Neurology 2025 · Vaillancourt, Okun et al. · AIDP/neuropacs</div>
+        </div>
+        <div class="card-right">
+          <span class="badge badge-next">Next up</span>
+          <span class="card-date">Mar 16–17</span>
+        </div>
+        <div class="card-detail">
+          <div class="detail-grid">
+            <div class="detail-item"><label>Type</label><span>Type C — literature commentary</span></div>
+            <div class="detail-item"><label>Status</label><span>Full draft ready in drafts folder</span></div>
+            <div class="detail-item"><label>File</label><span>drafts/type-c-commentary-jama-neurology-aidp.md</span></div>
+            <div class="detail-item"><label>DOI</label><span>10.1001/jamaneurol.2025.0112</span></div>
+          </div>
+          <div class="detail-actions">
+            <button class="btn btn-primary" onclick="event.stopPropagation()">Review draft</button>
+            <button class="btn btn-secondary" onclick="event.stopPropagation()">Move to repo</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- READY -->
+      <div class="card" onclick="toggle(this)">
+        <div class="card-type type-c">C</div>
+        <div class="card-main">
+          <div class="card-title">NLP Language Phenotyping in Parkinson's Disease</div>
+          <div class="card-sub">npj PD 2025 · Aresta et al. · language as a digital biomarker</div>
+        </div>
+        <div class="card-right">
+          <span class="badge badge-ready">Ready</span>
+          <span class="card-date">~Apr 1</span>
+        </div>
+        <div class="card-detail">
+          <div class="detail-grid">
+            <div class="detail-item"><label>Type</label><span>Type C — literature commentary</span></div>
+            <div class="detail-item"><label>Status</label><span>Paper uploaded, commentary not yet written</span></div>
+            <div class="detail-item"><label>Paper</label><span>s41531-025-01050-8 (uploaded)</span></div>
+            <div class="detail-item"><label>Figures</label><span>CC BY-NC-ND 4.0 — usable on site</span></div>
+          </div>
+          <div class="detail-actions">
+            <button class="btn btn-primary" onclick="event.stopPropagation()">Start writing</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="toggle(this)">
+        <div class="card-type type-a">A</div>
+        <div class="card-main">
+          <div class="card-title">Personalized Parkinson's Care Will Emerge from Integration of Imperfect Signals</div>
+          <div class="card-sub">Signature essay · WPC anchor piece</div>
+        </div>
+        <div class="card-right">
+          <span class="badge badge-ready">Ready</span>
+          <span class="card-date">Mid-Apr</span>
+        </div>
+        <div class="card-detail">
+          <div class="detail-grid">
+            <div class="detail-item"><label>Type</label><span>Type A — signature essay</span></div>
+            <div class="detail-item"><label>Status</label><span>Final draft in repo, not committed</span></div>
+            <div class="detail-item"><label>File</label><span>content/writing/personalized-parkinsons-care...</span></div>
+            <div class="detail-item"><label>LinkedIn</label><span>Draft ready (linkedin-posts-all.md, Post 1)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="toggle(this)">
+        <div class="card-type type-a">A</div>
+        <div class="card-main">
+          <div class="card-title">Risk Stratification Is Not Personalization</div>
+          <div class="card-sub">Signature essay · WPC anchor piece</div>
+        </div>
+        <div class="card-right">
+          <span class="badge badge-ready">Ready</span>
+          <span class="card-date">Late Apr</span>
+        </div>
+        <div class="card-detail">
+          <div class="detail-grid">
+            <div class="detail-item"><label>Type</label><span>Type A — signature essay</span></div>
+            <div class="detail-item"><label>Status</label><span>Final draft in repo, not committed</span></div>
+            <div class="detail-item"><label>File</label><span>content/writing/risk-stratification-is-not...</span></div>
+            <div class="detail-item"><label>LinkedIn</label><span>Draft ready (linkedin-posts-all.md, Post 2)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="toggle(this)">
+        <div class="card-type type-c">C</div>
+        <div class="card-main">
+          <div class="card-title">The Biomarker Transition in Parkinson's Disease Is Real. The Framework Is Still Missing.</div>
+          <div class="card-sub">Nature Reviews Neurology 2026 · Tolosa et al.</div>
+        </div>
+        <div class="card-right">
+          <span class="badge badge-ready">Ready</span>
+          <span class="card-date">Late Apr</span>
+        </div>
+        <div class="card-detail">
+          <div class="detail-grid">
+            <div class="detail-item"><label>Type</label><span>Type C — literature commentary</span></div>
+            <div class="detail-item"><label>Status</label><span>Draft in drafts folder</span></div>
+            <div class="detail-item"><label>File</label><span>drafts/type-c-commentary-nature-reviews-biomarkers.md</span></div>
+            <div class="detail-item"><label>LinkedIn</label><span>Draft ready (linkedin-posts-all.md, Post 5)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="toggle(this)">
+        <div class="card-type type-b">B</div>
+        <div class="card-main">
+          <div class="card-title">Doximity Op-Med: Risk Stratification Is Not Personalization</div>
+          <div class="card-sub">Adapted from Essay #2 · ~850 words</div>
+        </div>
+        <div class="card-right">
+          <span class="badge badge-draft">Draft</span>
+          <span class="card-date">Apr</span>
+        </div>
+        <div class="card-detail">
+          <div class="detail-grid">
+            <div class="detail-item"><label>Type</label><span>Op-Med submission</span></div>
+            <div class="detail-item"><label>Status</label><span>Draft ready, needs submission</span></div>
+            <div class="detail-item"><label>File</label><span>drafts/doximity-op-med-submission.md</span></div>
+            <div class="detail-item"><label>Target</label><span>Submit April 2026</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="section">
+    <div class="section-title">Publishing Schedule</div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">Mar 10</div>
+        <div class="timeline-line"><div class="timeline-dot dot-done"></div><div class="timeline-connector"></div></div>
+        <div class="timeline-content">
+          <div class="tc-title">AI diagnosis context essay</div>
+          <div class="tc-sub">Type B · Website + LinkedIn · Posted</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Mar 9</div>
+        <div class="timeline-line"><div class="timeline-dot dot-done"></div><div class="timeline-connector"></div></div>
+        <div class="timeline-content">
+          <div class="tc-title">The Wearable Worked. The Outcomes Didn't Move.</div>
+          <div class="tc-sub">Type C · Website + LinkedIn · Posted</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Mar 16–17</div>
+        <div class="timeline-line"><div class="timeline-dot dot-next"></div><div class="timeline-connector"></div></div>
+        <div class="timeline-content is-today">
+          <div class="tc-title">When Imaging Does What Clinical Exam Cannot</div>
+          <div class="tc-sub">Type C · AIDP/neuropacs · Draft ready</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">~Apr 1</div>
+        <div class="timeline-line"><div class="timeline-dot dot-future"></div><div class="timeline-connector"></div></div>
+        <div class="timeline-content">
+          <div class="tc-title">NLP Language Phenotyping</div>
+          <div class="tc-sub">Type C · Aresta et al. · To be written</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Apr 15</div>
+        <div class="timeline-line"><div class="timeline-dot dot-future"></div><div class="timeline-connector"></div></div>
+        <div class="timeline-content">
+          <div class="tc-title">Personalized PD Care: Integration of Imperfect Signals</div>
+          <div class="tc-sub">Type A · Signature essay · WPC anchor</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Apr 22</div>
+        <div class="timeline-line"><div class="timeline-dot dot-future"></div><div class="timeline-connector"></div></div>
+        <div class="timeline-content">
+          <div class="tc-title">Risk Stratification Is Not Personalization</div>
+          <div class="tc-sub">Type A · Signature essay · WPC anchor</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Apr 29</div>
+        <div class="timeline-line"><div class="timeline-dot dot-future"></div><div class="timeline-connector"></div></div>
+        <div class="timeline-content">
+          <div class="tc-title">The Biomarker Transition: Real. Framework Still Missing.</div>
+          <div class="tc-sub">Type C · Nature Reviews Neurology 2026</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Apr</div>
+        <div class="timeline-line"><div class="timeline-dot dot-future"></div><div class="timeline-connector"></div></div>
+        <div class="timeline-content">
+          <div class="tc-title">Doximity Op-Med submission</div>
+          <div class="tc-sub">Risk stratification essay adapted · ~850 words</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">May 24</div>
+        <div class="timeline-line"><div class="timeline-dot dot-future"></div><div class="timeline-connector"></div></div>
+        <div class="timeline-content">
+          <div class="tc-title">WPC Congress — Phoenix</div>
+          <div class="tc-sub">Type B conference dispatch · write within 48h</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Channels -->
+  <div class="section">
+    <div class="section-title">Channels</div>
+    <div class="channels">
+      <div class="channel-card">
+        <div class="ch-name">Website</div>
+        <div class="ch-status">2 essays live</div>
+        <div class="ch-detail">joaquinvizcarra.com · Vercel auto-deploy</div>
+      </div>
+      <div class="channel-card">
+        <div class="ch-name">LinkedIn</div>
+        <div class="ch-status">Active · 2 posts</div>
+        <div class="ch-detail">Native-first · Wed 7:30–9 AM ET · link in comment</div>
+      </div>
+      <div class="channel-card">
+        <div class="ch-name">Doximity Op-Med</div>
+        <div class="ch-status">1 draft ready</div>
+        <div class="ch-detail">Submit April · risk stratification essay</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function toggle(card) {
+    card.classList.toggle('expanded');
+  }
+</script>
+</body>
+</html>

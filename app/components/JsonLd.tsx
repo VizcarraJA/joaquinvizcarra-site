@@ -19,7 +19,7 @@ export function PersonJsonLd() {
       "J Vizcarra-Pasapera"
     ],
     honorificPrefix: "Dr.",
-    honorificSuffix: "M.D.",
+    honorificSuffix: "M.D., M.S.T.R.",
     jobTitle: "Instructor of Neurology",
     worksFor: {
       "@type": "Organization",
@@ -77,7 +77,7 @@ export function ArticleJsonLd({
     author: {
       "@type": "Person",
       name: "Joaquin Vizcarra",
-      honorificSuffix: "M.D.",
+      honorificSuffix: "M.D., M.S.T.R.",
       url: "https://joaquinvizcarra.com"
     },
     publisher: {

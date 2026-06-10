@@ -22,8 +22,8 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Joaquin Vizcarra, M.D.",
-    template: "%s | Joaquin Vizcarra, M.D."
+    default: "Joaquin Vizcarra, M.D., M.S.T.R.",
+    template: "%s | Joaquin Vizcarra, M.D., M.S.T.R."
   },
   description:
     "Movement disorders neurologist at Penn focused on Parkinson's disease, clinically deployable AI, and translational clinical research.",
@@ -49,18 +49,18 @@ export const metadata: Metadata = {
     }
   },
   openGraph: {
-    title: "Joaquin Vizcarra, M.D.",
+    title: "Joaquin Vizcarra, M.D., M.S.T.R.",
     description:
       "Movement disorders neurologist at Penn focused on Parkinson's disease, clinically deployable AI, and translational clinical research.",
     url: "https://joaquinvizcarra.com",
-    siteName: "Joaquin Vizcarra, M.D.",
+    siteName: "Joaquin Vizcarra, M.D., M.S.T.R.",
     type: "website",
     images: [
       {
         url: "/headshot.jpg",
         width: 520,
         height: 650,
-        alt: "Joaquin Vizcarra, M.D."
+        alt: "Joaquin Vizcarra, M.D., M.S.T.R."
       }
     ]
   },
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@VizcarraJA",
     creator: "@VizcarraJA",
-    title: "Joaquin Vizcarra, M.D.",
+    title: "Joaquin Vizcarra, M.D., M.S.T.R.",
     description:
       "Movement disorders neurologist at Penn focused on Parkinson's disease, clinically deployable AI, and translational clinical research.",
     images: ["/headshot.jpg"]
@@ -92,7 +92,7 @@ export default function RootLayout({
           <div className="container">
             <div className="footer-grid">
               <div>
-                <div className="footer-col__name">Joaquin Vizcarra, M.D.</div>
+                <div className="footer-col__name">Joaquin Vizcarra, M.D., M.S.T.R.</div>
                 <div className="footer-col__sub">
                   Instructor of Neurology
                   <br />
