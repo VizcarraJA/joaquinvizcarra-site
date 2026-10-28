@@ -1,171 +1,115 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Source_Serif_4, DM_Sans } from "next/font/google";
-import SiteHeader from "./site-header";
+import { IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import SiteHeader from "./site-header";
+import { profile } from "@/lib/site-data";
+import { siteDescription, siteUrl } from "@/lib/metadata";
 
-const sourceSerif = Source_Serif_4({
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
-  display: "swap"
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
-  display: "swap"
+  display: "swap",
+});
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Joaquin Vizcarra, M.D., M.S.T.R.",
-    template: "%s | Joaquin Vizcarra, M.D., M.S.T.R."
+    default: "Joaquin Vizcarra, MD, MSTR",
+    template: "%s | Joaquin Vizcarra",
   },
-  description:
-    "Movement disorders neurologist at Penn focused on Parkinson's disease, clinically deployable AI, and translational clinical research.",
+  description: siteDescription,
+  authors: [{ name: "Joaquin Vizcarra", url: siteUrl }],
   keywords: [
     "Joaquin Vizcarra",
-    "Joaquin Vizcarra Pasapera",
     "Joaquin A. Vizcarra",
-    "JA Vizcarra",
-    "J Vizcarra-Pasapera",
+    "Joaquin Vizcarra Pasapera",
     "Parkinson's disease",
     "movement disorders",
-    "neurology",
-    "artificial intelligence",
-    "clinical research",
-    "University of Pennsylvania"
+    "clinical AI",
+    "natural language processing",
+    "falls prediction",
+    "University of Cincinnati",
   ],
-  metadataBase: new URL("https://joaquinvizcarra.com"),
-  authors: [{ name: "Joaquin Vizcarra" }],
-  alternates: {
-    canonical: "https://joaquinvizcarra.com",
-    types: {
-      "application/rss+xml": "https://joaquinvizcarra.com/feed.xml"
-    }
-  },
   openGraph: {
-    title: "Joaquin Vizcarra, M.D., M.S.T.R.",
-    description:
-      "Movement disorders neurologist at Penn focused on Parkinson's disease, clinically deployable AI, and translational clinical research.",
-    url: "https://joaquinvizcarra.com",
-    siteName: "Joaquin Vizcarra, M.D., M.S.T.R.",
     type: "website",
+    siteName: "Joaquin Vizcarra",
+    locale: "en_US",
+    title: "Joaquin Vizcarra, MD, MSTR",
+    description: siteDescription,
     images: [
       {
-        url: "/headshot.jpg",
-        width: 520,
-        height: 650,
-        alt: "Joaquin Vizcarra, M.D., M.S.T.R."
-      }
-    ]
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Joaquin Vizcarra, movement disorders neurologist and clinical AI researcher",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "@VizcarraJA",
     creator: "@VizcarraJA",
-    title: "Joaquin Vizcarra, M.D., M.S.T.R.",
-    description:
-      "Movement disorders neurologist at Penn focused on Parkinson's disease, clinically deployable AI, and translational clinical research.",
-    images: ["/headshot.jpg"]
-  }
+    title: "Joaquin Vizcarra, MD, MSTR",
+    description: siteDescription,
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function RootLayout({
-  children
+  children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${sourceSerif.variable} ${dmSans.variable}`}>
+    <html
+      lang="en"
+      className={`${instrumentSans.variable} ${plexMono.variable}`}
+    >
       <body>
         <a href="#main" className="skip-link">
           Skip to main content
         </a>
         <SiteHeader />
-
         <main id="main">{children}</main>
-
-        <footer className="footer">
-          <div className="container">
-            <div className="footer-grid">
-              <div>
-                <div className="footer-col__name">Joaquin Vizcarra, M.D., M.S.T.R.</div>
-                <div className="footer-col__sub">
-                  Instructor of Neurology
-                  <br />
-                  University of Pennsylvania
-                </div>
-              </div>
-              <div>
-                <div className="footer-col__heading">Navigation</div>
-                <nav className="footer-links" aria-label="Footer navigation">
-                  <Link className="footer-link" href="/about">
-                    About
-                  </Link>
-                  <Link className="footer-link" href="/research">
-                    Research
-                  </Link>
-                  <Link className="footer-link" href="/speaking">
-                    Speaking
-                  </Link>
-                  <Link className="footer-link" href="/publications">
-                    Publications
-                  </Link>
-                  <Link className="footer-link" href="/writing">
-                    Writing
-                  </Link>
-                </nav>
-              </div>
-              <div>
-                <div className="footer-col__heading">Connect</div>
-                <nav className="footer-links" aria-label="Social links">
-                  <a
-                    className="footer-link"
-                    href="https://scholar.google.com/citations?hl=en&user=wuL0vg8AAAAJ"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Google Scholar
-                  </a>
-                  <a
-                    className="footer-link"
-                    href="https://x.com/VizcarraJA"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    X (Twitter)
-                  </a>
-                  <a
-                    className="footer-link"
-                    href="https://www.linkedin.com/in/joaquin-vizcarra/"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    LinkedIn
-                  </a>
-                  <a
-                    className="footer-link"
-                    href="mailto:contact@joaquinvizcarra.com"
-                  >
-                    Email
-                  </a>
-                  <a className="footer-link" href="/feed.xml">
-                    RSS Feed
-                  </a>
-                </nav>
-              </div>
+        <footer className="site-footer container">
+          <div className="footer-main">
+            <div>
+              <Link href="/" className="footer-name">
+                {profile.displayName}, {profile.credentials}
+              </Link>
+              <p>
+                {profile.title}
+                <br />
+                {profile.institution}
+              </p>
             </div>
-            <div className="footer-bottom">
-              <div className="footer-bottom__tagline">
-                Parkinson&apos;s disease · artificial intelligence · clinical research
-              </div>
-              <div className="footer-bottom__copy">
-                © {new Date().getFullYear()} Joaquin Vizcarra
-              </div>
-            </div>
+            <nav className="footer-social" aria-label="Professional profiles">
+              <a href={profile.links.scholar} target="_blank" rel="noreferrer">
+                Google Scholar <span aria-hidden="true">↗</span>
+              </a>
+              <a href={profile.links.linkedin} target="_blank" rel="noreferrer">
+                LinkedIn <span aria-hidden="true">↗</span>
+              </a>
+              <a href={profile.links.orcid} target="_blank" rel="noreferrer">
+                ORCID <span aria-hidden="true">↗</span>
+              </a>
+            </nav>
+          </div>
+          <div className="footer-bottom">
+            <p>© {new Date().getFullYear()} Joaquin Vizcarra</p>
+            <nav aria-label="Footer navigation">
+              <Link href="/research">Research</Link>
+              <Link href="/publications">Publications</Link>
+              <Link href="/speaking">Speaking</Link>
+              <Link href="/about">About</Link>
+              <Link href="/contact">Contact</Link>
+            </nav>
           </div>
         </footer>
         <Analytics />

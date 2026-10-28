@@ -1,8 +1,4 @@
-/**
- * JSON-LD structured data components for SEO.
- * PersonJsonLd includes alternateName variants to ensure AI and search engines
- * can associate the site with all publication name forms of Joaquin Vizcarra.
- */
+import { siteDescription, siteUrl } from "@/lib/metadata";
 
 export function PersonJsonLd() {
   const schema = {
@@ -20,14 +16,27 @@ export function PersonJsonLd() {
     ],
     honorificPrefix: "Dr.",
     honorificSuffix: "M.D., M.S.T.R.",
-    jobTitle: "Instructor of Neurology",
+    jobTitle: "Assistant Professor",
     worksFor: {
-      "@type": "Organization",
-      name: "University of Pennsylvania",
-      url: "https://www.upenn.edu"
+      "@type": "CollegeOrUniversity",
+      name: "University of Cincinnati",
+      url: "https://www.uc.edu",
+      department: [
+        {
+          "@type": "Organization",
+          name: "Department of Biostatistics, Health Informatics, and Data Sciences",
+          description: "Primary appointment"
+        },
+        {
+          "@type": "Organization",
+          name: "Department of Neurology and Rehabilitation Medicine",
+          description: "Secondary appointment"
+        }
+      ]
     },
-    url: "https://joaquinvizcarra.com",
+    url: siteUrl,
     sameAs: [
+      "https://researchdirectory.uc.edu/p/augustji",
       "https://www.linkedin.com/in/joaquin-vizcarra/",
       "https://x.com/VizcarraJA",
       "https://scholar.google.com/citations?hl=en&user=wuL0vg8AAAAJ",
@@ -36,56 +45,14 @@ export function PersonJsonLd() {
     knowsAbout: [
       "Parkinson's Disease",
       "Movement Disorders",
-      "Artificial Intelligence in Medicine",
-      "Clinical Neurology",
+      "Clinical Artificial Intelligence",
+      "Access to Parkinson's Care",
       "Natural Language Processing",
-      "Digital Health",
-      "Clinical Research"
+      "Parkinson's Disease Phenotyping",
+      "Falls Prediction",
+      "Multimodal Clinical Research"
     ],
-    description:
-      "Movement disorders neurologist at the University of Pennsylvania focused on Parkinson's disease, clinically deployable AI, and translational clinical research."
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
-}
-
-export function ArticleJsonLd({
-  title,
-  description,
-  date,
-  url,
-  image
-}: {
-  title: string;
-  description: string;
-  date: string;
-  url: string;
-  image?: string;
-}) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    headline: title,
-    description: description,
-    datePublished: date,
-    url,
-    author: {
-      "@type": "Person",
-      name: "Joaquin Vizcarra",
-      honorificSuffix: "M.D., M.S.T.R.",
-      url: "https://joaquinvizcarra.com"
-    },
-    publisher: {
-      "@type": "Person",
-      name: "Joaquin Vizcarra",
-      url: "https://joaquinvizcarra.com"
-    },
-    ...(image ? { image: `https://joaquinvizcarra.com${image}` } : {})
+    description: siteDescription
   };
 
   return (
