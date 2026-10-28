@@ -1,145 +1,153 @@
 # CONTEXT.md — joaquinvizcarra-site
 
-This file is the living context document for this project. It is meant to be read by AI agents at the start of any session involving this folder. Update it whenever the mission, content inventory, voice rules, or site structure changes in a meaningful way.
+Living project memory. Read before work in this folder and update when confirmed identity, strategy, inventory, or implementation changes.
 
----
+**Status: October 28, 2026 local overhaul implemented and verified.** The user selected the Clinical Perspective design and supplied three missing in-press papers plus the APDA agenda. The complete redesign is on `codex/clinical-perspective-overhaul`. The live site has not been updated; deployment remains a separate PR and merge step.
 
-## Who This Is For
+## Identity and Audience
 
-Dr. Joaquin A. Vizcarra, MD — movement disorder neurologist and clinical researcher at the University of Pennsylvania Perelman School of Medicine. Also affiliated with the Center for Neuroengineering and Therapeutics at Penn.
+Dr. Joaquin A. Vizcarra, MD, MSTR is a movement disorders neurologist and Assistant Professor at the University of Cincinnati, appointed September 2026. Primary appointment: Department of Biostatistics, Health Informatics, and Data Sciences (BHIDS). Secondary appointment: Department of Neurology and Rehabilitation Medicine. He leads Artificial Intelligence-Enabled Clinical Research at BHIDS (2026–present).
 
-Clinical focus: Parkinson's disease.
-Research focus: AI and big data in PD care, digital health outcomes, health services research, clinical bioinformatics.
+Use **Assistant Professor**, as confirmed by the user and supplied CV. The public UC directory adds a Research modifier; do not silently replace the user's confirmed title. Penn Instructor of Neurology (July 2025–June 2026), movement disorders fellowship, neuroengineering training, and MSTR belong in his background rather than current affiliation.
 
----
+This is a **personal academic site**. Priority visitors are senior academic leaders, recruiters, executives, prospective collaborators, and others interested in his clinical and research work who could create professional opportunities. Clinical focus: Parkinson's disease. Clinical AI is the method and research approach.
 
-## Mission
+The **Clinical Intelligence Lab** is forthcoming and has not launched. The CV lists a PI role, but the user's current clarification governs public framing. Do not imply an operating lab, established team, active recruitment program, or independent lab website without confirmation.
 
-This site is a KOL (key opinion leader) presence in the PD/AI space. The goal is to establish Dr. Vizcarra as a credible, distinctive voice at the intersection of clinical movement disorders neurology and the technologies reshaping it — AI, big data, digital endpoints, plasma biomarkers.
+## Mission and Content Strategy
 
-The site is not a CV or a paper repository. It is a place where clinical expertise and technology meet in a form that practicing neurologists, researchers, and informed patients can read and trust. The writing earns authority by being specific, honest about limitations, and grounded in what actually happens in clinical practice.
+Make Joaquin's clinical identity, research agenda, contributions, and leadership clear quickly. Support career advancement and collaboration through selected papers, specific society roles, invited talks, and current projects. Use measured first-person prose and clear professional contact information.
 
----
+Current research pillars:
 
-## Content Strategy
+1. **Access to Parkinson's care:** technology and AI to extend access to clinical care and specialist expertise.
+2. **Clinical language and Parkinson's phenotyping:** generative AI and natural language processing to characterize disease and identify meaningful differences between patients.
+3. **Falls prediction and patient subtypes:** multimodal clinical, biomarker, imaging, and other data to study fall risk and distinct patient groups.
 
-Essays are the core unit. One per week is the target cadence, mixing:
-- **Reactive commentary**: a significant paper just published, a regulatory event, a trial result. React within days while it is still in the news cycle.
-- **Substantive anchor pieces**: longer arguments that set up or follow from talks, presentations, or publications. These have a longer shelf life.
+For each project, establish the clinical question, Joaquin's role, collaborators, stage, and public outputs. Describe research aims as aims; avoid implying validated tools, deployment, or demonstrated patient benefit without evidence. Describe MDS, APDA, and other society involvement through specific roles and activities.
 
-LinkedIn posts accompany each essay. They live in `drafts/` and are not published to the site. They are written to work as standalone posts that point back to the full essay — not summaries of the article.
+**The public opinion blog is retired in the local source.** The writing index and article page routes have been removed, so `/writing` and former `/writing/[slug]` URLs return 404 with a friendly navigation page. `/feed.xml` returns 410 Gone, a plain-text retirement notice, and `X-Robots-Tag: noindex`. No unrelated redirects are used. The removed URLs remain crawlable so search engines can observe 404 and 410 responses. Six Markdown essay sources and three unpublished essay drafts remain private repository material; no route or feed publishes them. There is no recurring essay cadence or weekly publishing obligation. Static essay images and the standalone Bayesian simulator in `public/tools/` remain available at their existing paths, without blog promotion.
 
-Every essay should pass two tests: Would a movement disorder specialist find this worth their time? Would a clinical researcher in an adjacent field understand it?
+Keep maintenance event-driven: update projects, publications, appointments, leadership, and talks when milestones occur. LinkedIn drafts remain private material and do not establish a site publishing schedule.
 
----
+## Selected Overhaul
+
+Navigation: Research, Publications, Speaking, About, Contact, with Home accessible through the name. Speaking remains a distinct destination to make invited presentations and professional reach easy to assess. A lab destination should wait for a confirmed launch.
+
+Homepage narrative: clinician/researcher introduction and appointment; selected evidence; three active research areas; leadership and talks; contact. Papers have direct links where available. In-press papers supplied by the user have no invented DOI or publisher URL.
+
+The user explicitly selected **Clinical Perspective** from the visual directions and said “i love” that design. Its direction is strong editorial typography, restrained decoration, spacious sections, compact evidence lists, and a smaller portrait. Implement responsive navigation, adequate text contrast, and content visible without animation JavaScript.
+
+The three important papers missing from the CV are now identified below. All three are user-confirmed as in press, as of October 28, 2026. Complete author lists, publication dates, and DOIs remain unprovided and must not be invented. Confirm project details and public outputs before claiming results or deployment.
 
 ## Voice and Style Rules
 
-These are firm. Any agent writing for this site must follow them.
+These remain firm for public writing and retained essay material.
 
-- **No em dashes.** Replace with commas, colons, semicolons, or restructured sentences.
-- **No negation-style writing.** Avoid "not X but Y," "not just X," "not wrong but," "what has not yet been built," etc. State the positive claim directly.
-- **No bullet points in essays.** Prose only. Lists belong in technical documentation, not writing.
-- **No excessive bold or headers within essays.** The essays use `---` section breaks and let paragraph structure carry the argument.
+- **No em dashes.** Use commas, colons, semicolons, or restructured sentences.
+- **No negation-style writing.** Avoid “not X but Y,” “not just X,” and similar framing. State the positive claim directly.
+- **No bullet points in essays.** Prose only; lists are appropriate in technical documentation and suitable site components.
+- **No excessive bold or headers within essays.** Retained essays use `---` section breaks and paragraph structure.
 - **No emojis in essays.** LinkedIn posts may use them sparingly.
-- **Academic but accessible.** The reader is a clinician or researcher, not a general consumer. No need to over-explain basic concepts, but jargon that requires a subspecialty to understand should be defined.
-- **First person, measured.** Not promotional. Not breathless. Dr. Vizcarra's voice is direct, intellectually honest, and willing to say when evidence is limited.
-- **Clinical grounding matters.** Open with a clinical scene or a concrete observation where possible. The argument should feel like it comes from someone who sees patients.
+- **Academic but accessible.** Write for clinicians and researchers; define jargon requiring subspecialty knowledge.
+- **First person, measured.** Direct, intellectually honest, specific, and candid about evidence limits. Avoid promotional or breathless claims.
+- **Clinical grounding matters.** Use concrete observations from clinical practice where relevant.
 
----
+## Existing Site and Technical Facts
 
-## Site Structure
-
-### Technical
-- **Stack:** Next.js 15 (App Router), React 18, TypeScript
-- **Deployed:** Vercel — auto-deploys on merge to `main`
-- **Fonts:** Source Serif 4 (serif), DM Sans (sans)
-- **Analytics:** @vercel/analytics
+- **Stack:** Next.js 15 (App Router), React 18, TypeScript.
+- **Deployment:** Vercel, auto-deploys on merge to `main`.
+- **Fonts:** Instrument Sans and IBM Plex Mono.
+- **Analytics:** `@vercel/analytics`.
+- **Public profile routes:** `/`, `/research`, `/publications`, `/about`, `/speaking`, `/contact`.
+- **Retired endpoints:** `/writing` and former article URLs return 404; `/feed.xml` returns 410.
+- **Search discovery:** `/sitemap.xml` lists only the six profile pages, without artificial modification dates. `/robots.txt` allows crawling and links the sitemap. Shared page metadata supplies canonical URLs and current social metadata.
+- The local redesign replaces the old Penn affiliation, card-heavy navy/cream/gold design, and reliance on scroll animations. Verify final implementation through the PR before deployment.
 
 ### Key files
-- `content/writing/` — all essays as Markdown files. This is the source of truth for written content. Never hardcode essay content in components.
-- `lib/site-data.ts` — talks, publications, and research themes for the homepage. Update this file when adding new talks or publications to the site.
-- `app/globals.css` — all design tokens and layout. Navy/cream/gold palette. Full-width section architecture.
-- `app/layout.tsx` — Google Fonts, JSON-LD Person schema, 3-column navy footer.
-- `app/page.tsx` — homepage sections (hero, research themes, talks, publications, writing grid, contact).
-- `app/site-header.tsx` — fixed nav with scroll-activated frosted glass.
-- `app/components/ScrollAnimations.tsx` — IntersectionObserver for fade-in animations.
-- `app/components/JsonLd.tsx` — PersonJsonLd and ArticleJsonLd structured data for SEO.
-- `lib/posts.ts` — reads and parses Markdown files from `content/writing/`. Adds `readingTime` computed from content.
 
-### Essay frontmatter format
-```md
----
-title: "Title of the essay"
-date: "YYYY-MM-DD"
-description: "One sentence. Used in meta tags and writing index cards."
-image: "/writing/slug-of-essay.png"
-imageAlt: "Description of the image for accessibility and SEO."
----
-```
-`image` and `imageAlt` are optional but recommended. Images live in `public/writing/`.
+- `lib/site-data.ts`: shared current profile, research areas, selected talks, leadership, and publications.
+- `app/page.tsx`: clinician/researcher introduction, research, selected evidence, professional reach, and contact.
+- `app/globals.css`: design tokens and full-width section layout.
+- `app/layout.tsx`: site-wide Google Fonts, metadata, navigation, and footer. The homepage includes Person schema.
+- `app/site-header.tsx`: responsive navigation for the six profile pages.
+- The legacy `ScrollAnimations.tsx` helper is removed; page content is visible without animation JavaScript.
+- `app/components/JsonLd.tsx`: current UC Assistant Professor Person schema. No blog article schema remains.
+- `lib/metadata.ts`: `createPageMetadata`, current site description, and canonical site URL.
+- `app/sitemap.ts`, `app/robots.ts`, `app/not-found.tsx`: search discovery and friendly 404 handling.
+- `app/opengraph-image.tsx`, `app/icon.svg`: a branded 1200×630 social preview and JV favicon.
+- `content/writing/`: six retained essay Markdown sources, outside public routes. Never hardcode essay content in components or re-publish without a new request.
+- `lib/posts.ts`: Markdown parsing and computed reading time.
+- `drafts/`: private essay and LinkedIn drafts, not public posts.
+
+Retained essay frontmatter uses `title`, `date` (`YYYY-MM-DD`), and `description`; optional `image` and `imageAlt` refer to assets in `public/writing/`. This documents existing content rather than a publishing instruction.
 
 ### Git and deployment workflow
+
 - **Never push directly to `main`.** All changes go through a PR.
-- Branch off `main`, open PR, CI must pass (GitHub Actions runs `npm ci` + `npm run build`), then merge.
+- Branch off `main`, open a PR, and pass CI (GitHub Actions runs `npm ci` and `npm run build`) before merging.
 - Use `gh pr merge --squash --delete-branch` to merge cleanly.
 - Vercel auto-deploys after merge.
 
----
+## Existing Content Inventory
 
-## Content Inventory
+There are **six formerly published essay sources and three unpublished essay drafts**. Earlier context incorrectly listed all nine as published. Public essay routes are removed in the local implementation; the sources are retained for reference.
 
-### Published essays (as of June 2026)
+| Formerly published source in `content/writing/` | Original date |
+| --- | --- |
+| `ai-in-parkinsons-disease-diagnosis-context-determines-the-standard.md` | 2026-02-19 |
+| `the-implementation-problem-in-parkinsons-ai-lessons-from-cardiology.md` | 2026-02-27 |
+| `the-wearable-worked-the-outcomes-didnt-move.md` | 2026-03-09 |
+| `real-world-mobility-parkinsons-mobilised.md` | 2026-03-17 |
+| `bayesian-methods-parkinsons-trials-fda-guidance.md` | 2026-03-24 |
+| `ecology-of-care-big-data-wpc.md` | 2026-06-10 |
 
-| File | Title | Date | Theme |
-|------|-------|------|-------|
-| `ai-in-parkinsons-disease-diagnosis-context-determines-the-standard.md` | AI in Parkinson's Disease Diagnosis: Context Determines the Standard | 2026-02-19 | AI diagnosis, context of use |
-| `the-implementation-problem-in-parkinsons-ai-lessons-from-cardiology.md` | The Implementation Problem in Parkinson's AI: Lessons from Cardiology | 2026-02-27 | AI implementation, pragmatic trials |
-| `real-world-mobility-parkinsons-mobilised.md` | What a Week of Real-World Walking Data Reveals About Parkinson's Disease | 2026-03-17 | Digital endpoints, Mobilise-D |
-| `the-wearable-worked-the-outcomes-didnt-move.md` | The Wearable Worked. The Outcomes Didn't Move. | 2026-03-09 | Wearables, RCT outcomes |
-| `bayesian-methods-parkinsons-trials-fda-guidance.md` | The FDA's New Bayesian Guidance and the Hardest Question in Parkinson's Trials | 2026-03-24 | Bayesian methods, FDA, trial design |
-| `from-big-data-to-personalized-care-translation-problem.md` | The Gap Between Knowing and Deciding: Why Big Data Hasn't Changed Parkinson's Care | 2026-04-01 | Big data, translation problem, WPC anchor |
-| `plasma-proteomics-pd-what-the-blood-knows.md` | What the Blood Knows About Parkinson's: Proteomics, Big Data, and the Limits of Inference | 2026-04-07 | ProtAIDe-Dx, plasma proteomics, biomarkers |
-| `wpc-2026-ai-big-data-digital-devices-session-preview.md` | Coming to WPC Phoenix: AI, Big Data, and Digital Devices in Parkinson's Care | 2026-04-16 | WPC 2026 session preview |
-| `ecology-of-care-big-data-wpc.md` | The Ecology of Care: Why Big Data Has to Reach Where Patients Actually Are | 2026-06-10 | Ecology of care paper, health services, equity |
+Unpublished essay sources in `drafts/`: `from-big-data-to-personalized-care-translation-problem.md`, `plasma-proteomics-pd-what-the-blood-knows.md`, and `wpc-2026-ai-big-data-digital-devices-session-preview.md`.
 
-### LinkedIn drafts (in `drafts/`)
+Private LinkedIn drafts cover Bayesian/FDA guidance, Mobilise-D, wearable RCT outcomes, NLP/falls, ProtAIDe-Dx, WPC, Ecology of Care, and the UC appointment. `drafts/content-dashboard.html` reflects the former publishing pipeline and should not establish current strategy.
 
-| File | Corresponding essay |
-|------|---------------------|
-| `linkedin-post-bayesian-fda.md` | Bayesian methods / FDA guidance |
-| `linkedin-post-mobilised.md` | Mobilise-D / real-world mobility |
-| `linkedin-post-wearable-rct.md` | Wearable RCT outcomes |
-| `linkedin-post-nlp-aresta.md` | NLP / falls (separate paper, not yet an essay) |
-| `linkedin-protaide-dx.md` | ProtAIDe-Dx / plasma proteomics |
-| `linkedin-wpc-session-announcement.md` | WPC 2026 session (pre-congress) |
-| `linkedin-ecology-of-care-paper.md` | Ecology of care paper |
-| `content-dashboard.html` | Visual overview of content pipeline |
+## Selected Evidence for Updated Content
 
----
+The CV lists 46 peer-reviewed publications, plus books and other outputs. That count is a CV inventory, not a confirmed current total. The user subsequently supplied these three missing papers, all **in press**:
 
-## Published Papers (Recent, Relevant to Site)
+- “Prediction of First and Recurrent Falls in Parkinson’s Disease.” *Annals of Neurology*.
+- “Longitudinal Fall Patterns in Parkinson’s Disease: Automated Narrative Extraction in 2,811 Patients.” *npj Parkinson's Disease*.
+- “‘State Of the Art’ Review: Management of Motor Symptoms in Parkinson's Disease.” *BMJ*.
 
-- Vizcarra JA. "The Ecology of Care in Parkinson's Disease." *Movement Disorders Clinical Practice*, 2026. DOI: 10.1002/mdc3.70705 — published online, not yet in a volume.
-- Vizcarra JA et al. "AI in the Diagnosis and Quantitative Phenotyping of Hyperkinetic Movement Disorders." *Journal of Clinical Medicine*, 2024.
-- Vizcarra JA et al. "Reliability of remote video ratings of the scale for assessment and rating of ataxia." *Parkinsonism & Related Disorders*, 2025.
+Use the user's supplied status and titles. Do not add DOI links, final dates, or full author lists without verification.
 
----
+Relevant papers already in the CV include:
 
-## Talks (Recent, Relevant to Site)
+- Vizcarra JA. “The Ecology of Care in Parkinson's Disease.” *Movement Disorders Clinical Practice*, 2026. DOI: `10.1002/mdc3.70705`.
+- Vizcarra JA et al. “Sex Differences in Fall Frequency, Risk Factors, and Outcomes in Parkinson's Disease: A Cross-Sectional Analysis.” *Movement Disorders Clinical Practice*, 2026. DOI: `10.1002/mdc3.70664`.
+- Rábano-Suárez P et al., including Vizcarra JA. “MDS PD e-Diary: A New Patient-Centered Digital Tool in Development for People with Parkinson's Disease.” *Movement Disorders Clinical Practice* 13 (2026): 1020–1025.
+- Vizcarra JA et al. “Artificial Intelligence in the Diagnosis and Quantitative Phenotyping of Hyperkinetic Movement Disorders: A Systematic Review.” *Journal of Clinical Medicine* 13(23) (2024): 7009.
+- Vizcarra JA et al. “Reliability of remote video ratings of the scale for assessment and rating of ataxia.” *Parkinsonism & Related Disorders* 132 (2025): 107278.
 
-- WPC Phoenix, May 2026 — "From Big Data to Personalized Care" (MCS2 session, co-presenters Bill Marks and Anat Mirelman, moderated by Diane Stephenson and Camille Carroll)
-- Pan American PD & Movement Disorders Congress, Houston, February 2026 — "Is Artificial Intelligence Relevant for the Diagnosis of Parkinson's Disease?" (debate format)
+Confirm final metadata and selection during implementation. The five papers above were already in the CV and are distinct from the three subsequently supplied in-press papers.
 
----
+### Leadership confirmed by the CV
 
-## What to Update in This File
+- Lead, Artificial Intelligence-Enabled Clinical Research, UC BHIDS, 2026–present.
+- Co-Vice Chair, MDS Parkinson's e-Diary Development Working Group, 2023–present.
+- Steering Committee, MDS Technology Study Group, 2024–present.
+- Outreach Grant Program Sub-Committee, MDS Pan American Section, 2025–present.
+- MDS Advanced Leadership Program, Class of 2026.
 
-When any of the following change, update the relevant section:
-- A new essay is published: add it to the content inventory table
-- A new LinkedIn draft is created: add it to the drafts table
-- A new paper is published: add it to the papers section
-- A new talk is given: add it to the talks section
-- `lib/site-data.ts` is updated: verify the talks and publications sections here still match
-- Voice or style rules change: update the voice section
-- Site structure or frontmatter format changes: update accordingly
+### Talks
+
+- **Upcoming, November 12–14, 2026:** Davis Phinney Foundation virtual Hispanic leadership conference, “Conectando a la comunidad de Parkinson.” The public program names Joaquin A. Vizcarra and Mayela Rodríguez for “Inteligencia artificial, datos y salud digital en el manejo del Parkinson.” Event dates are verified; an individual session date/time is not established. [Verified event page](https://davisphinneyfoundation.org/events/conferencia-de-liderazgo-hispano-2026-conectando-a-la-comunidad-de-parkinson/).
+- **Upcoming, Thursday, November 19, 2026:** “Artificial Intelligence in the Parkinson’s Disease Clinic: Current Realities and Future Directions.” APDA conference, “AI for Parkinson's: From Data to Care in an Aging World,” Johns Hopkins University Bloomberg Center, Washington, DC. The [official event page](https://www.apdaparkinson.org/ai-for-parkinsons/) verifies the date, venue, and 9 AM–5 PM conference schedule. The supplied [official agenda](https://www.apdaparkinson.org/ai-for-parkinsons-agenda/) verifies the talk title and shared Session 3 schedule of 11:35 AM–12:25 PM. No individual talk time is established. The user also supplied a Zoom Events link; its session-specific content has not been verified.
+- **May 2026:** “From Big Data to Personalized Care,” 7th World Parkinson Congress, Phoenix. Session: AI, Big Data, and Digital Devices in Parkinson's Care; co-presenters Bill Marks and Anat Mirelman, moderators Diane Stephenson and Camille Carroll.
+- **February 2026:** “Is Artificial Intelligence Relevant for the Diagnosis of Parkinson's Disease?” 6th Pan American Parkinson's Disease and Movement Disorders Congress, Houston, debate format.
+- **2025:** “Rethinking Falls in Parkinson's Disease: A Bioinformatics Approach Rooted in Clinical Insight,” grand rounds at UC, University of Nebraska, and Cleveland Clinic.
+
+## Local Verification
+
+The final production build passed compilation, TypeScript validation, and prerendering. Existing `node_modules` files were unloaded iCloud placeholders and stalled local commands, so verification used an identical temporary application copy with the exact versions from `package-lock.json`; all 19 application source files were compared with the workspace. The project's dependency files were unchanged.
+
+Browser checks covered all six pages at 320px, the homepage at 390px and 768px, and the desktop design at 1280px. No horizontal overflow was observed. Mobile navigation, Escape handling, active-page indication, page-specific metadata, and research-to-publication anchors were checked. Twenty HTTP checks verified public pages, six retired essays and the writing index, the 410 feed with noindex, private-source URLs, the six-page sitemap, favicon, and 1200×630 PNG social image. No deployment or merge has been performed.
+
+## Maintaining This Context
+
+Update confirmed appointments, research scope, projects, papers, leadership, and talks as they change. Record final local verification and deployment status separately. Keep inventory accurate and preserve voice rules and the PR workflow. Do not copy medical license or certification numbers into project documentation.

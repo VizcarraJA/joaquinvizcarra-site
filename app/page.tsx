@@ -1,266 +1,189 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getAllPostsMeta } from "@/lib/posts";
-import { researchThemes, selectedPublications, selectedTalks } from "@/lib/site-data";
 import { PersonJsonLd } from "@/app/components/JsonLd";
-import { ScrollAnimations } from "@/app/components/ScrollAnimations";
+import {
+  leadershipRoles,
+  profile,
+  researchThemes,
+  selectedPublications,
+  selectedTalks,
+} from "@/lib/site-data";
+import { createPageMetadata, siteDescription } from "@/lib/metadata";
+
+export const metadata = {
+  ...createPageMetadata(
+    "Movement Disorders Neurologist & Clinical AI Researcher",
+    siteDescription,
+    "/",
+  ),
+  title: {
+    absolute: "Joaquin Vizcarra, MD, MSTR | Parkinson's Disease & Clinical AI",
+  },
+};
 
 export default function HomePage() {
-  const posts = getAllPostsMeta();
-  const recentPosts = posts.slice(0, 4);
+  const featuredPublications = selectedPublications
+    .filter((paper) => paper.featured)
+    .slice(0, 4);
 
   return (
-    <>
+    <div className="container home-page">
       <PersonJsonLd />
-      <ScrollAnimations />
+      <section className="home-hero" aria-labelledby="home-title">
+        <div>
+          <p className="eyebrow">Joaquin A. Vizcarra, MD, MSTR</p>
+          <h1 className="home-title" id="home-title">
+            Joaquin<span>Vizcarra</span>
+          </h1>
+          <p className="home-identity">
+            Movement disorders neurologist.
+            <br />
+            Researcher in Parkinson&apos;s disease and clinical AI.
+          </p>
+          <p className="home-appointment">
+            {profile.title}, {profile.institution}
+            <br />
+            {profile.primaryDepartment}
+            <br />
+            Secondary appointment in the {profile.secondaryDepartment}
+          </p>
+        </div>
+        <figure className="home-portrait">
+          <Image
+            src="/headshot.jpg"
+            alt="Joaquin Vizcarra, movement disorders neurologist"
+            width={520}
+            height={650}
+            sizes="(max-width: 480px) 96px, (max-width: 760px) 160px, 220px"
+            priority
+          />
+          <figcaption>
+            Clinical practice informs
+            <br />
+            every research question.
+          </figcaption>
+        </figure>
+      </section>
+      <p className="home-statement">
+        My work connects clinical experience with AI and multimodal data to
+        understand Parkinson&apos;s disease and{" "}
+        <span>extend access to informed care.</span>
+      </p>
 
-      {/* Visually hidden SEO block — crawlable by search engines and AI systems */}
-      <div className="sr-only" aria-hidden="true">
-        Joaquin Vizcarra, M.D., M.S.T.R. Also known as Joaquin Vizcarra Pasapera, Joaquin A.
-        Vizcarra, JA Vizcarra, and J Vizcarra-Pasapera in academic publications.
-        Movement disorders neurologist at the University of Pennsylvania.
-      </div>
-
-      {/* ── HERO ─────────────────────────────────────────── */}
-      <section className="hero">
-        <div className="container">
-          <div className="hero-grid">
-            <div>
-              <p className="hero-eyebrow">Neurology · AI · Clinical Research</p>
-              <h1 className="hero-title">
-                Shaping how AI transforms Parkinson&apos;s disease care
-              </h1>
-              <p className="hero-sub">
-                I&apos;m a movement disorders neurologist using AI and large-scale data
-                to model disease trajectories, predict outcomes, and extend
-                specialist-level expertise beyond the clinic.
-              </p>
-              <div className="hero-buttons">
-                <Link href="/research" className="btn btn--primary">
-                  Research
+      <section className="home-research" aria-labelledby="research-title">
+        <div className="section-heading">
+          <h2 id="research-title">Research directions</h2>
+          <span className="section-label">
+            Parkinson&apos;s disease / Clinical AI
+          </span>
+        </div>
+        <div>
+          {researchThemes.map((theme, index) => (
+            <article className="research-row" key={theme.id}>
+              <span className="research-number" aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3>
+                <Link href={`/research#${theme.id}`}>
+                  {theme.title}
+                  <span className="inline-arrow" aria-hidden="true">
+                    ↗
+                  </span>
                 </Link>
-                <Link href="/writing" className="btn btn--outline">
-                  Writing
-                </Link>
-                <Link href="/contact" className="btn btn--outline">
-                  Contact
-                </Link>
-              </div>
-            </div>
-
-            <div className="hero-photo-wrap">
-              <div className="hero-photo-frame" aria-hidden="true" />
-              <Image
-                src="/headshot.jpg"
-                alt="Joaquin Vizcarra, M.D., M.S.T.R."
-                width={520}
-                height={650}
-                className="hero-photo"
-                priority
-              />
-            </div>
-          </div>
+              </h3>
+              <p>{theme.body}</p>
+            </article>
+          ))}
         </div>
       </section>
 
-      {/* ── ROLE BAR ─────────────────────────────────────── */}
-      <div className="role-bar">
-        <div className="container">
-          <div className="role-bar__inner">
-            <span className="role-bar__title">
-              Instructor of Neurology, University of Pennsylvania
-            </span>
-            <div className="role-bar__socials">
-              <a
-                className="role-bar__social-link"
-                href="https://scholar.google.com/citations?hl=en&user=wuL0vg8AAAAJ"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Google Scholar
-              </a>
-              <a
-                className="role-bar__social-link"
-                href="https://x.com/VizcarraJA"
-                target="_blank"
-                rel="noreferrer"
-              >
-                X / Twitter
-              </a>
-              <a
-                className="role-bar__social-link"
-                href="https://www.linkedin.com/in/joaquin-vizcarra/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                LinkedIn
-              </a>
-              <a className="role-bar__social-link" href="/feed.xml">
-                RSS
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── RESEARCH THEMES ──────────────────────────────── */}
-      <section className="page-section page-section--cream fade-in">
-        <div className="container">
-          <div className="section-eyebrow">
-            <div className="section-eyebrow__rule" aria-hidden="true" />
-            <span className="section-eyebrow__label">Research</span>
-          </div>
-          <h2 className="section-title">Research Themes</h2>
-
-          <div className="research-grid">
-            {researchThemes.map((theme) => (
-              <article key={theme.title} className="research-card">
-                <h3 className="research-card__title">{theme.title}</h3>
-                <p className="research-card__body">{theme.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SELECTED TALKS ───────────────────────────────── */}
-      <section className="page-section page-section--navy fade-in">
-        <div className="container">
-          <div className="section-eyebrow">
-            <div className="section-eyebrow__rule" aria-hidden="true" />
-            <span className="section-eyebrow__label section-eyebrow__label--light">
-              Speaking
-            </span>
-          </div>
-          <h2 className="section-title section-title--light">Selected Talks</h2>
-
-          <div className="talks-list">
-            {selectedTalks.slice(0, 3).map((talk) => (
-              <article key={`${talk.title}-${talk.date}`} className="talk-item">
-                <div>
-                  <div className="talk-item__date">{talk.date}</div>
-                  <div className="talk-item__location">{talk.location}</div>
-                </div>
-                <div>
-                  <div className="talk-item__title">{talk.title}</div>
-                  <div className="talk-item__venue">{talk.venue}</div>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <Link href="/speaking" className="btn btn--outline-light">
-            View All Talks
-          </Link>
-        </div>
-      </section>
-
-      {/* ── SELECTED PUBLICATIONS ────────────────────────── */}
-      <section className="page-section page-section--cream-dark fade-in">
-        <div className="container">
-          <div className="section-eyebrow">
-            <div className="section-eyebrow__rule" aria-hidden="true" />
-            <span className="section-eyebrow__label">Publications</span>
-          </div>
-          <h2 className="section-title">Selected Publications</h2>
-
-          <div className="pub-grid">
-            {selectedPublications.map((pub, i) => (
-              <article key={pub.citation} className="pub-card">
-                <div className="pub-card__number">
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-                <div>
-                  <p className="pub-card__citation">{pub.citation}</p>
-                  <div className="pub-card__journal">
-                    {pub.journal} · {pub.year}
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <a
-            className="btn btn--outline"
-            href="https://scholar.google.com/citations?hl=en&user=wuL0vg8AAAAJ"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Full List on Google Scholar
-          </a>
-        </div>
-      </section>
-
-      {/* ── RECENT WRITING ───────────────────────────────── */}
-      <section className="page-section page-section--cream fade-in">
-        <div className="container">
-          <div className="section-eyebrow">
-            <div className="section-eyebrow__rule" aria-hidden="true" />
-            <span className="section-eyebrow__label">Writing</span>
-          </div>
-          <h2 className="section-title">Recent Writing</h2>
-
-          <div className="writing-grid">
-            {recentPosts.map((post) => (
-              <article key={post.slug} className="writing-card">
-                <div className="writing-card__meta">
-                  {post.date} · {post.readingTime} min read
-                </div>
-                <Link
-                  href={`/writing/${post.slug}`}
-                  className="writing-card__title"
-                >
-                  {post.title}
-                </Link>
-                <p className="writing-card__excerpt">{post.description}</p>
-                <Link
-                  href={`/writing/${post.slug}`}
-                  className="writing-card__link"
-                >
-                  Read more →
-                </Link>
-              </article>
-            ))}
-          </div>
-
-          <Link href="/writing" className="btn btn--outline">
-            Visit Writing
-          </Link>
-        </div>
-      </section>
-
-      {/* ── CONTACT ──────────────────────────────────────── */}
-      <section className="page-section page-section--cream-dark fade-in">
-        <div className="container">
-          <div className="contact-inner">
-            <div className="section-eyebrow" style={{ alignItems: "center" }}>
-              <div className="section-eyebrow__rule" aria-hidden="true" />
-              <span className="section-eyebrow__label">Contact</span>
-            </div>
-            <h2 className="contact-inner__title">Get in Touch</h2>
-            <p className="contact-inner__sub">
-              For speaking invitations, research collaboration, or academic inquiries.
-            </p>
-            <Link href="/contact" className="btn btn--primary">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-              Contact Me
+      <div className="home-lower">
+        <section aria-labelledby="selected-work-title">
+          <div className="section-heading">
+            <h2 id="selected-work-title">Selected work</h2>
+            <Link className="text-link" href="/publications">
+              All publications <span aria-hidden="true">↗</span>
             </Link>
           </div>
+          <div className="publication-list">
+            {featuredPublications.map((paper) => (
+              <article className="publication-item" key={paper.id}>
+                <p className="publication-meta">
+                  <span>{paper.journal}</span>
+                  <span aria-hidden="true"> · </span>
+                  {paper.status === "in-press" ? (
+                    <span className="publication-status">In press</span>
+                  ) : (
+                    <span>{paper.year}</span>
+                  )}
+                </p>
+                <h3 className="publication-title">
+                  {paper.url ? (
+                    <a href={paper.url} target="_blank" rel="noreferrer">
+                      {paper.title}
+                      <span className="inline-arrow" aria-hidden="true">
+                        ↗
+                      </span>
+                    </a>
+                  ) : (
+                    paper.title
+                  )}
+                </h3>
+              </article>
+            ))}
+          </div>
+        </section>
+        <div className="home-aside">
+          <section aria-labelledby="leadership-title">
+            <div className="section-heading">
+              <h2 id="leadership-title">Leadership &amp; service</h2>
+            </div>
+            <ul className="leadership-list">
+              {leadershipRoles.slice(0, 3).map((role) => (
+                <li key={role.title}>
+                  <h3>{role.title}</h3>
+                  <p>{role.organization}</p>
+                </li>
+              ))}
+            </ul>
+            <Link className="text-link" href="/about">
+              More about me <span aria-hidden="true">↗</span>
+            </Link>
+          </section>
+          <section className="home-speaking" aria-labelledby="speaking-title">
+            <div className="section-heading">
+              <h2 id="speaking-title">Speaking</h2>
+              <Link className="text-link" href="/speaking">
+                All talks <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
+            {selectedTalks.slice(0, 2).map((talk) => (
+              <article className="home-talk" key={talk.id}>
+                <time dateTime={talk.dateISO}>{talk.date}</time>
+                <h3>
+                  {talk.url ? (
+                    <a href={talk.url} target="_blank" rel="noreferrer">
+                      {talk.venue}
+                      <span className="inline-arrow" aria-hidden="true">
+                        ↗
+                      </span>
+                    </a>
+                  ) : (
+                    talk.venue
+                  )}
+                </h3>
+                <p>{talk.title}</p>
+              </article>
+            ))}
+          </section>
         </div>
+      </div>
+      <section className="home-contact" aria-label="Contact">
+        <p>For research, speaking, and academic inquiries</p>
+        <a href={`mailto:${profile.email}`}>
+          {profile.email} <span aria-hidden="true">↗</span>
+        </a>
       </section>
-    </>
+    </div>
   );
 }
