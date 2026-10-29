@@ -2,7 +2,7 @@
 
 Living project memory. Read before work in this folder and update when confirmed identity, strategy, inventory, or implementation changes.
 
-**Status: October 28, 2026 deployed and verified.** The user selected the Clinical Perspective design and supplied three missing in-press papers plus the APDA agenda. [PR #20](https://github.com/VizcarraJA/joaquinvizcarra-site/pull/20) was squash-merged into `main` as `b29f20c76c47b1e9ff02e7f225353af8584c5380`. GitHub CI and Vercel preview passed before merge; Vercel production deployment succeeded and the new site is live at https://joaquinvizcarra.com. The local checkout is on the updated `main` branch.
+**Status: October 29, 2026 deployed and verified.** The user selected the Clinical Perspective design and supplied three missing in-press papers plus the APDA agenda. [PR #20](https://github.com/VizcarraJA/joaquinvizcarra-site/pull/20) launched the overhaul. [PR #21](https://github.com/VizcarraJA/joaquinvizcarra-site/pull/21) replaced mobile emoji arrows with SVG icons and was squash-merged as `79e6f57a819120c5144bf02da56a43f6087860f2`. GitHub CI, Vercel preview, and Vercel production passed. All six live pages returned 200 with SVG arrows and no Unicode arrow characters. The site is live at https://joaquinvizcarra.com and the local checkout is on updated `main`.
 
 ## Identity and Audience
 
@@ -58,6 +58,7 @@ These remain firm for public writing and retained essay material.
 - **Stack:** Next.js 15 (App Router), React 18, TypeScript.
 - **Deployment:** Vercel, auto-deploys on merge to `main`.
 - **Fonts:** Instrument Sans and IBM Plex Mono.
+- **Palette:** The user selected Ink blue (`#315b78`) on October 29, 2026. Use it for the site accent, favicon monogram, and social preview. Text selection uses the coordinating pale blue `#dce6ed`; paper, ink, and neutral rules retain the Clinical Perspective palette.
 - **Link icons:** Use the shared `LinkArrow` SVG component. Unicode arrow characters rendered as emoji on mobile and were replaced on October 29, 2026. Keep icons monochrome, proportional to nearby type, and hidden from assistive technology.
 - **Analytics:** `@vercel/analytics`.
 - **Public profile routes:** `/`, `/research`, `/publications`, `/about`, `/speaking`, `/contact`.
@@ -153,6 +154,6 @@ After deployment, the live homepage was inspected in the browser. Production HTT
 
 ## Maintaining This Context
 
-October 29, 2026: the user requested professional mobile arrow icons and alternatives to the rust/red accent. The vector arrow fix passed a production build and browser checks at 390px (including expanded mobile navigation) and 320px (publication links), with no horizontal overflow. Deep teal, ink blue, muted olive, and charcoal are being presented as color alternatives; the live accent remains unchanged pending the user's preference.
+October 29, 2026: the user requested professional mobile arrow icons and alternatives to the rust/red accent. The vector arrow fix passed a production build and browser checks at 390px (including expanded mobile navigation), 320px (publication links), and 1280px, with no horizontal overflow. All 20 application source files matched the built QA copy and the deployed Git tree matched the validated commit. Production HTTP checks confirmed the updated SVG markup on all six pages; production browser navigation timed out, so visual checks used the identical local production build. The user then chose **Ink blue** from the four alternatives in `site-accent-options.html` in the task visualization directory. Apply that choice consistently to the site and identity assets.
 
 Update confirmed appointments, research scope, projects, papers, leadership, and talks as they change. Record final local verification and deployment status separately. Keep inventory accurate and preserve voice rules and the PR workflow. Do not copy medical license or certification numbers into project documentation.
