@@ -1,5 +1,6 @@
 "use client";
 
+import { LinkArrow } from "@/app/components/LinkArrow";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
@@ -38,7 +39,7 @@ export default function SiteHeader() {
               aria-current={pathname === link.href ? "page" : undefined}
             >
               {link.label}
-              {link.href === "/contact" && <span aria-hidden="true"> ↗</span>}
+              {link.href === "/contact" && <LinkArrow />}
             </Link>
           ))}
         </nav>
@@ -66,7 +67,7 @@ export default function SiteHeader() {
                 }}
               >
                 {link.label}
-                <span aria-hidden="true">↗</span>
+                <LinkArrow />
               </Link>
             ))}
           </nav>

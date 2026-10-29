@@ -1,3 +1,4 @@
+import { LinkArrow } from "@/app/components/LinkArrow";
 import { createPageMetadata } from "@/lib/metadata";
 import { profile, selectedPublications } from "@/lib/site-data";
 
@@ -22,10 +23,10 @@ export default function PublicationsPage() {
         </p>
         <div className="profile-links">
           <a className="text-link" href={profile.links.scholar} target="_blank" rel="noreferrer">
-            Full record on Google Scholar <span aria-hidden="true">↗</span>
+            Full record on Google Scholar <LinkArrow />
           </a>
           <a className="text-link" href={profile.links.orcid} target="_blank" rel="noreferrer">
-            ORCID <span aria-hidden="true">↗</span>
+            ORCID <LinkArrow />
           </a>
         </div>
       </header>
@@ -52,7 +53,7 @@ export default function PublicationsPage() {
                 <h3 className="publication-title">
                   {publication.url ? (
                     <a href={publication.url} target="_blank" rel="noreferrer">
-                      {publication.title} <span aria-hidden="true">↗</span>
+                      {publication.title} <LinkArrow />
                     </a>
                   ) : publication.title}
                 </h3>

@@ -1,3 +1,4 @@
+import { LinkArrow } from "@/app/components/LinkArrow";
 import "./globals.css";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -91,13 +92,13 @@ export default function RootLayout({
             </div>
             <nav className="footer-social" aria-label="Professional profiles">
               <a href={profile.links.scholar} target="_blank" rel="noreferrer">
-                Google Scholar <span aria-hidden="true">↗</span>
+                Google Scholar <LinkArrow />
               </a>
               <a href={profile.links.linkedin} target="_blank" rel="noreferrer">
-                LinkedIn <span aria-hidden="true">↗</span>
+                LinkedIn <LinkArrow />
               </a>
               <a href={profile.links.orcid} target="_blank" rel="noreferrer">
-                ORCID <span aria-hidden="true">↗</span>
+                ORCID <LinkArrow />
               </a>
             </nav>
           </div>
