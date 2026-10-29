@@ -41,7 +41,7 @@ export default function OpenGraphImage() {
           }}
         >
           <span>Joaquin</span>
-          <span style={{ color: "#a43f2b" }}>Vizcarra</span>
+          <span style={{ color: "#315b78" }}>Vizcarra</span>
         </div>
         <div style={{ display: "flex", fontSize: 29, marginTop: 30 }}>
           Movement disorders neurologist. Clinical AI researcher.

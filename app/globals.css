@@ -3,7 +3,7 @@
   --paper: #fcfcfa;
   --ink: #262b26;
   --muted: #585f55;
-  --accent: #a43f2b;
+  --accent: #315b78;
   --line: #d9dcd2;
 }
 
@@ -23,7 +23,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 ::selection {
-  background: #eacdc5;
+  background: #dce6ed;
   color: var(--ink);
 }
 a {
