@@ -1,3 +1,4 @@
+import { LinkArrow } from "@/app/components/LinkArrow";
 import Link from "next/link";
 import { createPageMetadata } from "@/lib/metadata";
 import { researchThemes, selectedPublications } from "@/lib/site-data";
@@ -58,7 +59,7 @@ export default function ResearchPage() {
                       {publications.map((publication) => (
                         <li className="publication-item" key={publication.id}>
                           <Link className="text-link" href={`/publications#${publication.id}`}>
-                            {publication.title} <span aria-hidden="true">↗</span>
+                            {publication.title} <LinkArrow />
                           </Link>
                           <p className="publication-meta">
                             {publication.journal}
@@ -87,7 +88,7 @@ export default function ResearchPage() {
             span clinical cohorts, digital measurement, language models, and the
             practical delivery of Parkinson’s care.
           </p>
-          <Link className="text-link" href="/contact">Discuss a collaboration <span aria-hidden="true">↗</span></Link>
+          <Link className="text-link" href="/contact">Discuss a collaboration <LinkArrow /></Link>
         </div>
       </section>
     </div>

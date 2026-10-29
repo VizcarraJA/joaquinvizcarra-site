@@ -1,3 +1,4 @@
+import { LinkArrow } from "@/app/components/LinkArrow";
 import Image from "next/image";
 import Link from "next/link";
 import { PersonJsonLd } from "@/app/components/JsonLd";
@@ -86,9 +87,7 @@ export default function HomePage() {
               <h3>
                 <Link href={`/research#${theme.id}`}>
                   {theme.title}
-                  <span className="inline-arrow" aria-hidden="true">
-                    ↗
-                  </span>
+                  <LinkArrow />
                 </Link>
               </h3>
               <p>{theme.body}</p>
@@ -102,7 +101,7 @@ export default function HomePage() {
           <div className="section-heading">
             <h2 id="selected-work-title">Selected work</h2>
             <Link className="text-link" href="/publications">
-              All publications <span aria-hidden="true">↗</span>
+              All publications <LinkArrow />
             </Link>
           </div>
           <div className="publication-list">
@@ -121,9 +120,7 @@ export default function HomePage() {
                   {paper.url ? (
                     <a href={paper.url} target="_blank" rel="noreferrer">
                       {paper.title}
-                      <span className="inline-arrow" aria-hidden="true">
-                        ↗
-                      </span>
+                      <LinkArrow />
                     </a>
                   ) : (
                     paper.title
@@ -147,14 +144,14 @@ export default function HomePage() {
               ))}
             </ul>
             <Link className="text-link" href="/about">
-              More about me <span aria-hidden="true">↗</span>
+              More about me <LinkArrow />
             </Link>
           </section>
           <section className="home-speaking" aria-labelledby="speaking-title">
             <div className="section-heading">
               <h2 id="speaking-title">Speaking</h2>
               <Link className="text-link" href="/speaking">
-                All talks <span aria-hidden="true">↗</span>
+                All talks <LinkArrow />
               </Link>
             </div>
             {selectedTalks.slice(0, 2).map((talk) => (
@@ -164,9 +161,7 @@ export default function HomePage() {
                   {talk.url ? (
                     <a href={talk.url} target="_blank" rel="noreferrer">
                       {talk.venue}
-                      <span className="inline-arrow" aria-hidden="true">
-                        ↗
-                      </span>
+                      <LinkArrow />
                     </a>
                   ) : (
                     talk.venue
@@ -181,7 +176,7 @@ export default function HomePage() {
       <section className="home-contact" aria-label="Contact">
         <p>For research, speaking, and academic inquiries</p>
         <a href={`mailto:${profile.email}`}>
-          {profile.email} <span aria-hidden="true">↗</span>
+          {profile.email} <LinkArrow />
         </a>
       </section>
     </div>

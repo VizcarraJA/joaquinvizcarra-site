@@ -1,3 +1,4 @@
+import { LinkArrow } from "@/app/components/LinkArrow";
 import Link from "next/link";
 import { createPageMetadata } from "@/lib/metadata";
 import { selectedTalks } from "@/lib/site-data";
@@ -21,7 +22,7 @@ export default function SpeakingPage() {
           Parkinson’s disease, digital health, and the clinical use of artificial
           intelligence.
         </p>
-        <Link className="text-link" href="/contact">Speaking inquiries <span aria-hidden="true">↗</span></Link>
+        <Link className="text-link" href="/contact">Speaking inquiries <LinkArrow /></Link>
       </header>
 
       <section className="editorial-section" aria-labelledby="talks-heading">
@@ -43,7 +44,7 @@ export default function SpeakingPage() {
                 <p className="talk-location">{talk.location}</p>
                 {talk.url && (
                   <a className="text-link" href={talk.url} target="_blank" rel="noreferrer">
-                    Event details <span aria-hidden="true">↗</span>
+                    Event details <LinkArrow />
                   </a>
                 )}
               </div>
@@ -68,7 +69,7 @@ export default function SpeakingPage() {
             For an invitation, please include the audience, event format, date,
             and topic you have in mind.
           </p>
-          <Link className="text-link" href="/contact">Get in touch <span aria-hidden="true">↗</span></Link>
+          <Link className="text-link" href="/contact">Get in touch <LinkArrow /></Link>
         </div>
       </section>
     </div>

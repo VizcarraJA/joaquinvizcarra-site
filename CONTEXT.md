@@ -2,7 +2,7 @@
 
 Living project memory. Read before work in this folder and update when confirmed identity, strategy, inventory, or implementation changes.
 
-**Status: October 28, 2026 local overhaul implemented and verified.** The user selected the Clinical Perspective design and supplied three missing in-press papers plus the APDA agenda. The complete redesign is on `codex/clinical-perspective-overhaul`. The live site has not been updated; deployment remains a separate PR and merge step.
+**Status: October 28, 2026 deployed and verified.** The user selected the Clinical Perspective design and supplied three missing in-press papers plus the APDA agenda. [PR #20](https://github.com/VizcarraJA/joaquinvizcarra-site/pull/20) was squash-merged into `main` as `b29f20c76c47b1e9ff02e7f225353af8584c5380`. GitHub CI and Vercel preview passed before merge; Vercel production deployment succeeded and the new site is live at https://joaquinvizcarra.com. The local checkout is on the updated `main` branch.
 
 ## Identity and Audience
 
@@ -26,7 +26,7 @@ Current research pillars:
 
 For each project, establish the clinical question, Joaquin's role, collaborators, stage, and public outputs. Describe research aims as aims; avoid implying validated tools, deployment, or demonstrated patient benefit without evidence. Describe MDS, APDA, and other society involvement through specific roles and activities.
 
-**The public opinion blog is retired in the local source.** The writing index and article page routes have been removed, so `/writing` and former `/writing/[slug]` URLs return 404 with a friendly navigation page. `/feed.xml` returns 410 Gone, a plain-text retirement notice, and `X-Robots-Tag: noindex`. No unrelated redirects are used. The removed URLs remain crawlable so search engines can observe 404 and 410 responses. Six Markdown essay sources and three unpublished essay drafts remain private repository material; no route or feed publishes them. There is no recurring essay cadence or weekly publishing obligation. Static essay images and the standalone Bayesian simulator in `public/tools/` remain available at their existing paths, without blog promotion.
+**The public opinion blog is retired.** The writing index and article page routes have been removed, so `/writing` and former `/writing/[slug]` URLs return 404 with a friendly navigation page. `/feed.xml` returns 410 Gone, a plain-text retirement notice, and `X-Robots-Tag: noindex`. No unrelated redirects are used. The removed URLs remain crawlable so search engines can observe 404 and 410 responses. Six Markdown essay sources and three unpublished essay drafts remain in the repository, which is public; no website route or feed publishes them. There is no recurring essay cadence or weekly publishing obligation. Static essay images and the standalone Bayesian simulator in `public/tools/` remain available at their existing paths, without blog promotion.
 
 Keep maintenance event-driven: update projects, publications, appointments, leadership, and talks when milestones occur. LinkedIn drafts remain private material and do not establish a site publishing schedule.
 
@@ -58,11 +58,12 @@ These remain firm for public writing and retained essay material.
 - **Stack:** Next.js 15 (App Router), React 18, TypeScript.
 - **Deployment:** Vercel, auto-deploys on merge to `main`.
 - **Fonts:** Instrument Sans and IBM Plex Mono.
+- **Link icons:** Use the shared `LinkArrow` SVG component. Unicode arrow characters rendered as emoji on mobile and were replaced on October 29, 2026. Keep icons monochrome, proportional to nearby type, and hidden from assistive technology.
 - **Analytics:** `@vercel/analytics`.
 - **Public profile routes:** `/`, `/research`, `/publications`, `/about`, `/speaking`, `/contact`.
 - **Retired endpoints:** `/writing` and former article URLs return 404; `/feed.xml` returns 410.
 - **Search discovery:** `/sitemap.xml` lists only the six profile pages, without artificial modification dates. `/robots.txt` allows crawling and links the sitemap. Shared page metadata supplies canonical URLs and current social metadata.
-- The local redesign replaces the old Penn affiliation, card-heavy navy/cream/gold design, and reliance on scroll animations. Verify final implementation through the PR before deployment.
+- The deployed redesign replaces the old Penn affiliation, card-heavy navy/cream/gold design, and reliance on scroll animations.
 
 ### Key files
 
@@ -146,8 +147,12 @@ Confirm final metadata and selection during implementation. The five papers abov
 
 The final production build passed compilation, TypeScript validation, and prerendering. Existing `node_modules` files were unloaded iCloud placeholders and stalled local commands, so verification used an identical temporary application copy with the exact versions from `package-lock.json`; all 19 application source files were compared with the workspace. The project's dependency files were unchanged.
 
-Browser checks covered all six pages at 320px, the homepage at 390px and 768px, and the desktop design at 1280px. No horizontal overflow was observed. Mobile navigation, Escape handling, active-page indication, page-specific metadata, and research-to-publication anchors were checked. Twenty HTTP checks verified public pages, six retired essays and the writing index, the 410 feed with noindex, private-source URLs, the six-page sitemap, favicon, and 1200×630 PNG social image. No deployment or merge has been performed.
+Browser checks covered all six pages at 320px, the homepage at 390px and 768px, and the desktop design at 1280px. No horizontal overflow was observed. Mobile navigation, Escape handling, active-page indication, page-specific metadata, and research-to-publication anchors were checked. Twenty HTTP checks verified public pages, six retired essays and the writing index, the 410 feed with noindex, private-source URLs, the six-page sitemap, favicon, and 1200×630 PNG social image.
+
+After deployment, the live homepage was inspected in the browser. Production HTTP checks passed for all six public pages, the retired writing index and a former essay (404), feed (410 with noindex), sitemap, and social preview image. The deployed Git tree matched the tested local tree exactly. This deployment record is a local documentation update after the release commit; no application changes were made after validation.
 
 ## Maintaining This Context
+
+October 29, 2026: the user requested professional mobile arrow icons and alternatives to the rust/red accent. The vector arrow fix passed a production build and browser checks at 390px (including expanded mobile navigation) and 320px (publication links), with no horizontal overflow. Deep teal, ink blue, muted olive, and charcoal are being presented as color alternatives; the live accent remains unchanged pending the user's preference.
 
 Update confirmed appointments, research scope, projects, papers, leadership, and talks as they change. Record final local verification and deployment status separately. Keep inventory accurate and preserve voice rules and the PR workflow. Do not copy medical license or certification numbers into project documentation.

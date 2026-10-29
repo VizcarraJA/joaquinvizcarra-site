@@ -1,3 +1,4 @@
+import { LinkArrow } from "@/app/components/LinkArrow";
 import { createPageMetadata } from "@/lib/metadata";
 import { profile } from "@/lib/site-data";
 
@@ -33,10 +34,10 @@ export default function ContactPage() {
         <div>
           <p className="section-label">Elsewhere</p>
           <ul className="profile-links">
-            <li><a className="text-link" href={profile.links.uc} target="_blank" rel="noreferrer">University profile <span aria-hidden="true">↗</span></a></li>
-            <li><a className="text-link" href={profile.links.scholar} target="_blank" rel="noreferrer">Google Scholar <span aria-hidden="true">↗</span></a></li>
-            <li><a className="text-link" href={profile.links.linkedin} target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></li>
-            <li><a className="text-link" href={profile.links.orcid} target="_blank" rel="noreferrer">ORCID <span aria-hidden="true">↗</span></a></li>
+            <li><a className="text-link" href={profile.links.uc} target="_blank" rel="noreferrer">University profile <LinkArrow /></a></li>
+            <li><a className="text-link" href={profile.links.scholar} target="_blank" rel="noreferrer">Google Scholar <LinkArrow /></a></li>
+            <li><a className="text-link" href={profile.links.linkedin} target="_blank" rel="noreferrer">LinkedIn <LinkArrow /></a></li>
+            <li><a className="text-link" href={profile.links.orcid} target="_blank" rel="noreferrer">ORCID <LinkArrow /></a></li>
           </ul>
         </div>
       </section>

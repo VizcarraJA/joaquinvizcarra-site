@@ -81,10 +81,13 @@ main {
 .skip-link:focus {
   transform: translateY(0);
 }
-.inline-arrow {
-  white-space: nowrap;
-  font-weight: 400;
-  margin-left: 6px;
+.link-arrow {
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  margin-left: 0.3em;
+  vertical-align: -0.05em;
+  flex-shrink: 0;
 }
 .eyebrow,
 .section-label {

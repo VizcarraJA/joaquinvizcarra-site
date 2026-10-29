@@ -1,3 +1,4 @@
+import { LinkArrow } from "@/app/components/LinkArrow";
 import Link from "next/link";
 import { createPageMetadata } from "@/lib/metadata";
 import { leadershipRoles, profile, training } from "@/lib/site-data";
@@ -45,7 +46,7 @@ export default function AboutPage() {
             Translational Research and NIH-supported training in neuroengineering
             and medicine.
           </p>
-          <Link className="text-link" href="/research">Explore my research <span aria-hidden="true">↗</span></Link>
+          <Link className="text-link" href="/research">Explore my research <LinkArrow /></Link>
         </div>
         <aside aria-label="Current appointment">
           <p className="section-label">Current appointment</p>
@@ -68,7 +69,7 @@ export default function AboutPage() {
             </div>
           </dl>
           <a className="text-link" href={profile.links.uc} target="_blank" rel="noreferrer">
-            University profile <span aria-hidden="true">↗</span>
+            University profile <LinkArrow />
           </a>
         </aside>
       </section>
@@ -121,7 +122,7 @@ export default function AboutPage() {
             Cincinnati. Its planned focus brings together my work on access to
             Parkinson’s care, language-based phenotyping, and multimodal prediction.
           </p>
-          <Link href="/contact" className="text-link">Get in touch <span aria-hidden="true">↗</span></Link>
+          <Link href="/contact" className="text-link">Get in touch <LinkArrow /></Link>
         </div>
       </section>
     </div>
