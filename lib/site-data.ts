@@ -65,7 +65,9 @@ export const selectedPublications: Publication[] = [
     id: "first-recurrent-falls",
     title: "Prediction of First and Recurrent Falls in Parkinson's Disease",
     journal: "Annals of Neurology",
-    status: "in-press",
+    year: "2026",
+    status: "published",
+    url: "https://doi.org/10.1002/ana.78400",
     description: "Prediction of first and recurrent falls in Parkinson's disease.",
     featured: true
   },

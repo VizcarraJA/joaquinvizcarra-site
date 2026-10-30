@@ -2,7 +2,7 @@
 
 Living project memory. Read before work in this folder and update when confirmed identity, strategy, inventory, or implementation changes.
 
-**Status: October 29, 2026 deployed and verified.** The user selected the Clinical Perspective design and supplied three missing in-press papers plus the APDA agenda. [PR #20](https://github.com/VizcarraJA/joaquinvizcarra-site/pull/20) launched the overhaul. [PR #21](https://github.com/VizcarraJA/joaquinvizcarra-site/pull/21) replaced mobile emoji arrows with SVG icons and was squash-merged as `79e6f57a819120c5144bf02da56a43f6087860f2`. GitHub CI, Vercel preview, and Vercel production passed. All six live pages returned 200 with SVG arrows and no Unicode arrow characters. The site is live at https://joaquinvizcarra.com and the local checkout is on updated `main`.
+**Status: October 29, 2026 deployed and verified.** [PR #20](https://github.com/VizcarraJA/joaquinvizcarra-site/pull/20) launched the Clinical Perspective overhaul, [PR #21](https://github.com/VizcarraJA/joaquinvizcarra-site/pull/21) replaced mobile emoji arrows with SVG icons, and [PR #22](https://github.com/VizcarraJA/joaquinvizcarra-site/pull/22) applied the user's selected Ink blue palette. Latest production commit: `a4c9a6a78c6adef877e714a958662bf3b38e794c`. GitHub CI, Vercel preview, and Vercel production passed. Live CSS confirms `#315b78`, and the favicon and social image match the validated build. The site is live at https://joaquinvizcarra.com and the local checkout is on updated `main`.
 
 ## Identity and Audience
 
@@ -38,7 +38,7 @@ Homepage narrative: clinician/researcher introduction and appointment; selected 
 
 The user explicitly selected **Clinical Perspective** from the visual directions and said “i love” that design. Its direction is strong editorial typography, restrained decoration, spacious sections, compact evidence lists, and a smaller portrait. Implement responsive navigation, adequate text contrast, and content visible without animation JavaScript.
 
-The three important papers missing from the CV are now identified below. All three are user-confirmed as in press, as of October 28, 2026. Complete author lists, publication dates, and DOIs remain unprovided and must not be invented. Confirm project details and public outputs before claiming results or deployment.
+The three important papers missing from the CV are identified below. The Annals of Neurology falls prediction paper was published online October 30, 2026, with DOI `10.1002/ana.78400`, verified through Crossref after the user supplied the link. The npj Parkinson's Disease and BMJ papers remain user-confirmed as in press. Do not invent missing bibliographic details. Confirm project details and public outputs before claiming results or deployment.
 
 ## Voice and Style Rules
 
@@ -110,11 +110,11 @@ Private LinkedIn drafts cover Bayesian/FDA guidance, Mobilise-D, wearable RCT ou
 
 ## Selected Evidence for Updated Content
 
-The CV lists 46 peer-reviewed publications, plus books and other outputs. That count is a CV inventory, not a confirmed current total. The user subsequently supplied these three missing papers, all **in press**:
+The CV lists 46 peer-reviewed publications, plus books and other outputs. That count is a CV inventory, not a confirmed current total. The user subsequently supplied these three missing papers:
 
-- “Prediction of First and Recurrent Falls in Parkinson’s Disease.” *Annals of Neurology*.
-- “Longitudinal Fall Patterns in Parkinson’s Disease: Automated Narrative Extraction in 2,811 Patients.” *npj Parkinson's Disease*.
-- “‘State Of the Art’ Review: Management of Motor Symptoms in Parkinson's Disease.” *BMJ*.
+- “Prediction of First and Recurrent Falls in Parkinson’s Disease.” *Annals of Neurology*, 2026. Published online October 30, 2026. DOI: `10.1002/ana.78400`. Keep it featured, link to the DOI, and list it under published work. Crossref verifies the title, journal, DOI, and online publication date; volume, issue, and page details were not supplied in that record.
+- “Longitudinal Fall Patterns in Parkinson’s Disease: Automated Narrative Extraction in 2,811 Patients.” *npj Parkinson's Disease*. In press.
+- “‘State Of the Art’ Review: Management of Motor Symptoms in Parkinson's Disease.” *BMJ*. In press.
 
 Use the user's supplied status and titles. Do not add DOI links, final dates, or full author lists without verification.
 
@@ -154,6 +154,6 @@ After deployment, the live homepage was inspected in the browser. Production HTT
 
 ## Maintaining This Context
 
-October 29, 2026: the user requested professional mobile arrow icons and alternatives to the rust/red accent. The vector arrow fix passed a production build and browser checks at 390px (including expanded mobile navigation), 320px (publication links), and 1280px, with no horizontal overflow. All 20 application source files matched the built QA copy and the deployed Git tree matched the validated commit. Production HTTP checks confirmed the updated SVG markup on all six pages; production browser navigation timed out, so visual checks used the identical local production build. The user then chose **Ink blue** from the four alternatives in `site-accent-options.html` in the task visualization directory. Apply that choice consistently to the site and identity assets.
+October 29, 2026: the user requested professional mobile arrow icons and alternatives to the rust/red accent. The vector arrow fix passed a production build and browser checks at 390px (including expanded mobile navigation), 320px (publication links), and 1280px, with no horizontal overflow. All 20 application source files matched the built QA copy and the deployed Git tree matched the validated commit. Production HTTP checks confirmed the updated SVG markup on all six pages; production browser navigation timed out, so visual checks used the identical local production build. The user then chose **Ink blue** from the four alternatives in `site-accent-options.html` in the task visualization directory. The palette update passed a production build and browser checks at 1280px and 390px, with no horizontal overflow. GitHub CI and Vercel deployments passed. The public homepage returned 200 with the new CSS accent and no rust value; favicon and social image bytes match the validated production build. The deployed Git tree matches the tested local tree. Only this deployment record was edited after release.
 
 Update confirmed appointments, research scope, projects, papers, leadership, and talks as they change. Record final local verification and deployment status separately. Keep inventory accurate and preserve voice rules and the PR workflow. Do not copy medical license or certification numbers into project documentation.
