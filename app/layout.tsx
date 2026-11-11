@@ -90,7 +90,10 @@ export default function RootLayout({
                 {profile.institution}
               </p>
             </div>
-            <nav className="footer-social" aria-label="Professional profiles">
+            <nav className="footer-social" aria-label="Lab and professional profiles">
+              <a href={profile.links.lab} target="_blank" rel="noreferrer">
+                Clinical Intelligence Lab <LinkArrow />
+              </a>
               <a href={profile.links.scholar} target="_blank" rel="noreferrer">
                 Google Scholar <LinkArrow />
               </a>

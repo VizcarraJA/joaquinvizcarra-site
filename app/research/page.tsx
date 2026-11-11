@@ -1,7 +1,7 @@
 import { LinkArrow } from "@/app/components/LinkArrow";
 import Link from "next/link";
 import { createPageMetadata } from "@/lib/metadata";
-import { researchThemes, selectedPublications } from "@/lib/site-data";
+import { profile, researchThemes, selectedPublications } from "@/lib/site-data";
 
 export const metadata = createPageMetadata(
   "Research",
@@ -88,7 +88,12 @@ export default function ResearchPage() {
             span clinical cohorts, digital measurement, language models, and the
             practical delivery of Parkinson’s care.
           </p>
-          <Link className="text-link" href="/contact">Discuss a collaboration <LinkArrow /></Link>
+          <div className="profile-links">
+            <a className="text-link" href={profile.links.lab} target="_blank" rel="noreferrer">
+              Visit the Clinical Intelligence Lab <LinkArrow />
+            </a>
+            <Link className="text-link" href="/contact">Discuss a collaboration <LinkArrow /></Link>
+          </div>
         </div>
       </section>
     </div>

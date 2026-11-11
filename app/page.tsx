@@ -94,6 +94,11 @@ export default function HomePage() {
             </article>
           ))}
         </div>
+        <p className="home-lab-link">
+          <a className="text-link" href={profile.links.lab} target="_blank" rel="noreferrer">
+            Visit the Clinical Intelligence Lab <LinkArrow />
+          </a>
+        </p>
       </section>
 
       <div className="home-lower">
