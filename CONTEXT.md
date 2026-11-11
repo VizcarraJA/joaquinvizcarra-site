@@ -2,7 +2,7 @@
 
 Living project memory. Read before work in this folder and update when confirmed identity, strategy, inventory, or implementation changes.
 
-**Status: October 29, 2026 deployed and verified.** [PR #20](https://github.com/VizcarraJA/joaquinvizcarra-site/pull/20) launched the Clinical Perspective overhaul, [PR #21](https://github.com/VizcarraJA/joaquinvizcarra-site/pull/21) replaced mobile emoji arrows with SVG icons, and [PR #22](https://github.com/VizcarraJA/joaquinvizcarra-site/pull/22) applied the user's selected Ink blue palette. Latest production commit: `a4c9a6a78c6adef877e714a958662bf3b38e794c`. GitHub CI, Vercel preview, and Vercel production passed. Live CSS confirms `#315b78`, and the favicon and social image match the validated build. The site is live at https://joaquinvizcarra.com and the local checkout is on updated `main`.
+**Status: October 30, 2026 deployed and verified.** [PR #20](https://github.com/VizcarraJA/joaquinvizcarra-site/pull/20) launched the Clinical Perspective overhaul, [PR #21](https://github.com/VizcarraJA/joaquinvizcarra-site/pull/21) replaced mobile emoji arrows with SVG icons, and [PR #22](https://github.com/VizcarraJA/joaquinvizcarra-site/pull/22) applied the user's selected Ink blue palette. [PR #23](https://github.com/VizcarraJA/joaquinvizcarra-site/pull/23) updated the Annals falls prediction paper to published with its DOI. Latest production commit: `6e90611345c15631ed8a97b10e76f0a5d80571ab`. GitHub CI, Vercel preview, and Vercel production passed. The site is live at https://joaquinvizcarra.com and the local checkout is on updated `main`.
 
 ## Identity and Audience
 
@@ -12,7 +12,7 @@ Use **Assistant Professor**, as confirmed by the user and supplied CV. The publi
 
 This is a **personal academic site**. Priority visitors are senior academic leaders, recruiters, executives, prospective collaborators, and others interested in his clinical and research work who could create professional opportunities. Clinical focus: Parkinson's disease. Clinical AI is the method and research approach.
 
-The **Clinical Intelligence Lab** is forthcoming and has not launched. The CV lists a PI role, but the user's current clarification governs public framing. Do not imply an operating lab, established team, active recruitment program, or independent lab website without confirmation.
+The **Clinical Intelligence Lab** has a public website at https://clinicalintelligencelab.com/, confirmed by the user on November 11, 2026 and verified with a successful HTTP response. Its public page identifies Joaquin as Principal Investigator and locates the lab in UC BHIDS. Link to it through `profile.links.lab` from the homepage research section, Research, About, and the shared footer. The earlier forthcoming-only framing is superseded. Do not infer team size, recruitment openings, deployed tools, or demonstrated patient benefit from the website's existence.
 
 ## Mission and Content Strategy
 
@@ -32,7 +32,7 @@ Keep maintenance event-driven: update projects, publications, appointments, lead
 
 ## Selected Overhaul
 
-Navigation: Research, Publications, Speaking, About, Contact, with Home accessible through the name. Speaking remains a distinct destination to make invited presentations and professional reach easy to assess. A lab destination should wait for a confirmed launch.
+Navigation: Research, Publications, Speaking, About, Contact, with Home accessible through the name. Speaking remains a distinct destination to make invited presentations and professional reach easy to assess. The Clinical Intelligence Lab is an external destination, linked from relevant content and the footer.
 
 Homepage narrative: clinician/researcher introduction and appointment; selected evidence; three active research areas; leadership and talks; contact. Papers have direct links where available. In-press papers supplied by the user have no invented DOI or publisher URL.
 
@@ -153,6 +153,10 @@ Browser checks covered all six pages at 320px, the homepage at 390px and 768px, 
 After deployment, the live homepage was inspected in the browser. Production HTTP checks passed for all six public pages, the retired writing index and a former essay (404), feed (410 with noindex), sitemap, and social preview image. The deployed Git tree matched the tested local tree exactly. This deployment record is a local documentation update after the release commit; no application changes were made after validation.
 
 ## Maintaining This Context
+
+November 11, 2026: the user confirmed the lab website and requested a route to it from the personal site. Lab links were added to Home, Research, About, and the shared footer, with one URL in `profile.links.lab`. About now identifies Joaquin as lab lead and uses the verified lab research scope instead of forthcoming-only copy. The production build and generated HTML checks passed for all six pages. Browser checks at 1280px, 390px, and 320px found no horizontal overflow, confirmed footer wrapping, and verified the About link opens the lab website in a new tab. These changes are on `codex/link-clinical-intelligence-lab`, pending GitHub access and publication; the production status above remains the last verified release.
+
+October 30, 2026: Crossref verified the newly published Annals paper's title, journal, DOI, and online publication date. The shared data update passed the production build and generated HTML checks for the homepage DOI/year, published grouping with two remaining in-press papers, and the research reference. All 20 application source files matched the built copy; the deployed Git tree matched the tested tree. After deployment succeeded, live HTTP checks returned 200 and confirmed the update on `/`, `/publications`, and `/research`. Only this deployment record was edited after release.
 
 October 29, 2026: the user requested professional mobile arrow icons and alternatives to the rust/red accent. The vector arrow fix passed a production build and browser checks at 390px (including expanded mobile navigation), 320px (publication links), and 1280px, with no horizontal overflow. All 20 application source files matched the built QA copy and the deployed Git tree matched the validated commit. Production HTTP checks confirmed the updated SVG markup on all six pages; production browser navigation timed out, so visual checks used the identical local production build. The user then chose **Ink blue** from the four alternatives in `site-accent-options.html` in the task visualization directory. The palette update passed a production build and browser checks at 1280px and 390px, with no horizontal overflow. GitHub CI and Vercel deployments passed. The public homepage returned 200 with the new CSS accent and no rust value; favicon and social image bytes match the validated production build. The deployed Git tree matches the tested local tree. Only this deployment record was edited after release.
 

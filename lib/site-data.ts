@@ -8,6 +8,7 @@ export const profile = {
   secondaryDepartment: "Department of Neurology and Rehabilitation Medicine",
   email: "contact@joaquinvizcarra.com",
   links: {
+    lab: "https://clinicalintelligencelab.com/",
     scholar: "https://scholar.google.com/citations?hl=en&user=wuL0vg8AAAAJ",
     linkedin: "https://www.linkedin.com/in/joaquin-vizcarra/",
     uc: "https://researchdirectory.uc.edu/p/augustji",

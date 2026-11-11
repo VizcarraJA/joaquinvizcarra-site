@@ -113,16 +113,18 @@ export default function AboutPage() {
 
       <section className="editorial-section split-layout" aria-labelledby="lab-heading">
         <div>
-          <p className="section-label">Forthcoming</p>
+          <p className="section-label">The lab</p>
           <h2 id="lab-heading" className="section-heading">Clinical Intelligence Lab.</h2>
         </div>
         <div className="prose">
           <p>
-            I am developing the Clinical Intelligence Lab at the University of
-            Cincinnati. Its planned focus brings together my work on access to
-            Parkinson’s care, language-based phenotyping, and multimodal prediction.
+            I lead the Clinical Intelligence Lab at the University of Cincinnati.
+            We use clinical data and AI methods to study Parkinson’s disease,
+            including disease trajectories, prediction, and access to specialty care.
           </p>
-          <Link href="/contact" className="text-link">Get in touch <LinkArrow /></Link>
+          <a className="text-link" href={profile.links.lab} target="_blank" rel="noreferrer">
+            Visit the Clinical Intelligence Lab <LinkArrow />
+          </a>
         </div>
       </section>
     </div>
