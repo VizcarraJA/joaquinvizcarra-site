@@ -74,9 +74,11 @@ export const selectedPublications: Publication[] = [
   },
   {
     id: "longitudinal-fall-patterns",
-    title: "Longitudinal Fall Patterns in Parkinson's Disease: Automated Narrative Extraction in 2,811 Patients",
+    title: "Longitudinal fall patterns in Parkinson’s disease: automated narrative extraction in 2811 patients",
     journal: "npj Parkinson's Disease",
-    status: "in-press",
+    year: "2026",
+    status: "published",
+    url: "https://doi.org/10.1038/s41531-026-01625-z",
     description: "Automated extraction of longitudinal fall patterns from clinical narratives in 2,811 patients.",
     featured: true
   },
